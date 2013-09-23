@@ -1,0 +1,12 @@
+COMPOSANT
+
+Un composant fournit un ensemble de ports et de services.
+Un connecteur peut être relié à un composant via un port pour utiliser ou fournir les services connectés à ce port.
+Un service peut être connecté à plusieurs ports ou ne pas être connecté (il est alors inutilisé).
+
+Un composant composite est composé d'une configuration (les composants internes sont donc reliés par des connecteurs).
+
+CONFIGURATION
+
+Une configuration est composée de composants et connecteurs reliés par des liens d'attachement.
+Une configuration fournit/requiert des services à travers des ports qui sont connectés aux ports des composants par des liens binding.
