@@ -2,6 +2,7 @@
 <!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ConConfFromBinding" version="3">
   <DEPS>
     <ID name="ConConfFromBinding" mc="Class" uid="363d2314-a435-4439-8ca4-8badb4ad4a08"/>
+    <EXTID name="ConConfBinding" mc="Class" uid="968ffefa-0d36-4336-bf4b-50aa4c9714cf"/>
   </DEPS>
   <OBJECT>
     <ID name="ConConfFromBinding" mc="Class" uid="363d2314-a435-4439-8ca4-8badb4ad4a08"/>
@@ -17,6 +18,23 @@
       <ATT name="Name"><![CDATA[ConConfFromBinding]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
-    <DEPENDENCIES></DEPENDENCIES>
+    <DEPENDENCIES>
+      <COMP relation="Parent">
+        <OBJECT>
+          <ID name="Generalization" mc="Generalization" uid="98995d81-f2bc-4e76-89bf-1f923c623553"/>
+          <PID name="ConConfFromBinding" mc="Class" uid="363d2314-a435-4439-8ca4-8badb4ad4a08"/>
+          <ATTRIBUTES>
+            <ATT name="Discriminator"></ATT>
+            <ATT name="Name"><![CDATA[Generalization]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="SuperType">
+              <ID name="ConConfBinding" mc="Class" uid="968ffefa-0d36-4336-bf4b-50aa4c9714cf"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
   </OBJECT>
 </EXT>

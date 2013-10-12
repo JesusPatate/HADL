@@ -2,7 +2,8 @@
 <!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ArchitecturalElement" version="3">
   <DEPS>
     <ID name="ArchitecturalElement" mc="Class" uid="083d76c1-a4c0-4eb9-805d-1ced1c7dd31a"/>
-    <EXTID name="Property" mc="Class" uid="430be749-cb9a-48d3-8035-a2bfb733a45c"/>
+    <EXTID name="FunctionalProperty" mc="Class" uid="76981009-98db-4645-81ea-ea1c9696ccbb"/>
+    <EXTID name="NonFunctionalProperty" mc="Class" uid="55f308ca-f256-4281-8855-dc04e09d77ef"/>
   </DEPS>
   <OBJECT>
     <ID name="ArchitecturalElement" mc="Class" uid="083d76c1-a4c0-4eb9-805d-1ced1c7dd31a"/>
@@ -21,7 +22,7 @@
     <DEPENDENCIES>
       <COMP relation="OwnedEnd">
         <OBJECT>
-          <ID name="property" mc="AssociationEnd" uid="3f9f5271-0c94-46f6-ad41-b2cb7c396e64"/>
+          <ID name="functionalProperty" mc="AssociationEnd" uid="2c4b70d6-0508-4118-b454-5771c67d01ad"/>
           <PID name="ArchitecturalElement" mc="Class" uid="083d76c1-a4c0-4eb9-805d-1ced1c7dd31a"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsComposition</ATT>
@@ -35,16 +36,16 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[property]]></ATT>
+            <ATT name="Name"><![CDATA[functionalProperty]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Target">
-              <ID name="Property" mc="Class" uid="430be749-cb9a-48d3-8035-a2bfb733a45c"/>
+              <ID name="FunctionalProperty" mc="Class" uid="76981009-98db-4645-81ea-ea1c9696ccbb"/>
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="AssociationEnd" uid="f7069437-2237-4e64-8d25-02d39ed1a94a"/>
+                <ID name="" mc="AssociationEnd" uid="ad9189b5-b63f-4e0b-930a-4ae0f444248a"/>
                 <PID name="ArchitecturalElement" mc="Class" uid="083d76c1-a4c0-4eb9-805d-1ced1c7dd31a"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
@@ -63,11 +64,11 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="property" mc="AssociationEnd" uid="3f9f5271-0c94-46f6-ad41-b2cb7c396e64"/>
+                    <COMPID name="functionalProperty" mc="AssociationEnd" uid="2c4b70d6-0508-4118-b454-5771c67d01ad"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Association" uid="dab03544-1290-456b-8eb2-eff082c34e80"/>
+                      <ID name="" mc="Association" uid="6892a20b-d09a-4111-b476-39dd67343ee5"/>
                       <PID name="ArchitecturalElement" mc="Class" uid="083d76c1-a4c0-4eb9-805d-1ced1c7dd31a"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
@@ -81,7 +82,79 @@
             </COMP>
             <COMP relation="Association">
               <OBJECT>
-                <ID name="" mc="Association" uid="dab03544-1290-456b-8eb2-eff082c34e80"/>
+                <ID name="" mc="Association" uid="6892a20b-d09a-4111-b476-39dd67343ee5"/>
+                <PID name="ArchitecturalElement" mc="Class" uid="083d76c1-a4c0-4eb9-805d-1ced1c7dd31a"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="nonFunctionalProperty" mc="AssociationEnd" uid="9d41868b-a33b-49ac-befa-1cecb66779e6"/>
+          <PID name="ArchitecturalElement" mc="Class" uid="083d76c1-a4c0-4eb9-805d-1ced1c7dd31a"/>
+          <ATTRIBUTES>
+            <ATT name="Aggregation">KindIsComposition</ATT>
+            <ATT name="IsChangeable">true</ATT>
+            <ATT name="Changeable">ReadWrite</ATT>
+            <ATT name="IsDerived">false</ATT>
+            <ATT name="IsOrdered">false</ATT>
+            <ATT name="IsUnique">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[*]]></ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[nonFunctionalProperty]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Target">
+              <ID name="NonFunctionalProperty" mc="Class" uid="55f308ca-f256-4281-8855-dc04e09d77ef"/>
+            </LINK>
+            <COMP relation="Opposite">
+              <OBJECT>
+                <ID name="" mc="AssociationEnd" uid="f5638094-62d9-4c8b-bf30-0fd49a87ffb9"/>
+                <PID name="ArchitecturalElement" mc="Class" uid="083d76c1-a4c0-4eb9-805d-1ced1c7dd31a"/>
+                <ATTRIBUTES>
+                  <ATT name="Aggregation">KindIsAssociation</ATT>
+                  <ATT name="IsChangeable">true</ATT>
+                  <ATT name="Changeable">ReadWrite</ATT>
+                  <ATT name="IsDerived">false</ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="Visibility">Public</ATT>
+                  <ATT name="IsClass">false</ATT>
+                  <ATT name="IsAbstract">false</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Opposite">
+                    <COMPID name="nonFunctionalProperty" mc="AssociationEnd" uid="9d41868b-a33b-49ac-befa-1cecb66779e6"/>
+                  </COMP>
+                  <COMP relation="Association">
+                    <OBJECT>
+                      <ID name="" mc="Association" uid="994559cd-79a1-41e8-8017-3bede364d153"/>
+                      <PID name="ArchitecturalElement" mc="Class" uid="083d76c1-a4c0-4eb9-805d-1ced1c7dd31a"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Association">
+              <OBJECT>
+                <ID name="" mc="Association" uid="994559cd-79a1-41e8-8017-3bede364d153"/>
                 <PID name="ArchitecturalElement" mc="Class" uid="083d76c1-a4c0-4eb9-805d-1ced1c7dd31a"/>
                 <ATTRIBUTES>
                   <ATT name="Name"></ATT>

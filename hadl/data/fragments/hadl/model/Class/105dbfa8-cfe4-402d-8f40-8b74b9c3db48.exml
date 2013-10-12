@@ -1,10 +1,11 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="CompConfProvidedBinding" version="3">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="CompConfRequiredBinding" version="3">
   <DEPS>
-    <ID name="CompConfProvidedBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
+    <ID name="CompConfRequiredBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
+    <EXTID name="CompConfBinding" mc="Class" uid="70368803-a232-4ef3-8a81-f5e1fadfe99a"/>
   </DEPS>
   <OBJECT>
-    <ID name="CompConfProvidedBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
+    <ID name="CompConfRequiredBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
     <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
     <ATTRIBUTES>
       <ATT name="IsActive">false</ATT>
@@ -14,9 +15,26 @@
       <ATT name="IsLeaf">false</ATT>
       <ATT name="IsRoot">false</ATT>
       <ATT name="Visibility">Public</ATT>
-      <ATT name="Name"><![CDATA[CompConfProvidedBinding]]></ATT>
+      <ATT name="Name"><![CDATA[CompConfRequiredBinding]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
-    <DEPENDENCIES></DEPENDENCIES>
+    <DEPENDENCIES>
+      <COMP relation="Parent">
+        <OBJECT>
+          <ID name="Generalization" mc="Generalization" uid="6654deaf-60d0-45ec-94d9-cdf9839d9cd0"/>
+          <PID name="CompConfRequiredBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
+          <ATTRIBUTES>
+            <ATT name="Discriminator"></ATT>
+            <ATT name="Name"><![CDATA[Generalization]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="SuperType">
+              <ID name="CompConfBinding" mc="Class" uid="70368803-a232-4ef3-8a81-f5e1fadfe99a"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
   </OBJECT>
 </EXT>
