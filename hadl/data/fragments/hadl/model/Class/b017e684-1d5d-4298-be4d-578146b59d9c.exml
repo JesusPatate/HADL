@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ReceiveRequestService : ProvidedService" version="3">
+  <DEPS>
+    <ID name="ReceiveRequestService : ProvidedService" mc="Class" uid="b017e684-1d5d-4298-be4d-578146b59d9c"/>
+    <EXTID name="ReceiveRequestConnection : ProvidedConnection" mc="Class" uid="2dcbae4e-4468-45b2-8b0d-a329cde75bc4"/>
+    <EXTID name="ReceiveRequestPort : ProvidedPort" mc="Class" uid="0a05bf8c-2315-4a1d-9a2e-db701511198d"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="ReceiveRequestService : ProvidedService" mc="Class" uid="b017e684-1d5d-4298-be4d-578146b59d9c"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[ReceiveRequestService : ProvidedService]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedEnd">
+        <REFOBJ>
+          <ID name="" mc="AssociationEnd" uid="5a73ff09-42fc-4111-a0ce-a87554f8b2e1"/>
+          <PID name="ReceiveRequestPort : ProvidedPort" mc="Class" uid="0a05bf8c-2315-4a1d-9a2e-db701511198d"/>
+        </REFOBJ>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

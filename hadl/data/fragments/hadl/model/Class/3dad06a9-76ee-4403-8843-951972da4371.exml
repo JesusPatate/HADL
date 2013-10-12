@@ -3,9 +3,10 @@
   <DEPS>
     <ID name="Configuration" mc="Class" uid="3dad06a9-76ee-4403-8843-951972da4371"/>
     <EXTID name="ArchitecturalElement" mc="Class" uid="083d76c1-a4c0-4eb9-805d-1ced1c7dd31a"/>
-    <EXTID name="Attachment" mc="Class" uid="3cd8a48a-8b9c-4aaf-a1ba-0e7d3b418e46"/>
     <EXTID name="Component" mc="Class" uid="474ae6da-7c44-4bc2-afa8-82a786025405"/>
     <EXTID name="Connector" mc="Class" uid="13832adf-0ab7-4317-af6e-a4acbac4b08b"/>
+    <EXTID name="FromAttachment" mc="Class" uid="197b8d52-3e1f-4b4c-8d83-34bebf9d46dd"/>
+    <EXTID name="ToAttachment" mc="Class" uid="37cb2bd9-4b82-4efc-a22a-c1cb50e816f0"/>
   </DEPS>
   <OBJECT>
     <ID name="Configuration" mc="Class" uid="3dad06a9-76ee-4403-8843-951972da4371"/>
@@ -14,7 +15,7 @@
       <ATT name="IsActive">false</ATT>
       <ATT name="IsMain">false</ATT>
       <ATT name="IsElementary">false</ATT>
-      <ATT name="IsAbstract">true</ATT>
+      <ATT name="IsAbstract">false</ATT>
       <ATT name="IsLeaf">false</ATT>
       <ATT name="IsRoot">false</ATT>
       <ATT name="Visibility">Public</ATT>
@@ -168,7 +169,7 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="attachment" mc="AssociationEnd" uid="dc73d777-0325-4368-b674-788fc9cd6e93"/>
+          <ID name="fromAttachment" mc="AssociationEnd" uid="1c16000a-62f7-4162-ad50-8753b58fe4ae"/>
           <PID name="Configuration" mc="Class" uid="3dad06a9-76ee-4403-8843-951972da4371"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsComposition</ATT>
@@ -177,21 +178,21 @@
             <ATT name="IsDerived">false</ATT>
             <ATT name="IsOrdered">false</ATT>
             <ATT name="IsUnique">false</ATT>
-            <ATT name="MultiplicityMin"><![CDATA[2]]></ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
             <ATT name="MultiplicityMax"><![CDATA[*]]></ATT>
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[attachment]]></ATT>
+            <ATT name="Name"><![CDATA[fromAttachment]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Target">
-              <ID name="Attachment" mc="Class" uid="3cd8a48a-8b9c-4aaf-a1ba-0e7d3b418e46"/>
+              <ID name="FromAttachment" mc="Class" uid="197b8d52-3e1f-4b4c-8d83-34bebf9d46dd"/>
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="AssociationEnd" uid="e3bb2bb9-2aa7-42af-bc62-a755b415ba5a"/>
+                <ID name="" mc="AssociationEnd" uid="7eca8974-e082-4bc6-aed7-5ed5f4f66ebd"/>
                 <PID name="Configuration" mc="Class" uid="3dad06a9-76ee-4403-8843-951972da4371"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
@@ -210,11 +211,11 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="attachment" mc="AssociationEnd" uid="dc73d777-0325-4368-b674-788fc9cd6e93"/>
+                    <COMPID name="fromAttachment" mc="AssociationEnd" uid="1c16000a-62f7-4162-ad50-8753b58fe4ae"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Association" uid="518dcbd9-04c2-4486-85bf-b8d355483be4"/>
+                      <ID name="" mc="Association" uid="b665af7d-8487-4ee2-8095-12c75d464ba1"/>
                       <PID name="Configuration" mc="Class" uid="3dad06a9-76ee-4403-8843-951972da4371"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
@@ -228,7 +229,79 @@
             </COMP>
             <COMP relation="Association">
               <OBJECT>
-                <ID name="" mc="Association" uid="518dcbd9-04c2-4486-85bf-b8d355483be4"/>
+                <ID name="" mc="Association" uid="b665af7d-8487-4ee2-8095-12c75d464ba1"/>
+                <PID name="Configuration" mc="Class" uid="3dad06a9-76ee-4403-8843-951972da4371"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="toAttachment" mc="AssociationEnd" uid="49b0953a-fffa-4225-b44f-c647b573a346"/>
+          <PID name="Configuration" mc="Class" uid="3dad06a9-76ee-4403-8843-951972da4371"/>
+          <ATTRIBUTES>
+            <ATT name="Aggregation">KindIsComposition</ATT>
+            <ATT name="IsChangeable">true</ATT>
+            <ATT name="Changeable">ReadWrite</ATT>
+            <ATT name="IsDerived">false</ATT>
+            <ATT name="IsOrdered">false</ATT>
+            <ATT name="IsUnique">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[*]]></ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[toAttachment]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Target">
+              <ID name="ToAttachment" mc="Class" uid="37cb2bd9-4b82-4efc-a22a-c1cb50e816f0"/>
+            </LINK>
+            <COMP relation="Opposite">
+              <OBJECT>
+                <ID name="" mc="AssociationEnd" uid="55bff79a-379e-4c56-b065-d2e6744f751d"/>
+                <PID name="Configuration" mc="Class" uid="3dad06a9-76ee-4403-8843-951972da4371"/>
+                <ATTRIBUTES>
+                  <ATT name="Aggregation">KindIsAssociation</ATT>
+                  <ATT name="IsChangeable">true</ATT>
+                  <ATT name="Changeable">ReadWrite</ATT>
+                  <ATT name="IsDerived">false</ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="Visibility">Public</ATT>
+                  <ATT name="IsClass">false</ATT>
+                  <ATT name="IsAbstract">false</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Opposite">
+                    <COMPID name="toAttachment" mc="AssociationEnd" uid="49b0953a-fffa-4225-b44f-c647b573a346"/>
+                  </COMP>
+                  <COMP relation="Association">
+                    <OBJECT>
+                      <ID name="" mc="Association" uid="f9288612-77da-450f-9a25-c5ee904949b3"/>
+                      <PID name="Configuration" mc="Class" uid="3dad06a9-76ee-4403-8843-951972da4371"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Association">
+              <OBJECT>
+                <ID name="" mc="Association" uid="f9288612-77da-450f-9a25-c5ee904949b3"/>
                 <PID name="Configuration" mc="Class" uid="3dad06a9-76ee-4403-8843-951972da4371"/>
                 <ATTRIBUTES>
                   <ATT name="Name"></ATT>

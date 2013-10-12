@@ -1,0 +1,133 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ReceiveRequestPort : RequiredPort" version="3">
+  <DEPS>
+    <ID name="ReceiveRequestPort : RequiredPort" mc="Class" uid="3f6e3faa-6b6c-426e-8ad8-4eb34f0e57da"/>
+    <EXTID name="Caller : FromRole" mc="Class" uid="97a86fff-c933-4187-8e8c-7707b0948bd3"/>
+    <EXTID name="ClientToRPC : FromAttachment" mc="Class" uid="3ec00c1f-62ab-489d-afdb-56ac9f5ec053"/>
+    <EXTID name="ReceiveRequestService : RequiredService" mc="Class" uid="f1f3797a-e65b-482f-9fd7-76f61a3c4391"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="ReceiveRequestPort : RequiredPort" mc="Class" uid="3f6e3faa-6b6c-426e-8ad8-4eb34f0e57da"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[ReceiveRequestPort : RequiredPort]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedEnd">
+        <REFOBJ>
+          <ID name="" mc="AssociationEnd" uid="78d91535-5503-4701-bf7a-1481020f4e57"/>
+          <PID name="Caller : FromRole" mc="Class" uid="97a86fff-c933-4187-8e8c-7707b0948bd3"/>
+        </REFOBJ>
+        <OBJECT>
+          <ID name="" mc="AssociationEnd" uid="48d32e0d-8bdf-4064-b864-32cdcf1bc271"/>
+          <PID name="ReceiveRequestPort : RequiredPort" mc="Class" uid="3f6e3faa-6b6c-426e-8ad8-4eb34f0e57da"/>
+          <ATTRIBUTES>
+            <ATT name="Aggregation">KindIsAssociation</ATT>
+            <ATT name="IsChangeable">true</ATT>
+            <ATT name="Changeable">ReadWrite</ATT>
+            <ATT name="IsDerived">false</ATT>
+            <ATT name="IsOrdered">false</ATT>
+            <ATT name="IsUnique">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Opposite">
+              <OBJECT>
+                <ID name="" mc="AssociationEnd" uid="439e33bc-8ba4-463c-bcb8-14583c078669"/>
+                <PID name="ReceiveRequestPort : RequiredPort" mc="Class" uid="3f6e3faa-6b6c-426e-8ad8-4eb34f0e57da"/>
+                <ATTRIBUTES>
+                  <ATT name="Aggregation">KindIsAssociation</ATT>
+                  <ATT name="IsChangeable">true</ATT>
+                  <ATT name="Changeable">ReadWrite</ATT>
+                  <ATT name="IsDerived">false</ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="Visibility">Public</ATT>
+                  <ATT name="IsClass">false</ATT>
+                  <ATT name="IsAbstract">false</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Opposite">
+                    <COMPID name="" mc="AssociationEnd" uid="48d32e0d-8bdf-4064-b864-32cdcf1bc271"/>
+                  </COMP>
+                  <COMP relation="Association">
+                    <OBJECT>
+                      <ID name="" mc="Association" uid="8f3b3e1b-9208-4914-821d-ee0d6a783ee5"/>
+                      <PID name="ReceiveRequestPort : RequiredPort" mc="Class" uid="3f6e3faa-6b6c-426e-8ad8-4eb34f0e57da"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES>
+                        <COMP relation="LinkToClass">
+                          <OBJECT>
+                            <ID name="ClassAssociation" mc="ClassAssociation" uid="dc27fb98-b3db-4567-860f-8c31819a69c4"/>
+                            <PID name="ReceiveRequestPort : RequiredPort" mc="Class" uid="3f6e3faa-6b6c-426e-8ad8-4eb34f0e57da"/>
+                            <ATTRIBUTES>
+                              <ATT name="Name"><![CDATA[ClassAssociation]]></ATT>
+                              <ATT name="status">1970354901745664</ATT>
+                            </ATTRIBUTES>
+                            <DEPENDENCIES>
+                              <LINK relation="ClassPart">
+                                <ID name="ReceiveRequestConnection : RequiredConnection" mc="Class" uid="fad17cd9-a49e-4185-a88b-7526dd122523"/>
+                              </LINK>
+                            </DEPENDENCIES>
+                          </OBJECT>
+                        </COMP>
+                      </DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Association">
+              <OBJECT>
+                <ID name="" mc="Association" uid="8f3b3e1b-9208-4914-821d-ee0d6a783ee5"/>
+                <PID name="ReceiveRequestPort : RequiredPort" mc="Class" uid="3f6e3faa-6b6c-426e-8ad8-4eb34f0e57da"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="LinkToClass">
+                    <OBJECT>
+                      <ID name="ClassAssociation" mc="ClassAssociation" uid="dc27fb98-b3db-4567-860f-8c31819a69c4"/>
+                      <PID name="ReceiveRequestPort : RequiredPort" mc="Class" uid="3f6e3faa-6b6c-426e-8ad8-4eb34f0e57da"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"><![CDATA[ClassAssociation]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES>
+                        <LINK relation="ClassPart">
+                          <ID name="ReceiveRequestConnection : RequiredConnection" mc="Class" uid="fad17cd9-a49e-4185-a88b-7526dd122523"/>
+                        </LINK>
+                      </DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
