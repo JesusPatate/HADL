@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="hadl" version="3">
+  <DEPS>
+    <ID name="hadl" mc="Project" uid="f43494c0-5c6e-4a5f-8a64-abe224b27777"/>
+    <COMPID name="hadl" mc="DiagramSet" uid="60ab1dcb-8f65-4209-8b71-bd223e83f443"/>
+    <COMPID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="hadl" mc="Project" uid="f43494c0-5c6e-4a5f-8a64-abe224b27777"/>
+    <ATTRIBUTES>
+      <ATT name="ProjectContext"></ATT>
+      <ATT name="ProjectDescr"></ATT>
+      <ATT name="Name"><![CDATA[hadl]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="DiagramRoot">
+        <COMPID name="hadl" mc="DiagramSet" uid="60ab1dcb-8f65-4209-8b71-bd223e83f443"/>
+      </COMP>
+      <COMP relation="Model">
+        <COMPID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

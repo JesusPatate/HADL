@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="FromAttachment" version="3">
+  <DEPS>
+    <ID name="FromAttachment" mc="Class" uid="197b8d52-3e1f-4b4c-8d83-34bebf9d46dd"/>
+    <EXTID name="Attachment" mc="Class" uid="3cd8a48a-8b9c-4aaf-a1ba-0e7d3b418e46"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="FromAttachment" mc="Class" uid="197b8d52-3e1f-4b4c-8d83-34bebf9d46dd"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[FromAttachment]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Parent">
+        <OBJECT>
+          <ID name="Generalization" mc="Generalization" uid="8ac608f3-5995-40e7-ac8b-01cbd206acb4"/>
+          <PID name="FromAttachment" mc="Class" uid="197b8d52-3e1f-4b4c-8d83-34bebf9d46dd"/>
+          <ATTRIBUTES>
+            <ATT name="Discriminator"></ATT>
+            <ATT name="Name"><![CDATA[Generalization]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="SuperType">
+              <ID name="Attachment" mc="Class" uid="3cd8a48a-8b9c-4aaf-a1ba-0e7d3b418e46"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

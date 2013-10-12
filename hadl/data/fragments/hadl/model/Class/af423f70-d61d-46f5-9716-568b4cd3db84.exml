@@ -1,0 +1,203 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ConnectorConfiguration" version="3">
+  <DEPS>
+    <ID name="ConnectorConfiguration" mc="Class" uid="af423f70-d61d-46f5-9716-568b4cd3db84"/>
+    <EXTID name="ConConfFromRole" mc="Class" uid="363d2314-a435-4439-8ca4-8badb4ad4a08"/>
+    <EXTID name="ConConfToRole" mc="Class" uid="d07dfdb0-b686-4a8b-bf98-81f38c528268"/>
+    <EXTID name="Configuration" mc="Class" uid="3dad06a9-76ee-4403-8843-951972da4371"/>
+    <EXTID name="Connector" mc="Class" uid="13832adf-0ab7-4317-af6e-a4acbac4b08b"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="ConnectorConfiguration" mc="Class" uid="af423f70-d61d-46f5-9716-568b4cd3db84"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[ConnectorConfiguration]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedEnd">
+        <OBJECT>
+          <ID name="conConfFromRole" mc="AssociationEnd" uid="eedb60aa-605f-4991-8e7e-e9a865aa2a3b"/>
+          <PID name="ConnectorConfiguration" mc="Class" uid="af423f70-d61d-46f5-9716-568b4cd3db84"/>
+          <ATTRIBUTES>
+            <ATT name="Aggregation">KindIsComposition</ATT>
+            <ATT name="IsChangeable">true</ATT>
+            <ATT name="Changeable">ReadWrite</ATT>
+            <ATT name="IsDerived">false</ATT>
+            <ATT name="IsOrdered">false</ATT>
+            <ATT name="IsUnique">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[conConfFromRole]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Target">
+              <ID name="ConConfFromRole" mc="Class" uid="363d2314-a435-4439-8ca4-8badb4ad4a08"/>
+            </LINK>
+            <COMP relation="Opposite">
+              <OBJECT>
+                <ID name="" mc="AssociationEnd" uid="987d826b-2a99-424b-aeeb-449f98476d56"/>
+                <PID name="ConnectorConfiguration" mc="Class" uid="af423f70-d61d-46f5-9716-568b4cd3db84"/>
+                <ATTRIBUTES>
+                  <ATT name="Aggregation">KindIsAssociation</ATT>
+                  <ATT name="IsChangeable">true</ATT>
+                  <ATT name="Changeable">ReadWrite</ATT>
+                  <ATT name="IsDerived">false</ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="Visibility">Public</ATT>
+                  <ATT name="IsClass">false</ATT>
+                  <ATT name="IsAbstract">false</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Opposite">
+                    <COMPID name="conConfFromRole" mc="AssociationEnd" uid="eedb60aa-605f-4991-8e7e-e9a865aa2a3b"/>
+                  </COMP>
+                  <COMP relation="Association">
+                    <OBJECT>
+                      <ID name="" mc="Association" uid="cb82700d-5ba2-41e8-9315-ef5c20944909"/>
+                      <PID name="ConnectorConfiguration" mc="Class" uid="af423f70-d61d-46f5-9716-568b4cd3db84"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Association">
+              <OBJECT>
+                <ID name="" mc="Association" uid="cb82700d-5ba2-41e8-9315-ef5c20944909"/>
+                <PID name="ConnectorConfiguration" mc="Class" uid="af423f70-d61d-46f5-9716-568b4cd3db84"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="conConfToRole" mc="AssociationEnd" uid="21503c8a-6c53-4dc2-a7a3-62ced93b1dd1"/>
+          <PID name="ConnectorConfiguration" mc="Class" uid="af423f70-d61d-46f5-9716-568b4cd3db84"/>
+          <ATTRIBUTES>
+            <ATT name="Aggregation">KindIsComposition</ATT>
+            <ATT name="IsChangeable">true</ATT>
+            <ATT name="Changeable">ReadWrite</ATT>
+            <ATT name="IsDerived">false</ATT>
+            <ATT name="IsOrdered">false</ATT>
+            <ATT name="IsUnique">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[conConfToRole]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Target">
+              <ID name="ConConfToRole" mc="Class" uid="d07dfdb0-b686-4a8b-bf98-81f38c528268"/>
+            </LINK>
+            <COMP relation="Opposite">
+              <OBJECT>
+                <ID name="" mc="AssociationEnd" uid="173f98bb-d69d-4c5b-a9af-bca0332a63e7"/>
+                <PID name="ConnectorConfiguration" mc="Class" uid="af423f70-d61d-46f5-9716-568b4cd3db84"/>
+                <ATTRIBUTES>
+                  <ATT name="Aggregation">KindIsAssociation</ATT>
+                  <ATT name="IsChangeable">true</ATT>
+                  <ATT name="Changeable">ReadWrite</ATT>
+                  <ATT name="IsDerived">false</ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="Visibility">Public</ATT>
+                  <ATT name="IsClass">false</ATT>
+                  <ATT name="IsAbstract">false</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Opposite">
+                    <COMPID name="conConfToRole" mc="AssociationEnd" uid="21503c8a-6c53-4dc2-a7a3-62ced93b1dd1"/>
+                  </COMP>
+                  <COMP relation="Association">
+                    <OBJECT>
+                      <ID name="" mc="Association" uid="1eea3d75-ee33-457d-b37e-40d01aa4b271"/>
+                      <PID name="ConnectorConfiguration" mc="Class" uid="af423f70-d61d-46f5-9716-568b4cd3db84"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Association">
+              <OBJECT>
+                <ID name="" mc="Association" uid="1eea3d75-ee33-457d-b37e-40d01aa4b271"/>
+                <PID name="ConnectorConfiguration" mc="Class" uid="af423f70-d61d-46f5-9716-568b4cd3db84"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <COMP relation="Parent">
+        <OBJECT>
+          <ID name="Generalization" mc="Generalization" uid="e314aa9c-27a2-4c9b-8f41-cf61aaa91ae9"/>
+          <PID name="ConnectorConfiguration" mc="Class" uid="af423f70-d61d-46f5-9716-568b4cd3db84"/>
+          <ATTRIBUTES>
+            <ATT name="Discriminator"></ATT>
+            <ATT name="Name"><![CDATA[Generalization]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="SuperType">
+              <ID name="Configuration" mc="Class" uid="3dad06a9-76ee-4403-8843-951972da4371"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Generalization" mc="Generalization" uid="80f3fd96-0dd7-4286-ab26-e7478b7ee1fa"/>
+          <PID name="ConnectorConfiguration" mc="Class" uid="af423f70-d61d-46f5-9716-568b4cd3db84"/>
+          <ATTRIBUTES>
+            <ATT name="Discriminator"></ATT>
+            <ATT name="Name"><![CDATA[Generalization]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="SuperType">
+              <ID name="Connector" mc="Class" uid="13832adf-0ab7-4317-af6e-a4acbac4b08b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

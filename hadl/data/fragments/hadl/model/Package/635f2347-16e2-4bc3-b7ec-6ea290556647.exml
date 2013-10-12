@@ -1,0 +1,95 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="hadl" version="3">
+  <DEPS>
+    <ID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <COMPID name="ArchitecturalElement" mc="Class" uid="083d76c1-a4c0-4eb9-805d-1ced1c7dd31a"/>
+    <COMPID name="AtomicComponent" mc="Class" uid="bbff2f1a-6897-46a7-a1c5-dc9efe7e30ee"/>
+    <COMPID name="AtomicConnector" mc="Class" uid="57ede933-bc53-48c1-9824-3895a0bd4488"/>
+    <COMPID name="Attachment" mc="Class" uid="3cd8a48a-8b9c-4aaf-a1ba-0e7d3b418e46"/>
+    <COMPID name="CompConfProvidedBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
+    <COMPID name="CompConfRequiredBinding" mc="Class" uid="fa1214d6-9726-4543-a3b2-b8df0b994b99"/>
+    <COMPID name="Component" mc="Class" uid="474ae6da-7c44-4bc2-afa8-82a786025405"/>
+    <COMPID name="ComponentConfiguration" mc="Class" uid="d920cebd-ad4c-4920-9040-db293ff2f1d8"/>
+    <COMPID name="ConConfFromBinding" mc="Class" uid="363d2314-a435-4439-8ca4-8badb4ad4a08"/>
+    <COMPID name="ConConfToBinding" mc="Class" uid="d07dfdb0-b686-4a8b-bf98-81f38c528268"/>
+    <COMPID name="Configuration" mc="Class" uid="3dad06a9-76ee-4403-8843-951972da4371"/>
+    <COMPID name="Connection" mc="Class" uid="f125b10f-d13a-4560-93fd-810fb7635a08"/>
+    <COMPID name="Connector" mc="Class" uid="13832adf-0ab7-4317-af6e-a4acbac4b08b"/>
+    <COMPID name="ConnectorConfiguration" mc="Class" uid="af423f70-d61d-46f5-9716-568b4cd3db84"/>
+    <COMPID name="FromAttachment" mc="Class" uid="197b8d52-3e1f-4b4c-8d83-34bebf9d46dd"/>
+    <COMPID name="FromRole" mc="Class" uid="0db47cc6-51d7-41b9-b968-21023116000d"/>
+    <COMPID name="FunctionalProperty" mc="Class" uid="76981009-98db-4645-81ea-ea1c9696ccbb"/>
+    <COMPID name="Glue" mc="Class" uid="39815515-65cd-4c00-bd4c-aa6f80916b63"/>
+    <COMPID name="M2 Architectural element diagram" mc="ClassDiagram" uid="c60df793-4b60-4161-8e99-1c65d8030f98"/>
+    <COMPID name="M2 Component diagram" mc="ClassDiagram" uid="e65a987b-7eef-400e-9822-2afaf3c09591"/>
+    <COMPID name="M2 Configuration diagram" mc="ClassDiagram" uid="14d03601-f761-4e7c-892b-e058c780b6a9"/>
+    <COMPID name="M2 Connector diagram" mc="ClassDiagram" uid="bc7b6e00-29f9-49d5-a456-f00bc3aceed1"/>
+    <COMPID name="NonFunctionalProperty" mc="Class" uid="55f308ca-f256-4281-8855-dc04e09d77ef"/>
+    <COMPID name="Port" mc="Class" uid="0524e50e-8285-41d4-8a7c-65d9a4ff6b2c"/>
+    <COMPID name="Property" mc="Class" uid="430be749-cb9a-48d3-8035-a2bfb733a45c"/>
+    <COMPID name="ProvidedAttachment" mc="Class" uid="37cb2bd9-4b82-4efc-a22a-c1cb50e816f0"/>
+    <COMPID name="ProvidedConnection" mc="Class" uid="a3bf69ee-f544-4328-9108-87fa6d263332"/>
+    <COMPID name="ProvidedPort" mc="Class" uid="68e9313d-8a54-43c8-a227-be3db1cf934d"/>
+    <COMPID name="ProvidedService" mc="Class" uid="6ec19aa2-e4e7-421f-8f36-e34b44c45963"/>
+    <COMPID name="RequiredConnection" mc="Class" uid="9881e277-ba53-4097-a563-deeccd7ef8b5"/>
+    <COMPID name="RequiredPort" mc="Class" uid="d0ce5c86-e654-4010-97b0-c2d303e887ee"/>
+    <COMPID name="RequiredService" mc="Class" uid="81e5a8c7-7612-405a-9bf0-f501cddf2f36"/>
+    <COMPID name="Role" mc="Class" uid="f7d12dfb-3aa4-4a33-b0d4-3051edbb1ebd"/>
+    <COMPID name="Service" mc="Class" uid="538f6618-7ad3-4ec2-a6fa-30675a5ef251"/>
+    <COMPID name="ToRole" mc="Class" uid="0815fcea-2887-4756-ae5a-fdb5ff9a6a68"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <PID name="hadl" mc="Project" uid="f43494c0-5c6e-4a5f-8a64-abe224b27777"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[hadl]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Component" mc="Class" uid="474ae6da-7c44-4bc2-afa8-82a786025405"/>
+        <COMPID name="Connector" mc="Class" uid="13832adf-0ab7-4317-af6e-a4acbac4b08b"/>
+        <COMPID name="Configuration" mc="Class" uid="3dad06a9-76ee-4403-8843-951972da4371"/>
+        <COMPID name="Service" mc="Class" uid="538f6618-7ad3-4ec2-a6fa-30675a5ef251"/>
+        <COMPID name="Port" mc="Class" uid="0524e50e-8285-41d4-8a7c-65d9a4ff6b2c"/>
+        <COMPID name="ProvidedPort" mc="Class" uid="68e9313d-8a54-43c8-a227-be3db1cf934d"/>
+        <COMPID name="RequiredService" mc="Class" uid="81e5a8c7-7612-405a-9bf0-f501cddf2f36"/>
+        <COMPID name="RequiredPort" mc="Class" uid="d0ce5c86-e654-4010-97b0-c2d303e887ee"/>
+        <COMPID name="ProvidedService" mc="Class" uid="6ec19aa2-e4e7-421f-8f36-e34b44c45963"/>
+        <COMPID name="Connection" mc="Class" uid="f125b10f-d13a-4560-93fd-810fb7635a08"/>
+        <COMPID name="RequiredConnection" mc="Class" uid="9881e277-ba53-4097-a563-deeccd7ef8b5"/>
+        <COMPID name="ProvidedConnection" mc="Class" uid="a3bf69ee-f544-4328-9108-87fa6d263332"/>
+        <COMPID name="AtomicComponent" mc="Class" uid="bbff2f1a-6897-46a7-a1c5-dc9efe7e30ee"/>
+        <COMPID name="Role" mc="Class" uid="f7d12dfb-3aa4-4a33-b0d4-3051edbb1ebd"/>
+        <COMPID name="FromRole" mc="Class" uid="0db47cc6-51d7-41b9-b968-21023116000d"/>
+        <COMPID name="ToRole" mc="Class" uid="0815fcea-2887-4756-ae5a-fdb5ff9a6a68"/>
+        <COMPID name="AtomicConnector" mc="Class" uid="57ede933-bc53-48c1-9824-3895a0bd4488"/>
+        <COMPID name="Glue" mc="Class" uid="39815515-65cd-4c00-bd4c-aa6f80916b63"/>
+        <COMPID name="ComponentConfiguration" mc="Class" uid="d920cebd-ad4c-4920-9040-db293ff2f1d8"/>
+        <COMPID name="ConnectorConfiguration" mc="Class" uid="af423f70-d61d-46f5-9716-568b4cd3db84"/>
+        <COMPID name="Attachment" mc="Class" uid="3cd8a48a-8b9c-4aaf-a1ba-0e7d3b418e46"/>
+        <COMPID name="CompConfRequiredBinding" mc="Class" uid="fa1214d6-9726-4543-a3b2-b8df0b994b99"/>
+        <COMPID name="CompConfProvidedBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
+        <COMPID name="ConConfFromBinding" mc="Class" uid="363d2314-a435-4439-8ca4-8badb4ad4a08"/>
+        <COMPID name="ConConfToBinding" mc="Class" uid="d07dfdb0-b686-4a8b-bf98-81f38c528268"/>
+        <COMPID name="FromAttachment" mc="Class" uid="197b8d52-3e1f-4b4c-8d83-34bebf9d46dd"/>
+        <COMPID name="ProvidedAttachment" mc="Class" uid="37cb2bd9-4b82-4efc-a22a-c1cb50e816f0"/>
+        <COMPID name="ArchitecturalElement" mc="Class" uid="083d76c1-a4c0-4eb9-805d-1ced1c7dd31a"/>
+        <COMPID name="Property" mc="Class" uid="430be749-cb9a-48d3-8035-a2bfb733a45c"/>
+        <COMPID name="FunctionalProperty" mc="Class" uid="76981009-98db-4645-81ea-ea1c9696ccbb"/>
+        <COMPID name="NonFunctionalProperty" mc="Class" uid="55f308ca-f256-4281-8855-dc04e09d77ef"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="M2 Configuration diagram" mc="ClassDiagram" uid="14d03601-f761-4e7c-892b-e058c780b6a9"/>
+        <COMPID name="M2 Component diagram" mc="ClassDiagram" uid="e65a987b-7eef-400e-9822-2afaf3c09591"/>
+        <COMPID name="M2 Connector diagram" mc="ClassDiagram" uid="bc7b6e00-29f9-49d5-a456-f00bc3aceed1"/>
+        <COMPID name="M2 Architectural element diagram" mc="ClassDiagram" uid="c60df793-4b60-4161-8e99-1c65d8030f98"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

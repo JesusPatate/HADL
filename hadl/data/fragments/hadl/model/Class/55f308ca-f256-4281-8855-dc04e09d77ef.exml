@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="NonFunctionalProperty" version="3">
+  <DEPS>
+    <ID name="NonFunctionalProperty" mc="Class" uid="55f308ca-f256-4281-8855-dc04e09d77ef"/>
+    <EXTID name="Property" mc="Class" uid="430be749-cb9a-48d3-8035-a2bfb733a45c"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="NonFunctionalProperty" mc="Class" uid="55f308ca-f256-4281-8855-dc04e09d77ef"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[NonFunctionalProperty]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Parent">
+        <OBJECT>
+          <ID name="Generalization" mc="Generalization" uid="0bf861e8-de2f-40d0-9d73-b8584c3c4d25"/>
+          <PID name="NonFunctionalProperty" mc="Class" uid="55f308ca-f256-4281-8855-dc04e09d77ef"/>
+          <ATTRIBUTES>
+            <ATT name="Discriminator"></ATT>
+            <ATT name="Name"><![CDATA[Generalization]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="SuperType">
+              <ID name="Property" mc="Class" uid="430be749-cb9a-48d3-8035-a2bfb733a45c"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="AtomicComponent" version="3">
+  <DEPS>
+    <ID name="AtomicComponent" mc="Class" uid="bbff2f1a-6897-46a7-a1c5-dc9efe7e30ee"/>
+    <EXTID name="Component" mc="Class" uid="474ae6da-7c44-4bc2-afa8-82a786025405"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="AtomicComponent" mc="Class" uid="bbff2f1a-6897-46a7-a1c5-dc9efe7e30ee"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[AtomicComponent]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Parent">
+        <OBJECT>
+          <ID name="Generalization" mc="Generalization" uid="c49b33e4-6249-44c5-9dc4-ff629d861101"/>
+          <PID name="AtomicComponent" mc="Class" uid="bbff2f1a-6897-46a7-a1c5-dc9efe7e30ee"/>
+          <ATTRIBUTES>
+            <ATT name="Discriminator"></ATT>
+            <ATT name="Name"><![CDATA[Generalization]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="SuperType">
+              <ID name="Component" mc="Class" uid="474ae6da-7c44-4bc2-afa8-82a786025405"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
