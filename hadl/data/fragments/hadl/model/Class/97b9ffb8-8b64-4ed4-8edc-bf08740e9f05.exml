@@ -1,18 +1,19 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Client : AtomicComponent" version="3">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ConnectionManager : AtomicComponent" version="3">
   <DEPS>
-    <ID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
-    <EXTID name="ClientSourceCode : NonFunctionalProperty" mc="Class" uid="9e65a86c-0119-42a3-9498-edf51600eb12"/>
-    <EXTID name="ClientVisualising : NonFuncttionalProperty" mc="Class" uid="2ac4068f-5e8a-48b4-9754-049aee5a1f28"/>
-    <EXTID name="ReceiveRequestConnection : RequiredConnection" mc="Class" uid="fad17cd9-a49e-4185-a88b-7526dd122523"/>
-    <EXTID name="ReceiveRequestPort : RequiredPort" mc="Class" uid="3f6e3faa-6b6c-426e-8ad8-4eb34f0e57da"/>
-    <EXTID name="ReceiveRequestService : RequiredService" mc="Class" uid="f1f3797a-e65b-482f-9fd7-76f61a3c4391"/>
-    <EXTID name="SendRequestConnection : ProvidedConnection" mc="Class" uid="a9c2a82b-741e-495a-a546-aa736a799393"/>
-    <EXTID name="SendRequestPort : ProvidedPort" mc="Class" uid="cd182466-383d-4713-9c09-63b365f8c052"/>
-    <EXTID name="SendRequestService : ProvidedService" mc="Class" uid="cee88bfe-846d-488d-8ad8-718f1dd714f2"/>
+    <ID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
+    <EXTID name="DBQuery : RequiredPort" mc="Class" uid="c086217f-0993-4889-adcd-53c1864bfdb5"/>
+    <EXTID name="DBQueryConnection : RequiredConnection" mc="Class" uid="1cc21276-bb3b-4fce-88a1-ec9eded62345"/>
+    <EXTID name="ExternalSocket : ProvidedPort" mc="Class" uid="649300a0-c607-4fec-ac37-35fbdfcbe529"/>
+    <EXTID name="HandleQuery : RequiredService" mc="Class" uid="f5021d53-c922-4632-8c27-a49f7dd1edd0"/>
+    <EXTID name="ReceiveRequestConnection" mc="Class" uid="7fca49b7-ead7-4c3b-8a96-3e95f1394a69"/>
+    <EXTID name="ReceiveRequestService : ProvidedService" mc="Class" uid="f64d9f34-16da-410f-8228-6dfc984e5149"/>
+    <EXTID name="SecurityAuthorization : RequiredService" mc="Class" uid="4e1b96c0-3ad3-43c4-a19c-3efd06b4d5c8"/>
+    <EXTID name="SecurityCheck : RequiredPort" mc="Class" uid="411de91b-8026-4599-b823-10977a63cb00"/>
+    <EXTID name="SecurityConnection : RequiredConnection" mc="Class" uid="10af89f6-437b-4cb1-9608-abb52bc5091b"/>
   </DEPS>
   <OBJECT>
-    <ID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+    <ID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
     <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
     <ATTRIBUTES>
       <ATT name="IsActive">false</ATT>
@@ -22,14 +23,14 @@
       <ATT name="IsLeaf">false</ATT>
       <ATT name="IsRoot">false</ATT>
       <ATT name="Visibility">Public</ATT>
-      <ATT name="Name"><![CDATA[Client : AtomicComponent]]></ATT>
+      <ATT name="Name"><![CDATA[ConnectionManager : AtomicComponent]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="OwnedEnd">
         <OBJECT>
-          <ID name="" mc="AssociationEnd" uid="9758eb0e-3ed2-407e-ad5d-de6a640b2363"/>
-          <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+          <ID name="" mc="AssociationEnd" uid="5c452a9c-6830-4401-9db9-ef39acbaa6d8"/>
+          <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsComposition</ATT>
             <ATT name="IsChangeable">true</ATT>
@@ -47,12 +48,12 @@
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Target">
-              <ID name="SendRequestConnection : ProvidedConnection" mc="Class" uid="a9c2a82b-741e-495a-a546-aa736a799393"/>
+              <ID name="ExternalSocket : ProvidedPort" mc="Class" uid="649300a0-c607-4fec-ac37-35fbdfcbe529"/>
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="AssociationEnd" uid="64cf250b-beaa-49e4-9862-b8c7df90502c"/>
-                <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                <ID name="" mc="AssociationEnd" uid="737774a0-b50d-481a-9516-4c181a2bb93c"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
                   <ATT name="IsChangeable">true</ATT>
@@ -70,12 +71,12 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="" mc="AssociationEnd" uid="9758eb0e-3ed2-407e-ad5d-de6a640b2363"/>
+                    <COMPID name="" mc="AssociationEnd" uid="5c452a9c-6830-4401-9db9-ef39acbaa6d8"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Association" uid="bb21e958-8405-4803-b55c-da4f6b3d5e5a"/>
-                      <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                      <ID name="" mc="Association" uid="06cfddfd-4a24-4416-badb-44251b04b80d"/>
+                      <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
                         <ATT name="status">1970354901745664</ATT>
@@ -88,8 +89,8 @@
             </COMP>
             <COMP relation="Association">
               <OBJECT>
-                <ID name="" mc="Association" uid="bb21e958-8405-4803-b55c-da4f6b3d5e5a"/>
-                <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                <ID name="" mc="Association" uid="06cfddfd-4a24-4416-badb-44251b04b80d"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                 <ATTRIBUTES>
                   <ATT name="Name"></ATT>
                   <ATT name="status">1970354901745664</ATT>
@@ -100,8 +101,8 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="" mc="AssociationEnd" uid="22767d6e-c1bd-4e0d-91bf-eab2eada0b48"/>
-          <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+          <ID name="" mc="AssociationEnd" uid="5c4f83bc-a86e-445d-851f-1e9fa40552ad"/>
+          <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsComposition</ATT>
             <ATT name="IsChangeable">true</ATT>
@@ -119,12 +120,12 @@
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Target">
-              <ID name="SendRequestService : ProvidedService" mc="Class" uid="cee88bfe-846d-488d-8ad8-718f1dd714f2"/>
+              <ID name="ReceiveRequestService : ProvidedService" mc="Class" uid="f64d9f34-16da-410f-8228-6dfc984e5149"/>
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="AssociationEnd" uid="e522fb62-f978-43ac-b61e-6bfdc1a73e6c"/>
-                <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                <ID name="" mc="AssociationEnd" uid="b1ee01e4-6a8e-409f-bb68-7b4e6ce21f90"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
                   <ATT name="IsChangeable">true</ATT>
@@ -142,12 +143,12 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="" mc="AssociationEnd" uid="22767d6e-c1bd-4e0d-91bf-eab2eada0b48"/>
+                    <COMPID name="" mc="AssociationEnd" uid="5c4f83bc-a86e-445d-851f-1e9fa40552ad"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Association" uid="794cefff-e21c-4461-8eb8-4334eee5cfba"/>
-                      <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                      <ID name="" mc="Association" uid="d98d92e4-85c0-4b35-b070-24c3d76b73a5"/>
+                      <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
                         <ATT name="status">1970354901745664</ATT>
@@ -160,8 +161,8 @@
             </COMP>
             <COMP relation="Association">
               <OBJECT>
-                <ID name="" mc="Association" uid="794cefff-e21c-4461-8eb8-4334eee5cfba"/>
-                <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                <ID name="" mc="Association" uid="d98d92e4-85c0-4b35-b070-24c3d76b73a5"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                 <ATTRIBUTES>
                   <ATT name="Name"></ATT>
                   <ATT name="status">1970354901745664</ATT>
@@ -172,8 +173,8 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="" mc="AssociationEnd" uid="991a7f1a-6d11-4ee3-af17-8bcf2fd08322"/>
-          <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+          <ID name="" mc="AssociationEnd" uid="3264d816-1aed-43e8-8f3b-79814da70594"/>
+          <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsComposition</ATT>
             <ATT name="IsChangeable">true</ATT>
@@ -191,12 +192,12 @@
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Target">
-              <ID name="SendRequestPort : ProvidedPort" mc="Class" uid="cd182466-383d-4713-9c09-63b365f8c052"/>
+              <ID name="ReceiveRequestConnection" mc="Class" uid="7fca49b7-ead7-4c3b-8a96-3e95f1394a69"/>
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="AssociationEnd" uid="273394b0-60ee-484e-b073-276d71eafce7"/>
-                <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                <ID name="" mc="AssociationEnd" uid="8f1bca51-af0f-436c-8924-19a6c34f8dc7"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
                   <ATT name="IsChangeable">true</ATT>
@@ -214,12 +215,12 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="" mc="AssociationEnd" uid="991a7f1a-6d11-4ee3-af17-8bcf2fd08322"/>
+                    <COMPID name="" mc="AssociationEnd" uid="3264d816-1aed-43e8-8f3b-79814da70594"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Association" uid="56d6b3c7-7ff3-4f41-83cc-93d4f483d6dc"/>
-                      <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                      <ID name="" mc="Association" uid="f7e21cb5-a611-4e6d-9a6f-afc01bd53f79"/>
+                      <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
                         <ATT name="status">1970354901745664</ATT>
@@ -232,8 +233,8 @@
             </COMP>
             <COMP relation="Association">
               <OBJECT>
-                <ID name="" mc="Association" uid="56d6b3c7-7ff3-4f41-83cc-93d4f483d6dc"/>
-                <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                <ID name="" mc="Association" uid="f7e21cb5-a611-4e6d-9a6f-afc01bd53f79"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                 <ATTRIBUTES>
                   <ATT name="Name"></ATT>
                   <ATT name="status">1970354901745664</ATT>
@@ -244,8 +245,8 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="" mc="AssociationEnd" uid="eedb8ec4-6f46-45e9-b074-16592db96702"/>
-          <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+          <ID name="" mc="AssociationEnd" uid="3844ac9e-7ea4-440e-8ed7-ab93b75ba18c"/>
+          <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsComposition</ATT>
             <ATT name="IsChangeable">true</ATT>
@@ -263,12 +264,12 @@
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Target">
-              <ID name="ReceiveRequestConnection : RequiredConnection" mc="Class" uid="fad17cd9-a49e-4185-a88b-7526dd122523"/>
+              <ID name="SecurityConnection : RequiredConnection" mc="Class" uid="10af89f6-437b-4cb1-9608-abb52bc5091b"/>
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="AssociationEnd" uid="8a178a4f-7485-4e4d-8c15-d21233f76d41"/>
-                <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                <ID name="" mc="AssociationEnd" uid="7207c122-3d86-4442-aaa8-8b946445f0a8"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
                   <ATT name="IsChangeable">true</ATT>
@@ -286,12 +287,12 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="" mc="AssociationEnd" uid="eedb8ec4-6f46-45e9-b074-16592db96702"/>
+                    <COMPID name="" mc="AssociationEnd" uid="3844ac9e-7ea4-440e-8ed7-ab93b75ba18c"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Association" uid="84b68142-913e-4c08-a2e0-3fb55d669723"/>
-                      <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                      <ID name="" mc="Association" uid="1bd1e8f2-d63b-4eb5-971d-bf79f356a7d4"/>
+                      <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
                         <ATT name="status">1970354901745664</ATT>
@@ -304,8 +305,8 @@
             </COMP>
             <COMP relation="Association">
               <OBJECT>
-                <ID name="" mc="Association" uid="84b68142-913e-4c08-a2e0-3fb55d669723"/>
-                <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                <ID name="" mc="Association" uid="1bd1e8f2-d63b-4eb5-971d-bf79f356a7d4"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                 <ATTRIBUTES>
                   <ATT name="Name"></ATT>
                   <ATT name="status">1970354901745664</ATT>
@@ -316,8 +317,8 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="" mc="AssociationEnd" uid="7dca2c23-fa8f-48bd-aa0b-0437d69b6372"/>
-          <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+          <ID name="" mc="AssociationEnd" uid="aa3cd490-356d-4488-b5a5-506a0ce35ccc"/>
+          <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsComposition</ATT>
             <ATT name="IsChangeable">true</ATT>
@@ -335,12 +336,12 @@
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Target">
-              <ID name="ReceiveRequestService : RequiredService" mc="Class" uid="f1f3797a-e65b-482f-9fd7-76f61a3c4391"/>
+              <ID name="SecurityCheck : RequiredPort" mc="Class" uid="411de91b-8026-4599-b823-10977a63cb00"/>
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="AssociationEnd" uid="26d27cdc-2931-434f-822e-c9550b796c1a"/>
-                <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                <ID name="" mc="AssociationEnd" uid="5182940a-1e9a-426b-8fa3-d2204d63785b"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
                   <ATT name="IsChangeable">true</ATT>
@@ -358,12 +359,12 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="" mc="AssociationEnd" uid="7dca2c23-fa8f-48bd-aa0b-0437d69b6372"/>
+                    <COMPID name="" mc="AssociationEnd" uid="aa3cd490-356d-4488-b5a5-506a0ce35ccc"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Association" uid="2a3db387-d84b-4c22-ac6a-bdda44cdfae2"/>
-                      <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                      <ID name="" mc="Association" uid="81c9ebe0-9e5e-49de-8168-43fae8bf2496"/>
+                      <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
                         <ATT name="status">1970354901745664</ATT>
@@ -376,8 +377,8 @@
             </COMP>
             <COMP relation="Association">
               <OBJECT>
-                <ID name="" mc="Association" uid="2a3db387-d84b-4c22-ac6a-bdda44cdfae2"/>
-                <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                <ID name="" mc="Association" uid="81c9ebe0-9e5e-49de-8168-43fae8bf2496"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                 <ATTRIBUTES>
                   <ATT name="Name"></ATT>
                   <ATT name="status">1970354901745664</ATT>
@@ -388,8 +389,8 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="" mc="AssociationEnd" uid="54ad29bd-78fc-4c90-8e0c-18075f4b8c4d"/>
-          <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+          <ID name="" mc="AssociationEnd" uid="93eedadd-c793-4427-aa27-819e54f6a8b6"/>
+          <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsComposition</ATT>
             <ATT name="IsChangeable">true</ATT>
@@ -407,12 +408,12 @@
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Target">
-              <ID name="ReceiveRequestPort : RequiredPort" mc="Class" uid="3f6e3faa-6b6c-426e-8ad8-4eb34f0e57da"/>
+              <ID name="SecurityAuthorization : RequiredService" mc="Class" uid="4e1b96c0-3ad3-43c4-a19c-3efd06b4d5c8"/>
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="AssociationEnd" uid="5565fc7f-f437-4d77-8306-f413e572ebd8"/>
-                <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                <ID name="" mc="AssociationEnd" uid="2d2b79fb-69b2-45ff-8a7d-58c42a965be9"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
                   <ATT name="IsChangeable">true</ATT>
@@ -430,12 +431,12 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="" mc="AssociationEnd" uid="54ad29bd-78fc-4c90-8e0c-18075f4b8c4d"/>
+                    <COMPID name="" mc="AssociationEnd" uid="93eedadd-c793-4427-aa27-819e54f6a8b6"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Association" uid="7dd55042-5314-44ff-ac7b-6affe1cf9848"/>
-                      <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                      <ID name="" mc="Association" uid="d31451e7-522c-43a2-9be2-4007baf70e0a"/>
+                      <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
                         <ATT name="status">1970354901745664</ATT>
@@ -448,8 +449,8 @@
             </COMP>
             <COMP relation="Association">
               <OBJECT>
-                <ID name="" mc="Association" uid="7dd55042-5314-44ff-ac7b-6affe1cf9848"/>
-                <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                <ID name="" mc="Association" uid="d31451e7-522c-43a2-9be2-4007baf70e0a"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                 <ATTRIBUTES>
                   <ATT name="Name"></ATT>
                   <ATT name="status">1970354901745664</ATT>
@@ -460,8 +461,8 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="" mc="AssociationEnd" uid="548c035f-adb0-4838-8309-78073d15a7e3"/>
-          <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+          <ID name="" mc="AssociationEnd" uid="e8fcd285-5bc3-4204-a65f-913b4af50318"/>
+          <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsComposition</ATT>
             <ATT name="IsChangeable">true</ATT>
@@ -479,12 +480,12 @@
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Target">
-              <ID name="ClientVisualising : NonFuncttionalProperty" mc="Class" uid="2ac4068f-5e8a-48b4-9754-049aee5a1f28"/>
+              <ID name="DBQuery : RequiredPort" mc="Class" uid="c086217f-0993-4889-adcd-53c1864bfdb5"/>
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="AssociationEnd" uid="bb2b9aaf-c670-477d-949e-d67aa887ebc8"/>
-                <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                <ID name="" mc="AssociationEnd" uid="dbf5f51b-0ce7-48d6-af7f-41e5f2e076ee"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
                   <ATT name="IsChangeable">true</ATT>
@@ -502,12 +503,12 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="" mc="AssociationEnd" uid="548c035f-adb0-4838-8309-78073d15a7e3"/>
+                    <COMPID name="" mc="AssociationEnd" uid="e8fcd285-5bc3-4204-a65f-913b4af50318"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Association" uid="10b53ff0-d675-46ca-af2f-249aaa547f54"/>
-                      <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                      <ID name="" mc="Association" uid="06f48b9e-bb94-4409-807f-57927329067d"/>
+                      <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
                         <ATT name="status">1970354901745664</ATT>
@@ -520,8 +521,8 @@
             </COMP>
             <COMP relation="Association">
               <OBJECT>
-                <ID name="" mc="Association" uid="10b53ff0-d675-46ca-af2f-249aaa547f54"/>
-                <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                <ID name="" mc="Association" uid="06f48b9e-bb94-4409-807f-57927329067d"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                 <ATTRIBUTES>
                   <ATT name="Name"></ATT>
                   <ATT name="status">1970354901745664</ATT>
@@ -532,8 +533,8 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="" mc="AssociationEnd" uid="b2f1de54-d800-45d3-83a0-091959baf7cd"/>
-          <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+          <ID name="" mc="AssociationEnd" uid="3bad648c-77a9-4d49-9610-c0d4e6f2667e"/>
+          <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsComposition</ATT>
             <ATT name="IsChangeable">true</ATT>
@@ -551,12 +552,12 @@
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Target">
-              <ID name="ClientSourceCode : NonFunctionalProperty" mc="Class" uid="9e65a86c-0119-42a3-9498-edf51600eb12"/>
+              <ID name="DBQueryConnection : RequiredConnection" mc="Class" uid="1cc21276-bb3b-4fce-88a1-ec9eded62345"/>
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="AssociationEnd" uid="e1d7b0b2-abc9-4c62-b1e7-2dc7edce4b87"/>
-                <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                <ID name="" mc="AssociationEnd" uid="ac08920f-638c-4a01-bd0a-56b55a492216"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
                   <ATT name="IsChangeable">true</ATT>
@@ -574,12 +575,12 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="" mc="AssociationEnd" uid="b2f1de54-d800-45d3-83a0-091959baf7cd"/>
+                    <COMPID name="" mc="AssociationEnd" uid="3bad648c-77a9-4d49-9610-c0d4e6f2667e"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Association" uid="519fdafa-ef57-403d-a8f1-10a5686d1295"/>
-                      <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                      <ID name="" mc="Association" uid="05e9bbb0-582e-4947-b158-6bec0ff7b717"/>
+                      <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
                         <ATT name="status">1970354901745664</ATT>
@@ -592,8 +593,80 @@
             </COMP>
             <COMP relation="Association">
               <OBJECT>
-                <ID name="" mc="Association" uid="519fdafa-ef57-403d-a8f1-10a5686d1295"/>
-                <PID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+                <ID name="" mc="Association" uid="05e9bbb0-582e-4947-b158-6bec0ff7b717"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="AssociationEnd" uid="21b1a1cd-72c9-46ba-80e7-80996bbe2890"/>
+          <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
+          <ATTRIBUTES>
+            <ATT name="Aggregation">KindIsComposition</ATT>
+            <ATT name="IsChangeable">true</ATT>
+            <ATT name="Changeable">ReadWrite</ATT>
+            <ATT name="IsDerived">false</ATT>
+            <ATT name="IsOrdered">false</ATT>
+            <ATT name="IsUnique">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Target">
+              <ID name="HandleQuery : RequiredService" mc="Class" uid="f5021d53-c922-4632-8c27-a49f7dd1edd0"/>
+            </LINK>
+            <COMP relation="Opposite">
+              <OBJECT>
+                <ID name="" mc="AssociationEnd" uid="98930f53-008a-4a75-89e9-daafc5b3db7a"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
+                <ATTRIBUTES>
+                  <ATT name="Aggregation">KindIsAssociation</ATT>
+                  <ATT name="IsChangeable">true</ATT>
+                  <ATT name="Changeable">ReadWrite</ATT>
+                  <ATT name="IsDerived">false</ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="Visibility">Public</ATT>
+                  <ATT name="IsClass">false</ATT>
+                  <ATT name="IsAbstract">false</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Opposite">
+                    <COMPID name="" mc="AssociationEnd" uid="21b1a1cd-72c9-46ba-80e7-80996bbe2890"/>
+                  </COMP>
+                  <COMP relation="Association">
+                    <OBJECT>
+                      <ID name="" mc="Association" uid="011c9cc0-668a-4a60-b329-00d3223741fc"/>
+                      <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Association">
+              <OBJECT>
+                <ID name="" mc="Association" uid="011c9cc0-668a-4a60-b329-00d3223741fc"/>
+                <PID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
                 <ATTRIBUTES>
                   <ATT name="Name"></ATT>
                   <ATT name="status">1970354901745664</ATT>

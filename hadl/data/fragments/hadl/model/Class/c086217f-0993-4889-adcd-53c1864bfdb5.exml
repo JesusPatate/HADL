@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="DBQuery : RequiredPort" version="3">
+  <DEPS>
+    <ID name="DBQuery : RequiredPort" mc="Class" uid="c086217f-0993-4889-adcd-53c1864bfdb5"/>
+    <EXTID name="DBQueryConnection : RequiredConnection" mc="Class" uid="1cc21276-bb3b-4fce-88a1-ec9eded62345"/>
+    <EXTID name="HandleQuery : RequiredService" mc="Class" uid="f5021d53-c922-4632-8c27-a49f7dd1edd0"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="DBQuery : RequiredPort" mc="Class" uid="c086217f-0993-4889-adcd-53c1864bfdb5"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[DBQuery : RequiredPort]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedEnd">
+        <REFOBJ>
+          <ID name="" mc="AssociationEnd" uid="b3dc7ef1-1952-424d-a916-0c90d090609a"/>
+          <PID name="HandleQuery : RequiredService" mc="Class" uid="f5021d53-c922-4632-8c27-a49f7dd1edd0"/>
+        </REFOBJ>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

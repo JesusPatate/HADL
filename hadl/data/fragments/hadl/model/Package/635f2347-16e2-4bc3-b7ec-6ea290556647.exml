@@ -10,7 +10,9 @@
     <COMPID name="Callee : ToRole" mc="Class" uid="e6309674-61f9-460a-ad84-be9c87830202"/>
     <COMPID name="Caller : FromRole" mc="Class" uid="97a86fff-c933-4187-8e8c-7707b0948bd3"/>
     <COMPID name="Client : AtomicComponent" mc="Class" uid="b32542f9-619c-4f1c-8aeb-4f08b21ba6ed"/>
+    <COMPID name="ClientSourceCode : NonFunctionalProperty" mc="Class" uid="9e65a86c-0119-42a3-9498-edf51600eb12"/>
     <COMPID name="ClientToRPC : FromAttachment" mc="Class" uid="3ec00c1f-62ab-489d-afdb-56ac9f5ec053"/>
+    <COMPID name="ClientVisualising : NonFuncttionalProperty" mc="Class" uid="2ac4068f-5e8a-48b4-9754-049aee5a1f28"/>
     <COMPID name="CompConfBinding" mc="Class" uid="70368803-a232-4ef3-8a81-f5e1fadfe99a"/>
     <COMPID name="CompConfProvidedBinding" mc="Class" uid="fa1214d6-9726-4543-a3b2-b8df0b994b99"/>
     <COMPID name="CompConfRequiredBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
@@ -21,14 +23,20 @@
     <COMPID name="ConConfToBinding" mc="Class" uid="d07dfdb0-b686-4a8b-bf98-81f38c528268"/>
     <COMPID name="Configuration" mc="Class" uid="3dad06a9-76ee-4403-8843-951972da4371"/>
     <COMPID name="Connection" mc="Class" uid="f125b10f-d13a-4560-93fd-810fb7635a08"/>
+    <COMPID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
     <COMPID name="Connector" mc="Class" uid="13832adf-0ab7-4317-af6e-a4acbac4b08b"/>
     <COMPID name="ConnectorConfiguration" mc="Class" uid="af423f70-d61d-46f5-9716-568b4cd3db84"/>
+    <COMPID name="DBQuery : RequiredPort" mc="Class" uid="c086217f-0993-4889-adcd-53c1864bfdb5"/>
+    <COMPID name="DBQueryConnection : RequiredConnection" mc="Class" uid="1cc21276-bb3b-4fce-88a1-ec9eded62345"/>
+    <COMPID name="ExternalSocket : ProvidedPort" mc="Class" uid="649300a0-c607-4fec-ac37-35fbdfcbe529"/>
     <COMPID name="FromAttachment" mc="Class" uid="197b8d52-3e1f-4b4c-8d83-34bebf9d46dd"/>
     <COMPID name="FromRole" mc="Class" uid="0db47cc6-51d7-41b9-b968-21023116000d"/>
     <COMPID name="FunctionalProperty" mc="Class" uid="76981009-98db-4645-81ea-ea1c9696ccbb"/>
     <COMPID name="Glue" mc="Class" uid="39815515-65cd-4c00-bd4c-aa6f80916b63"/>
+    <COMPID name="HandleQuery : RequiredService" mc="Class" uid="f5021d53-c922-4632-8c27-a49f7dd1edd0"/>
     <COMPID name="M1 CS diagram" mc="ClassDiagram" uid="90bb1f98-c172-41bc-bc5a-9635c8e1b96d"/>
-    <COMPID name="M2 Architectural element diagram" mc="ClassDiagram" uid="c60df793-4b60-4161-8e99-1c65d8030f98"/>
+    <COMPID name="M1 ConnectionManager diagram" mc="ClassDiagram" uid="2fb21f63-8d8b-442b-9d2f-997bf31570cb"/>
+    <COMPID name="M2 ArchitecturalElement diagram" mc="ClassDiagram" uid="c60df793-4b60-4161-8e99-1c65d8030f98"/>
     <COMPID name="M2 Component diagram" mc="ClassDiagram" uid="e65a987b-7eef-400e-9822-2afaf3c09591"/>
     <COMPID name="M2 Configuration diagram" mc="ClassDiagram" uid="14d03601-f761-4e7c-892b-e058c780b6a9"/>
     <COMPID name="M2 Connector diagram" mc="ClassDiagram" uid="bc7b6e00-29f9-49d5-a456-f00bc3aceed1"/>
@@ -40,16 +48,21 @@
     <COMPID name="ProvidedService" mc="Class" uid="6ec19aa2-e4e7-421f-8f36-e34b44c45963"/>
     <COMPID name="RPC : AtomicConnector" mc="Class" uid="479adae8-e44c-4f0d-8719-0540c07c9111"/>
     <COMPID name="RPCGlue" mc="Class" uid="e123f625-b798-4d6e-a4a7-5b0d76a39378"/>
+    <COMPID name="ReceiveRequestConnection" mc="Class" uid="7fca49b7-ead7-4c3b-8a96-3e95f1394a69"/>
     <COMPID name="ReceiveRequestConnection : ProvidedConnection" mc="Class" uid="2dcbae4e-4468-45b2-8b0d-a329cde75bc4"/>
     <COMPID name="ReceiveRequestConnection : RequiredConnection" mc="Class" uid="fad17cd9-a49e-4185-a88b-7526dd122523"/>
     <COMPID name="ReceiveRequestPort : ProvidedPort" mc="Class" uid="0a05bf8c-2315-4a1d-9a2e-db701511198d"/>
     <COMPID name="ReceiveRequestPort : RequiredPort" mc="Class" uid="3f6e3faa-6b6c-426e-8ad8-4eb34f0e57da"/>
     <COMPID name="ReceiveRequestService : ProvidedService" mc="Class" uid="b017e684-1d5d-4298-be4d-578146b59d9c"/>
+    <COMPID name="ReceiveRequestService : ProvidedService" mc="Class" uid="f64d9f34-16da-410f-8228-6dfc984e5149"/>
     <COMPID name="ReceiveRequestService : RequiredService" mc="Class" uid="f1f3797a-e65b-482f-9fd7-76f61a3c4391"/>
     <COMPID name="RequiredConnection" mc="Class" uid="9881e277-ba53-4097-a563-deeccd7ef8b5"/>
     <COMPID name="RequiredPort" mc="Class" uid="d0ce5c86-e654-4010-97b0-c2d303e887ee"/>
     <COMPID name="RequiredService" mc="Class" uid="81e5a8c7-7612-405a-9bf0-f501cddf2f36"/>
     <COMPID name="Role" mc="Class" uid="f7d12dfb-3aa4-4a33-b0d4-3051edbb1ebd"/>
+    <COMPID name="SecurityAuthorization : RequiredService" mc="Class" uid="4e1b96c0-3ad3-43c4-a19c-3efd06b4d5c8"/>
+    <COMPID name="SecurityCheck : RequiredPort" mc="Class" uid="411de91b-8026-4599-b823-10977a63cb00"/>
+    <COMPID name="SecurityConnection : RequiredConnection" mc="Class" uid="10af89f6-437b-4cb1-9608-abb52bc5091b"/>
     <COMPID name="SendRequestConnection : ProvidedConnection" mc="Class" uid="a9c2a82b-741e-495a-a546-aa736a799393"/>
     <COMPID name="SendRequestPort : ProvidedPort" mc="Class" uid="cd182466-383d-4713-9c09-63b365f8c052"/>
     <COMPID name="SendRequestService : ProvidedService" mc="Class" uid="cee88bfe-846d-488d-8ad8-718f1dd714f2"/>
@@ -124,13 +137,26 @@
         <COMPID name="RPCGlue" mc="Class" uid="e123f625-b798-4d6e-a4a7-5b0d76a39378"/>
         <COMPID name="ClientToRPC : FromAttachment" mc="Class" uid="3ec00c1f-62ab-489d-afdb-56ac9f5ec053"/>
         <COMPID name="ServerToRPC : ToAttachment" mc="Class" uid="49dd97ef-3490-4b65-af4c-c0d85dfce0d2"/>
+        <COMPID name="ClientVisualising : NonFuncttionalProperty" mc="Class" uid="2ac4068f-5e8a-48b4-9754-049aee5a1f28"/>
+        <COMPID name="ClientSourceCode : NonFunctionalProperty" mc="Class" uid="9e65a86c-0119-42a3-9498-edf51600eb12"/>
+        <COMPID name="ConnectionManager : AtomicComponent" mc="Class" uid="97b9ffb8-8b64-4ed4-8edc-bf08740e9f05"/>
+        <COMPID name="ExternalSocket : ProvidedPort" mc="Class" uid="649300a0-c607-4fec-ac37-35fbdfcbe529"/>
+        <COMPID name="ReceiveRequestService : ProvidedService" mc="Class" uid="f64d9f34-16da-410f-8228-6dfc984e5149"/>
+        <COMPID name="ReceiveRequestConnection" mc="Class" uid="7fca49b7-ead7-4c3b-8a96-3e95f1394a69"/>
+        <COMPID name="SecurityCheck : RequiredPort" mc="Class" uid="411de91b-8026-4599-b823-10977a63cb00"/>
+        <COMPID name="SecurityConnection : RequiredConnection" mc="Class" uid="10af89f6-437b-4cb1-9608-abb52bc5091b"/>
+        <COMPID name="SecurityAuthorization : RequiredService" mc="Class" uid="4e1b96c0-3ad3-43c4-a19c-3efd06b4d5c8"/>
+        <COMPID name="DBQuery : RequiredPort" mc="Class" uid="c086217f-0993-4889-adcd-53c1864bfdb5"/>
+        <COMPID name="DBQueryConnection : RequiredConnection" mc="Class" uid="1cc21276-bb3b-4fce-88a1-ec9eded62345"/>
+        <COMPID name="HandleQuery : RequiredService" mc="Class" uid="f5021d53-c922-4632-8c27-a49f7dd1edd0"/>
       </COMP>
       <COMP relation="Product">
         <COMPID name="M2 Configuration diagram" mc="ClassDiagram" uid="14d03601-f761-4e7c-892b-e058c780b6a9"/>
         <COMPID name="M2 Component diagram" mc="ClassDiagram" uid="e65a987b-7eef-400e-9822-2afaf3c09591"/>
         <COMPID name="M2 Connector diagram" mc="ClassDiagram" uid="bc7b6e00-29f9-49d5-a456-f00bc3aceed1"/>
-        <COMPID name="M2 Architectural element diagram" mc="ClassDiagram" uid="c60df793-4b60-4161-8e99-1c65d8030f98"/>
+        <COMPID name="M2 ArchitecturalElement diagram" mc="ClassDiagram" uid="c60df793-4b60-4161-8e99-1c65d8030f98"/>
         <COMPID name="M1 CS diagram" mc="ClassDiagram" uid="90bb1f98-c172-41bc-bc5a-9635c8e1b96d"/>
+        <COMPID name="M1 ConnectionManager diagram" mc="ClassDiagram" uid="2fb21f63-8d8b-442b-9d2f-997bf31570cb"/>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>
