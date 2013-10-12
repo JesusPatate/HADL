@@ -2,7 +2,7 @@
 <!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="RequiredService" version="3">
   <DEPS>
     <ID name="RequiredService" mc="Class" uid="81e5a8c7-7612-405a-9bf0-f501cddf2f36"/>
-    <EXTID name="RequiredPort" mc="Class" uid="68e9313d-8a54-43c8-a227-be3db1cf934d"/>
+    <EXTID name="RequiredPort" mc="Class" uid="d0ce5c86-e654-4010-97b0-c2d303e887ee"/>
     <EXTID name="Service" mc="Class" uid="538f6618-7ad3-4ec2-a6fa-30675a5ef251"/>
   </DEPS>
   <OBJECT>
@@ -22,7 +22,7 @@
     <DEPENDENCIES>
       <COMP relation="OwnedEnd">
         <OBJECT>
-          <ID name="" mc="AssociationEnd" uid="ddfc2d31-9d2d-405e-a759-600733ac2c37"/>
+          <ID name="" mc="AssociationEnd" uid="5eeb7152-cc07-4890-8680-d1baab9961d2"/>
           <PID name="RequiredService" mc="Class" uid="81e5a8c7-7612-405a-9bf0-f501cddf2f36"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsAssociation</ATT>
@@ -42,7 +42,7 @@
           <DEPENDENCIES>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="requiredService" mc="AssociationEnd" uid="09addc01-2a79-4ef4-89a6-e8af6f16e9dc"/>
+                <ID name="" mc="AssociationEnd" uid="058ddf35-7450-41cf-bdf6-f3037b4f64c5"/>
                 <PID name="RequiredService" mc="Class" uid="81e5a8c7-7612-405a-9bf0-f501cddf2f36"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
@@ -56,16 +56,16 @@
                   <ATT name="Visibility">Public</ATT>
                   <ATT name="IsClass">false</ATT>
                   <ATT name="IsAbstract">false</ATT>
-                  <ATT name="Name"><![CDATA[requiredService]]></ATT>
+                  <ATT name="Name"></ATT>
                   <ATT name="status">1970354901745664</ATT>
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="" mc="AssociationEnd" uid="ddfc2d31-9d2d-405e-a759-600733ac2c37"/>
+                    <COMPID name="" mc="AssociationEnd" uid="5eeb7152-cc07-4890-8680-d1baab9961d2"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Association" uid="9ca5842d-2520-4d23-9a9a-53e1534c6e2d"/>
+                      <ID name="" mc="Association" uid="971145ba-113d-4003-bfad-e2036b2624a1"/>
                       <PID name="RequiredService" mc="Class" uid="81e5a8c7-7612-405a-9bf0-f501cddf2f36"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
@@ -74,7 +74,7 @@
                       <DEPENDENCIES>
                         <COMP relation="LinkToClass">
                           <OBJECT>
-                            <ID name="ClassAssociation" mc="ClassAssociation" uid="6cbcf6f4-3245-425d-8839-2a0e9b249b88"/>
+                            <ID name="ClassAssociation" mc="ClassAssociation" uid="b31fb085-7dfb-48e8-9a19-48b8697ed37e"/>
                             <PID name="RequiredService" mc="Class" uid="81e5a8c7-7612-405a-9bf0-f501cddf2f36"/>
                             <ATTRIBUTES>
                               <ATT name="Name"><![CDATA[ClassAssociation]]></ATT>
@@ -95,7 +95,7 @@
             </COMP>
             <COMP relation="Association">
               <OBJECT>
-                <ID name="" mc="Association" uid="9ca5842d-2520-4d23-9a9a-53e1534c6e2d"/>
+                <ID name="" mc="Association" uid="971145ba-113d-4003-bfad-e2036b2624a1"/>
                 <PID name="RequiredService" mc="Class" uid="81e5a8c7-7612-405a-9bf0-f501cddf2f36"/>
                 <ATTRIBUTES>
                   <ATT name="Name"></ATT>
@@ -104,7 +104,7 @@
                 <DEPENDENCIES>
                   <COMP relation="LinkToClass">
                     <OBJECT>
-                      <ID name="ClassAssociation" mc="ClassAssociation" uid="6cbcf6f4-3245-425d-8839-2a0e9b249b88"/>
+                      <ID name="ClassAssociation" mc="ClassAssociation" uid="b31fb085-7dfb-48e8-9a19-48b8697ed37e"/>
                       <PID name="RequiredService" mc="Class" uid="81e5a8c7-7612-405a-9bf0-f501cddf2f36"/>
                       <ATTRIBUTES>
                         <ATT name="Name"><![CDATA[ClassAssociation]]></ATT>
@@ -125,7 +125,7 @@
       </COMP>
       <COMP relation="Parent">
         <OBJECT>
-          <ID name="Generalization" mc="Generalization" uid="e3c36034-747a-40ec-a407-3afb8356f218"/>
+          <ID name="Generalization" mc="Generalization" uid="e899b89a-ceb6-466e-b03f-dca28060222c"/>
           <PID name="RequiredService" mc="Class" uid="81e5a8c7-7612-405a-9bf0-f501cddf2f36"/>
           <ATTRIBUTES>
             <ATT name="Discriminator"></ATT>

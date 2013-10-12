@@ -3,7 +3,6 @@
   <DEPS>
     <ID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
     <COMPID name="ArchitecturalElement" mc="Class" uid="083d76c1-a4c0-4eb9-805d-1ced1c7dd31a"/>
-    <COMPID name="AtomicComponent" mc="Class" uid="bbff2f1a-6897-46a7-a1c5-dc9efe7e30ee"/>
     <COMPID name="AtomicConnector" mc="Class" uid="57ede933-bc53-48c1-9824-3895a0bd4488"/>
     <COMPID name="Attachment" mc="Class" uid="3cd8a48a-8b9c-4aaf-a1ba-0e7d3b418e46"/>
     <COMPID name="CompConfBinding" mc="Class" uid="70368803-a232-4ef3-8a81-f5e1fadfe99a"/>
@@ -22,6 +21,7 @@
     <COMPID name="FromRole" mc="Class" uid="0db47cc6-51d7-41b9-b968-21023116000d"/>
     <COMPID name="FunctionalProperty" mc="Class" uid="76981009-98db-4645-81ea-ea1c9696ccbb"/>
     <COMPID name="Glue" mc="Class" uid="39815515-65cd-4c00-bd4c-aa6f80916b63"/>
+    <COMPID name="M1 CS diagram" mc="ClassDiagram" uid="90bb1f98-c172-41bc-bc5a-9635c8e1b96d"/>
     <COMPID name="M2 Architectural element diagram" mc="ClassDiagram" uid="c60df793-4b60-4161-8e99-1c65d8030f98"/>
     <COMPID name="M2 Component diagram" mc="ClassDiagram" uid="e65a987b-7eef-400e-9822-2afaf3c09591"/>
     <COMPID name="M2 Configuration diagram" mc="ClassDiagram" uid="14d03601-f761-4e7c-892b-e058c780b6a9"/>
@@ -66,7 +66,6 @@
         <COMPID name="Connection" mc="Class" uid="f125b10f-d13a-4560-93fd-810fb7635a08"/>
         <COMPID name="RequiredConnection" mc="Class" uid="9881e277-ba53-4097-a563-deeccd7ef8b5"/>
         <COMPID name="ProvidedConnection" mc="Class" uid="a3bf69ee-f544-4328-9108-87fa6d263332"/>
-        <COMPID name="AtomicComponent" mc="Class" uid="bbff2f1a-6897-46a7-a1c5-dc9efe7e30ee"/>
         <COMPID name="Role" mc="Class" uid="f7d12dfb-3aa4-4a33-b0d4-3051edbb1ebd"/>
         <COMPID name="FromRole" mc="Class" uid="0db47cc6-51d7-41b9-b968-21023116000d"/>
         <COMPID name="ToRole" mc="Class" uid="0815fcea-2887-4756-ae5a-fdb5ff9a6a68"/>
@@ -93,6 +92,7 @@
         <COMPID name="M2 Component diagram" mc="ClassDiagram" uid="e65a987b-7eef-400e-9822-2afaf3c09591"/>
         <COMPID name="M2 Connector diagram" mc="ClassDiagram" uid="bc7b6e00-29f9-49d5-a456-f00bc3aceed1"/>
         <COMPID name="M2 Architectural element diagram" mc="ClassDiagram" uid="c60df793-4b60-4161-8e99-1c65d8030f98"/>
+        <COMPID name="M1 CS diagram" mc="ClassDiagram" uid="90bb1f98-c172-41bc-bc5a-9635c8e1b96d"/>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>

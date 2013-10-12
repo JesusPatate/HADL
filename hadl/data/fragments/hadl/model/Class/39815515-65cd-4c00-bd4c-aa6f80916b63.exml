@@ -22,10 +22,10 @@
     <DEPENDENCIES>
       <COMP relation="OwnedEnd">
         <OBJECT>
-          <ID name="fromRole" mc="AssociationEnd" uid="79eb660d-b2be-4012-a948-9751b9094463"/>
+          <ID name="fromRole" mc="AssociationEnd" uid="b9583a31-7985-45e4-a88d-3af3ec71873c"/>
           <PID name="Glue" mc="Class" uid="39815515-65cd-4c00-bd4c-aa6f80916b63"/>
           <ATTRIBUTES>
-            <ATT name="Aggregation">KindIsComposition</ATT>
+            <ATT name="Aggregation">KindIsAggregation</ATT>
             <ATT name="IsChangeable">true</ATT>
             <ATT name="Changeable">ReadWrite</ATT>
             <ATT name="IsDerived">false</ATT>
@@ -45,7 +45,7 @@
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="AssociationEnd" uid="150dc4f3-402e-4cde-8c16-7ea03b5b85ab"/>
+                <ID name="" mc="AssociationEnd" uid="78f6b2ba-e958-4813-aa60-0bc27c02c501"/>
                 <PID name="Glue" mc="Class" uid="39815515-65cd-4c00-bd4c-aa6f80916b63"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
@@ -64,11 +64,11 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="fromRole" mc="AssociationEnd" uid="79eb660d-b2be-4012-a948-9751b9094463"/>
+                    <COMPID name="fromRole" mc="AssociationEnd" uid="b9583a31-7985-45e4-a88d-3af3ec71873c"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Association" uid="5b3959ce-5c0f-46e2-b000-2725eb229753"/>
+                      <ID name="" mc="Association" uid="2bf98b2b-96e1-4ede-a52e-8f9ac95de0b9"/>
                       <PID name="Glue" mc="Class" uid="39815515-65cd-4c00-bd4c-aa6f80916b63"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
@@ -82,7 +82,7 @@
             </COMP>
             <COMP relation="Association">
               <OBJECT>
-                <ID name="" mc="Association" uid="5b3959ce-5c0f-46e2-b000-2725eb229753"/>
+                <ID name="" mc="Association" uid="2bf98b2b-96e1-4ede-a52e-8f9ac95de0b9"/>
                 <PID name="Glue" mc="Class" uid="39815515-65cd-4c00-bd4c-aa6f80916b63"/>
                 <ATTRIBUTES>
                   <ATT name="Name"></ATT>
@@ -94,10 +94,10 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="toRole" mc="AssociationEnd" uid="69d76c7f-725d-4847-b1df-c2e4ddb380be"/>
+          <ID name="toRole" mc="AssociationEnd" uid="e2c3a4c7-2959-4943-9bcb-e89bb095c524"/>
           <PID name="Glue" mc="Class" uid="39815515-65cd-4c00-bd4c-aa6f80916b63"/>
           <ATTRIBUTES>
-            <ATT name="Aggregation">KindIsComposition</ATT>
+            <ATT name="Aggregation">KindIsAggregation</ATT>
             <ATT name="IsChangeable">true</ATT>
             <ATT name="Changeable">ReadWrite</ATT>
             <ATT name="IsDerived">false</ATT>
@@ -117,7 +117,7 @@
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="AssociationEnd" uid="9f67c4c3-a48f-4b6f-a392-f1cd061bc624"/>
+                <ID name="" mc="AssociationEnd" uid="650a0e41-31a0-4437-ba07-f95f462cc679"/>
                 <PID name="Glue" mc="Class" uid="39815515-65cd-4c00-bd4c-aa6f80916b63"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
@@ -136,11 +136,11 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="toRole" mc="AssociationEnd" uid="69d76c7f-725d-4847-b1df-c2e4ddb380be"/>
+                    <COMPID name="toRole" mc="AssociationEnd" uid="e2c3a4c7-2959-4943-9bcb-e89bb095c524"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Association" uid="2fcc0e3a-862a-44cc-819b-f01371c84fb5"/>
+                      <ID name="" mc="Association" uid="aa7633aa-9df9-4012-a776-0bd8d65e83a7"/>
                       <PID name="Glue" mc="Class" uid="39815515-65cd-4c00-bd4c-aa6f80916b63"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
@@ -154,7 +154,7 @@
             </COMP>
             <COMP relation="Association">
               <OBJECT>
-                <ID name="" mc="Association" uid="2fcc0e3a-862a-44cc-819b-f01371c84fb5"/>
+                <ID name="" mc="Association" uid="aa7633aa-9df9-4012-a776-0bd8d65e83a7"/>
                 <PID name="Glue" mc="Class" uid="39815515-65cd-4c00-bd4c-aa6f80916b63"/>
                 <ATTRIBUTES>
                   <ATT name="Name"></ATT>

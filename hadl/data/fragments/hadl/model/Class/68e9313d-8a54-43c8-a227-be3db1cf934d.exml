@@ -2,10 +2,11 @@
 <!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ProvidedPort" version="3">
   <DEPS>
     <ID name="ProvidedPort" mc="Class" uid="68e9313d-8a54-43c8-a227-be3db1cf934d"/>
-    <EXTID name="CompConfRequiredBinding" mc="Class" uid="fa1214d6-9726-4543-a3b2-b8df0b994b99"/>
+    <EXTID name="CompConfProvidedBinding" mc="Class" uid="fa1214d6-9726-4543-a3b2-b8df0b994b99"/>
     <EXTID name="Port" mc="Class" uid="0524e50e-8285-41d4-8a7c-65d9a4ff6b2c"/>
-    <EXTID name="RequiredConnection" mc="Class" uid="9881e277-ba53-4097-a563-deeccd7ef8b5"/>
-    <EXTID name="RequiredService" mc="Class" uid="81e5a8c7-7612-405a-9bf0-f501cddf2f36"/>
+    <EXTID name="ProvidedConnection" mc="Class" uid="a3bf69ee-f544-4328-9108-87fa6d263332"/>
+    <EXTID name="ProvidedService" mc="Class" uid="6ec19aa2-e4e7-421f-8f36-e34b44c45963"/>
+    <EXTID name="ToAttachment" mc="Class" uid="37cb2bd9-4b82-4efc-a22a-c1cb50e816f0"/>
     <EXTID name="ToRole" mc="Class" uid="0815fcea-2887-4756-ae5a-fdb5ff9a6a68"/>
   </DEPS>
   <OBJECT>
@@ -24,10 +25,6 @@
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="OwnedEnd">
-        <REFOBJ>
-          <ID name="requiredService" mc="AssociationEnd" uid="09addc01-2a79-4ef4-89a6-e8af6f16e9dc"/>
-          <PID name="RequiredService" mc="Class" uid="81e5a8c7-7612-405a-9bf0-f501cddf2f36"/>
-        </REFOBJ>
         <OBJECT>
           <ID name="internalComponentPort" mc="AssociationEnd" uid="05fe30fa-c753-4391-9ad5-929e84f2a75f"/>
           <PID name="ProvidedPort" mc="Class" uid="68e9313d-8a54-43c8-a227-be3db1cf934d"/>
@@ -89,7 +86,7 @@
                             </ATTRIBUTES>
                             <DEPENDENCIES>
                               <LINK relation="ClassPart">
-                                <ID name="CompConfRequiredBinding" mc="Class" uid="fa1214d6-9726-4543-a3b2-b8df0b994b99"/>
+                                <ID name="CompConfProvidedBinding" mc="Class" uid="fa1214d6-9726-4543-a3b2-b8df0b994b99"/>
                               </LINK>
                             </DEPENDENCIES>
                           </OBJECT>
@@ -119,7 +116,7 @@
                       </ATTRIBUTES>
                       <DEPENDENCIES>
                         <LINK relation="ClassPart">
-                          <ID name="CompConfRequiredBinding" mc="Class" uid="fa1214d6-9726-4543-a3b2-b8df0b994b99"/>
+                          <ID name="CompConfProvidedBinding" mc="Class" uid="fa1214d6-9726-4543-a3b2-b8df0b994b99"/>
                         </LINK>
                       </DEPENDENCIES>
                     </OBJECT>
@@ -190,7 +187,7 @@
                             </ATTRIBUTES>
                             <DEPENDENCIES>
                               <LINK relation="ClassPart">
-                                <ID name="CompConfRequiredBinding" mc="Class" uid="fa1214d6-9726-4543-a3b2-b8df0b994b99"/>
+                                <ID name="CompConfProvidedBinding" mc="Class" uid="fa1214d6-9726-4543-a3b2-b8df0b994b99"/>
                               </LINK>
                             </DEPENDENCIES>
                           </OBJECT>
@@ -220,7 +217,7 @@
                       </ATTRIBUTES>
                       <DEPENDENCIES>
                         <LINK relation="ClassPart">
-                          <ID name="CompConfRequiredBinding" mc="Class" uid="fa1214d6-9726-4543-a3b2-b8df0b994b99"/>
+                          <ID name="CompConfProvidedBinding" mc="Class" uid="fa1214d6-9726-4543-a3b2-b8df0b994b99"/>
                         </LINK>
                       </DEPENDENCIES>
                     </OBJECT>
@@ -233,6 +230,10 @@
         <REFOBJ>
           <ID name="internalConnectorRole" mc="AssociationEnd" uid="9ad13640-3c1a-41eb-9263-4ecd8d1319a4"/>
           <PID name="ToRole" mc="Class" uid="0815fcea-2887-4756-ae5a-fdb5ff9a6a68"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="" mc="AssociationEnd" uid="95d37225-8390-4840-a8b1-6f4d3248fe74"/>
+          <PID name="ProvidedService" mc="Class" uid="6ec19aa2-e4e7-421f-8f36-e34b44c45963"/>
         </REFOBJ>
       </COMP>
       <COMP relation="Parent">

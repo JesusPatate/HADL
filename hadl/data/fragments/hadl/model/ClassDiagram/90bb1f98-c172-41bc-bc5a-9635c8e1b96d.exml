@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="M1 CS diagram" version="3">
+  <DEPS>
+    <ID name="M1 CS diagram" mc="ClassDiagram" uid="90bb1f98-c172-41bc-bc5a-9635c8e1b96d"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="M1 CS diagram" mc="ClassDiagram" uid="90bb1f98-c172-41bc-bc5a-9635c8e1b96d"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="UiDataVersion">1</ATT>
+      <ATT name="UiData"><![CDATA[eJyNUd1PwjAQ/1eavm8wFGTJgIdhDBHUuMRX060HFvpB2huy/94ONhIxLjytd7vf110yOypJDmCdMHpCo7BPyWyavOZbKJAI7luUYLWHCTV2EyrDQQoTcsE2lqkQuEBjQ4cMxS4ECQo0unNdtENPKjvV83NNiWJbYz8von06Td6s2YPFimimvJZklSlxzpD5fx9MltCY0KWUtDdNei3gDzTDSgL9FWHQFcHV8y4sjIXwjL3BX8pcwTjwVuzxiO+wvlHlxVM0SAJHnOcL7/H0rB8c1qyUeBWyd47TFdyCZAjc+7ja2apukUPd8c4lc665BIn7eR6t43FQRA+D4D7KiyAvhiyIR3fDYgxRHo9497Y9Gz5r862XLAd5JZyhFXpzkV5FJM1Is5FuWmskLHRq1N44gf4K3czdZOmXkNxCzbEUrt5h8/kXsRR65zrG22v8AJpoIb0=]]></ATT>
+      <ATT name="PdeProperties"></ATT>
+      <ATT name="Name"><![CDATA[M1 CS diagram]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>

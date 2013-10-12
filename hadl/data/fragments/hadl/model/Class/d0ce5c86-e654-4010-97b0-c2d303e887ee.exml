@@ -2,12 +2,12 @@
 <!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="RequiredPort" version="3">
   <DEPS>
     <ID name="RequiredPort" mc="Class" uid="d0ce5c86-e654-4010-97b0-c2d303e887ee"/>
-    <EXTID name="CompConfProvidedBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
+    <EXTID name="CompConfRequiredBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
     <EXTID name="FromAttachment" mc="Class" uid="197b8d52-3e1f-4b4c-8d83-34bebf9d46dd"/>
     <EXTID name="FromRole" mc="Class" uid="0db47cc6-51d7-41b9-b968-21023116000d"/>
     <EXTID name="Port" mc="Class" uid="0524e50e-8285-41d4-8a7c-65d9a4ff6b2c"/>
-    <EXTID name="ProvidedConnection" mc="Class" uid="a3bf69ee-f544-4328-9108-87fa6d263332"/>
-    <EXTID name="ProvidedService" mc="Class" uid="6ec19aa2-e4e7-421f-8f36-e34b44c45963"/>
+    <EXTID name="RequiredConnection" mc="Class" uid="9881e277-ba53-4097-a563-deeccd7ef8b5"/>
+    <EXTID name="RequiredService" mc="Class" uid="81e5a8c7-7612-405a-9bf0-f501cddf2f36"/>
   </DEPS>
   <OBJECT>
     <ID name="RequiredPort" mc="Class" uid="d0ce5c86-e654-4010-97b0-c2d303e887ee"/>
@@ -25,10 +25,6 @@
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="OwnedEnd">
-        <REFOBJ>
-          <ID name="providedService" mc="AssociationEnd" uid="1d9e5ee2-59a3-4b57-b81a-08cf2ca2b86d"/>
-          <PID name="ProvidedService" mc="Class" uid="6ec19aa2-e4e7-421f-8f36-e34b44c45963"/>
-        </REFOBJ>
         <OBJECT>
           <ID name="internalComponentPort" mc="AssociationEnd" uid="a02eb2fe-b99b-4c0f-80e1-340a4542f2cc"/>
           <PID name="RequiredPort" mc="Class" uid="d0ce5c86-e654-4010-97b0-c2d303e887ee"/>
@@ -90,7 +86,7 @@
                             </ATTRIBUTES>
                             <DEPENDENCIES>
                               <LINK relation="ClassPart">
-                                <ID name="CompConfProvidedBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
+                                <ID name="CompConfRequiredBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
                               </LINK>
                             </DEPENDENCIES>
                           </OBJECT>
@@ -120,7 +116,7 @@
                       </ATTRIBUTES>
                       <DEPENDENCIES>
                         <LINK relation="ClassPart">
-                          <ID name="CompConfProvidedBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
+                          <ID name="CompConfRequiredBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
                         </LINK>
                       </DEPENDENCIES>
                     </OBJECT>
@@ -191,7 +187,7 @@
                             </ATTRIBUTES>
                             <DEPENDENCIES>
                               <LINK relation="ClassPart">
-                                <ID name="CompConfProvidedBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
+                                <ID name="CompConfRequiredBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
                               </LINK>
                             </DEPENDENCIES>
                           </OBJECT>
@@ -221,7 +217,7 @@
                       </ATTRIBUTES>
                       <DEPENDENCIES>
                         <LINK relation="ClassPart">
-                          <ID name="CompConfProvidedBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
+                          <ID name="CompConfRequiredBinding" mc="Class" uid="105dbfa8-cfe4-402d-8f40-8b74b9c3db48"/>
                         </LINK>
                       </DEPENDENCIES>
                     </OBJECT>
@@ -232,8 +228,12 @@
           </DEPENDENCIES>
         </OBJECT>
         <REFOBJ>
-          <ID name="fromRole" mc="AssociationEnd" uid="c7ce8d8f-4ab8-45c1-8af0-48ef388ce2cd"/>
+          <ID name="internalConnectorRole" mc="AssociationEnd" uid="c7ce8d8f-4ab8-45c1-8af0-48ef388ce2cd"/>
           <PID name="FromRole" mc="Class" uid="0db47cc6-51d7-41b9-b968-21023116000d"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="" mc="AssociationEnd" uid="058ddf35-7450-41cf-bdf6-f3037b4f64c5"/>
+          <PID name="RequiredService" mc="Class" uid="81e5a8c7-7612-405a-9bf0-f501cddf2f36"/>
         </REFOBJ>
       </COMP>
       <COMP relation="Parent">
