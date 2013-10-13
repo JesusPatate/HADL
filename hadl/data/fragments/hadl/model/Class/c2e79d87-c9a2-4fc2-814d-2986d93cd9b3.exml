@@ -1,12 +1,11 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ExternalSocket : ProvidedPort" version="3">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="HandleQuery : ProvidedService" version="3">
   <DEPS>
-    <ID name="ExternalSocket : ProvidedPort" mc="Class" uid="649300a0-c607-4fec-ac37-35fbdfcbe529"/>
-    <EXTID name="ReceiveRequest : ProvidedService" mc="Class" uid="f64d9f34-16da-410f-8228-6dfc984e5149"/>
-    <EXTID name="ReceiveRequestConnection" mc="Class" uid="7fca49b7-ead7-4c3b-8a96-3e95f1394a69"/>
+    <ID name="HandleQuery : ProvidedService" mc="Class" uid="c2e79d87-c9a2-4fc2-814d-2986d93cd9b3"/>
+    <EXTID name="QueryInterface : ProvidedPort" mc="Class" uid="5be5065c-7123-4e3b-94ca-69c33eb56fdb"/>
   </DEPS>
   <OBJECT>
-    <ID name="ExternalSocket : ProvidedPort" mc="Class" uid="649300a0-c607-4fec-ac37-35fbdfcbe529"/>
+    <ID name="HandleQuery : ProvidedService" mc="Class" uid="c2e79d87-c9a2-4fc2-814d-2986d93cd9b3"/>
     <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
     <ATTRIBUTES>
       <ATT name="IsActive">false</ATT>
@@ -16,14 +15,14 @@
       <ATT name="IsLeaf">false</ATT>
       <ATT name="IsRoot">false</ATT>
       <ATT name="Visibility">Public</ATT>
-      <ATT name="Name"><![CDATA[ExternalSocket : ProvidedPort]]></ATT>
+      <ATT name="Name"><![CDATA[HandleQuery : ProvidedService]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="OwnedEnd">
         <OBJECT>
-          <ID name="" mc="AssociationEnd" uid="0de36fe7-501e-44e0-9fc5-b2e8ad9cd323"/>
-          <PID name="ExternalSocket : ProvidedPort" mc="Class" uid="649300a0-c607-4fec-ac37-35fbdfcbe529"/>
+          <ID name="" mc="AssociationEnd" uid="2cdc584c-b78a-47c6-b906-0d1f107741f6"/>
+          <PID name="HandleQuery : ProvidedService" mc="Class" uid="c2e79d87-c9a2-4fc2-814d-2986d93cd9b3"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsAssociation</ATT>
             <ATT name="IsChangeable">true</ATT>
@@ -42,8 +41,8 @@
           <DEPENDENCIES>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="AssociationEnd" uid="1ca767e9-30c4-46bc-ac15-e650ce621e6c"/>
-                <PID name="ExternalSocket : ProvidedPort" mc="Class" uid="649300a0-c607-4fec-ac37-35fbdfcbe529"/>
+                <ID name="" mc="AssociationEnd" uid="701727a5-2dc7-4055-ba65-a836ac418bae"/>
+                <PID name="HandleQuery : ProvidedService" mc="Class" uid="c2e79d87-c9a2-4fc2-814d-2986d93cd9b3"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
                   <ATT name="IsChangeable">true</ATT>
@@ -61,12 +60,12 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="" mc="AssociationEnd" uid="0de36fe7-501e-44e0-9fc5-b2e8ad9cd323"/>
+                    <COMPID name="" mc="AssociationEnd" uid="2cdc584c-b78a-47c6-b906-0d1f107741f6"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Association" uid="568be930-b5e1-45d9-9679-04e5b0a8f16a"/>
-                      <PID name="ExternalSocket : ProvidedPort" mc="Class" uid="649300a0-c607-4fec-ac37-35fbdfcbe529"/>
+                      <ID name="" mc="Association" uid="e983358e-13c6-42a6-ba36-54e7e9bea96b"/>
+                      <PID name="HandleQuery : ProvidedService" mc="Class" uid="c2e79d87-c9a2-4fc2-814d-2986d93cd9b3"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
                         <ATT name="status">1970354901745664</ATT>
@@ -74,15 +73,15 @@
                       <DEPENDENCIES>
                         <COMP relation="LinkToClass">
                           <OBJECT>
-                            <ID name="ClassAssociation" mc="ClassAssociation" uid="e32afa4b-7b17-4ecd-849a-9250d4ee4834"/>
-                            <PID name="ExternalSocket : ProvidedPort" mc="Class" uid="649300a0-c607-4fec-ac37-35fbdfcbe529"/>
+                            <ID name="ClassAssociation" mc="ClassAssociation" uid="8e6283db-9d0c-450f-9ced-612e70891c64"/>
+                            <PID name="HandleQuery : ProvidedService" mc="Class" uid="c2e79d87-c9a2-4fc2-814d-2986d93cd9b3"/>
                             <ATTRIBUTES>
                               <ATT name="Name"><![CDATA[ClassAssociation]]></ATT>
                               <ATT name="status">1970354901745664</ATT>
                             </ATTRIBUTES>
                             <DEPENDENCIES>
                               <LINK relation="ClassPart">
-                                <ID name="ReceiveRequestConnection" mc="Class" uid="7fca49b7-ead7-4c3b-8a96-3e95f1394a69"/>
+                                <ID name="QueryInterfaceConnection : ProvidedConnection" mc="Class" uid="452c3132-18a6-4fa0-8098-f89c07434ab7"/>
                               </LINK>
                             </DEPENDENCIES>
                           </OBJECT>
@@ -95,8 +94,8 @@
             </COMP>
             <COMP relation="Association">
               <OBJECT>
-                <ID name="" mc="Association" uid="568be930-b5e1-45d9-9679-04e5b0a8f16a"/>
-                <PID name="ExternalSocket : ProvidedPort" mc="Class" uid="649300a0-c607-4fec-ac37-35fbdfcbe529"/>
+                <ID name="" mc="Association" uid="e983358e-13c6-42a6-ba36-54e7e9bea96b"/>
+                <PID name="HandleQuery : ProvidedService" mc="Class" uid="c2e79d87-c9a2-4fc2-814d-2986d93cd9b3"/>
                 <ATTRIBUTES>
                   <ATT name="Name"></ATT>
                   <ATT name="status">1970354901745664</ATT>
@@ -104,15 +103,15 @@
                 <DEPENDENCIES>
                   <COMP relation="LinkToClass">
                     <OBJECT>
-                      <ID name="ClassAssociation" mc="ClassAssociation" uid="e32afa4b-7b17-4ecd-849a-9250d4ee4834"/>
-                      <PID name="ExternalSocket : ProvidedPort" mc="Class" uid="649300a0-c607-4fec-ac37-35fbdfcbe529"/>
+                      <ID name="ClassAssociation" mc="ClassAssociation" uid="8e6283db-9d0c-450f-9ced-612e70891c64"/>
+                      <PID name="HandleQuery : ProvidedService" mc="Class" uid="c2e79d87-c9a2-4fc2-814d-2986d93cd9b3"/>
                       <ATTRIBUTES>
                         <ATT name="Name"><![CDATA[ClassAssociation]]></ATT>
                         <ATT name="status">1970354901745664</ATT>
                       </ATTRIBUTES>
                       <DEPENDENCIES>
                         <LINK relation="ClassPart">
-                          <ID name="ReceiveRequestConnection" mc="Class" uid="7fca49b7-ead7-4c3b-8a96-3e95f1394a69"/>
+                          <ID name="QueryInterfaceConnection : ProvidedConnection" mc="Class" uid="452c3132-18a6-4fa0-8098-f89c07434ab7"/>
                         </LINK>
                       </DEPENDENCIES>
                     </OBJECT>

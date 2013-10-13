@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="QueryInterface : ProvidedPort" version="3">
+  <DEPS>
+    <ID name="QueryInterface : ProvidedPort" mc="Class" uid="5be5065c-7123-4e3b-94ca-69c33eb56fdb"/>
+    <EXTID name="HandleQuery : ProvidedService" mc="Class" uid="c2e79d87-c9a2-4fc2-814d-2986d93cd9b3"/>
+    <EXTID name="QueryInterfaceConnection : ProvidedConnection" mc="Class" uid="452c3132-18a6-4fa0-8098-f89c07434ab7"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="QueryInterface : ProvidedPort" mc="Class" uid="5be5065c-7123-4e3b-94ca-69c33eb56fdb"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[QueryInterface : ProvidedPort]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedEnd">
+        <REFOBJ>
+          <ID name="" mc="AssociationEnd" uid="701727a5-2dc7-4055-ba65-a836ac418bae"/>
+          <PID name="HandleQuery : ProvidedService" mc="Class" uid="c2e79d87-c9a2-4fc2-814d-2986d93cd9b3"/>
+        </REFOBJ>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

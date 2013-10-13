@@ -6,8 +6,8 @@
     <EXTID name="DBQueryConnection : RequiredConnection" mc="Class" uid="1cc21276-bb3b-4fce-88a1-ec9eded62345"/>
     <EXTID name="ExternalSocket : ProvidedPort" mc="Class" uid="649300a0-c607-4fec-ac37-35fbdfcbe529"/>
     <EXTID name="HandleQuery : RequiredService" mc="Class" uid="f5021d53-c922-4632-8c27-a49f7dd1edd0"/>
+    <EXTID name="ReceiveRequest : ProvidedService" mc="Class" uid="f64d9f34-16da-410f-8228-6dfc984e5149"/>
     <EXTID name="ReceiveRequestConnection" mc="Class" uid="7fca49b7-ead7-4c3b-8a96-3e95f1394a69"/>
-    <EXTID name="ReceiveRequestService : ProvidedService" mc="Class" uid="f64d9f34-16da-410f-8228-6dfc984e5149"/>
     <EXTID name="SecurityAuthorization : RequiredService" mc="Class" uid="4e1b96c0-3ad3-43c4-a19c-3efd06b4d5c8"/>
     <EXTID name="SecurityCheck : RequiredPort" mc="Class" uid="411de91b-8026-4599-b823-10977a63cb00"/>
     <EXTID name="SecurityConnection : RequiredConnection" mc="Class" uid="10af89f6-437b-4cb1-9608-abb52bc5091b"/>
@@ -120,7 +120,7 @@
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Target">
-              <ID name="ReceiveRequestService : ProvidedService" mc="Class" uid="f64d9f34-16da-410f-8228-6dfc984e5149"/>
+              <ID name="ReceiveRequest : ProvidedService" mc="Class" uid="f64d9f34-16da-410f-8228-6dfc984e5149"/>
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>

@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="SecurityAuthorization : ProvidedPort" version="3">
+  <DEPS>
+    <ID name="SecurityAuthorization : ProvidedPort" mc="Class" uid="cf814d43-5149-4181-a7fa-7c8ff7703687"/>
+    <EXTID name="SecurityAuthService : ProvidedService" mc="Class" uid="ebdd808d-6e74-4c01-9667-0f7429f71093"/>
+    <EXTID name="SecurityAuthconnection : ProvidedConnection" mc="Class" uid="60965615-7149-44ae-9e0a-4fa9bfab5471"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="SecurityAuthorization : ProvidedPort" mc="Class" uid="cf814d43-5149-4181-a7fa-7c8ff7703687"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[SecurityAuthorization : ProvidedPort]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedEnd">
+        <REFOBJ>
+          <ID name="" mc="AssociationEnd" uid="5a557a20-fa03-47ef-86c7-02f0e48e35d8"/>
+          <PID name="SecurityAuthService : ProvidedService" mc="Class" uid="ebdd808d-6e74-4c01-9667-0f7429f71093"/>
+        </REFOBJ>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="SecurityManagement : RequiredPort" version="3">
+  <DEPS>
+    <ID name="SecurityManagement : RequiredPort" mc="Class" uid="bd31f2c1-ef07-4132-92d7-bd2126c18961"/>
+    <EXTID name="SecurityConnection : RequiredConnection" mc="Class" uid="f10d7b02-9e07-4080-8e3a-1d514bed0f99"/>
+    <EXTID name="SecurityManagementService : RequiredService" mc="Class" uid="168d03f8-08d2-425f-8dbc-66d5000051de"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="SecurityManagement : RequiredPort" mc="Class" uid="bd31f2c1-ef07-4132-92d7-bd2126c18961"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[SecurityManagement : RequiredPort]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedEnd">
+        <REFOBJ>
+          <ID name="" mc="AssociationEnd" uid="a2acf3f9-c1cd-4233-94bf-956da1daa5b3"/>
+          <PID name="SecurityManagementService : RequiredService" mc="Class" uid="168d03f8-08d2-425f-8dbc-66d5000051de"/>
+        </REFOBJ>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="CredentialQuery : ProvidedPort" version="3">
+  <DEPS>
+    <ID name="CredentialQuery : ProvidedPort" mc="Class" uid="15e2dcdc-9dbb-49a1-b3cc-753fd35e3b90"/>
+    <EXTID name="CredentialQueryConnection : ProvidedConnection" mc="Class" uid="19a5218e-6c63-4849-8c77-cc481715418b"/>
+    <EXTID name="HandleCredentialQuery : ProvidedService" mc="Class" uid="2e993cb3-283d-4219-96ab-5e80ff4941c2"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="CredentialQuery : ProvidedPort" mc="Class" uid="15e2dcdc-9dbb-49a1-b3cc-753fd35e3b90"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[CredentialQuery : ProvidedPort]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedEnd">
+        <REFOBJ>
+          <ID name="" mc="AssociationEnd" uid="7b4dab27-1933-4513-bb38-96799003f7ec"/>
+          <PID name="HandleCredentialQuery : ProvidedService" mc="Class" uid="2e993cb3-283d-4219-96ab-5e80ff4941c2"/>
+        </REFOBJ>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
