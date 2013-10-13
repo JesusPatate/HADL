@@ -4,6 +4,7 @@
     <ID name="ReceiveRequestService : ProvidedService" mc="Class" uid="b017e684-1d5d-4298-be4d-578146b59d9c"/>
     <EXTID name="ReceiveRequestConnection : ProvidedConnection" mc="Class" uid="2dcbae4e-4468-45b2-8b0d-a329cde75bc4"/>
     <EXTID name="ReceiveRequestPort : ProvidedPort" mc="Class" uid="0a05bf8c-2315-4a1d-9a2e-db701511198d"/>
+    <FOREIGNID name="description" mc="NoteType" uid="00000000-0000-3e81-0000-000000000000"/>
   </DEPS>
   <OBJECT>
     <ID name="ReceiveRequestService : ProvidedService" mc="Class" uid="b017e684-1d5d-4298-be4d-578146b59d9c"/>
@@ -25,6 +26,22 @@
           <ID name="" mc="AssociationEnd" uid="5a73ff09-42fc-4111-a0ce-a87554f8b2e1"/>
           <PID name="ReceiveRequestPort : ProvidedPort" mc="Class" uid="0a05bf8c-2315-4a1d-9a2e-db701511198d"/>
         </REFOBJ>
+      </COMP>
+      <COMP relation="Descriptor">
+        <OBJECT>
+          <ID name="Note" mc="Note" uid="dc6f1eb6-f76f-4817-a9bf-ab48afa7018f"/>
+          <PID name="ReceiveRequestService : ProvidedService" mc="Class" uid="b017e684-1d5d-4298-be4d-578146b59d9c"/>
+          <ATTRIBUTES>
+            <ATT name="Content"><![CDATA[A supprimer ?]]></ATT>
+            <ATT name="Name"><![CDATA[Note]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Model">
+              <FOREIGNID name="description" mc="NoteType" uid="00000000-0000-3e81-0000-000000000000"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>

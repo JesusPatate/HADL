@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ClearanceRequestFA: FromAttachment" version="3">
+  <DEPS>
+    <ID name="ClearanceRequestFA: FromAttachment" mc="Class" uid="380a85a3-ba4c-492c-a166-95e2adb9c6b4"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="ClearanceRequestFA: FromAttachment" mc="Class" uid="380a85a3-ba4c-492c-a166-95e2adb9c6b4"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[ClearanceRequestFA: FromAttachment]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>

@@ -4,6 +4,8 @@
     <ID name="CredentialQuery : ProvidedPort" mc="Class" uid="15e2dcdc-9dbb-49a1-b3cc-753fd35e3b90"/>
     <EXTID name="CredentialQueryConnection : ProvidedConnection" mc="Class" uid="19a5218e-6c63-4849-8c77-cc481715418b"/>
     <EXTID name="HandleCredentialQuery : ProvidedService" mc="Class" uid="2e993cb3-283d-4219-96ab-5e80ff4941c2"/>
+    <EXTID name="SecurityMgr : ToRole" mc="Class" uid="4400fbe2-5244-41ff-abf1-05fc5ceff02c"/>
+    <EXTID name="SecurityQueryTA : ToAttachment" mc="Class" uid="32c961f0-d611-4e96-a5b0-a68b737ac0ef"/>
   </DEPS>
   <OBJECT>
     <ID name="CredentialQuery : ProvidedPort" mc="Class" uid="15e2dcdc-9dbb-49a1-b3cc-753fd35e3b90"/>
@@ -24,6 +26,10 @@
         <REFOBJ>
           <ID name="" mc="AssociationEnd" uid="7b4dab27-1933-4513-bb38-96799003f7ec"/>
           <PID name="HandleCredentialQuery : ProvidedService" mc="Class" uid="2e993cb3-283d-4219-96ab-5e80ff4941c2"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="" mc="AssociationEnd" uid="3a88ad8e-5f1c-4d73-8b43-51e4f21abaa2"/>
+          <PID name="SecurityMgr : ToRole" mc="Class" uid="4400fbe2-5244-41ff-abf1-05fc5ceff02c"/>
         </REFOBJ>
       </COMP>
     </DEPENDENCIES>

@@ -2,6 +2,7 @@
 <!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="SecurityAuthorization : ProvidedPort" version="3">
   <DEPS>
     <ID name="SecurityAuthorization : ProvidedPort" mc="Class" uid="cf814d43-5149-4181-a7fa-7c8ff7703687"/>
+    <EXTID name="ClearanceGrantor : ToRole" mc="Class" uid="684bc5fc-b00e-4db7-9a68-9d60e82e779f"/>
     <EXTID name="SecurityAuthService : ProvidedService" mc="Class" uid="ebdd808d-6e74-4c01-9667-0f7429f71093"/>
     <EXTID name="SecurityAuthconnection : ProvidedConnection" mc="Class" uid="60965615-7149-44ae-9e0a-4fa9bfab5471"/>
   </DEPS>
@@ -25,6 +26,107 @@
           <ID name="" mc="AssociationEnd" uid="5a557a20-fa03-47ef-86c7-02f0e48e35d8"/>
           <PID name="SecurityAuthService : ProvidedService" mc="Class" uid="ebdd808d-6e74-4c01-9667-0f7429f71093"/>
         </REFOBJ>
+        <OBJECT>
+          <ID name="" mc="AssociationEnd" uid="bb38b974-b43f-47af-b80c-1ab3018c202d"/>
+          <PID name="SecurityAuthorization : ProvidedPort" mc="Class" uid="cf814d43-5149-4181-a7fa-7c8ff7703687"/>
+          <ATTRIBUTES>
+            <ATT name="Aggregation">KindIsAssociation</ATT>
+            <ATT name="IsChangeable">true</ATT>
+            <ATT name="Changeable">ReadWrite</ATT>
+            <ATT name="IsDerived">false</ATT>
+            <ATT name="IsOrdered">false</ATT>
+            <ATT name="IsUnique">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Opposite">
+              <OBJECT>
+                <ID name="" mc="AssociationEnd" uid="4cb174a0-4a50-4a90-b057-eb3a0be3ee3e"/>
+                <PID name="SecurityAuthorization : ProvidedPort" mc="Class" uid="cf814d43-5149-4181-a7fa-7c8ff7703687"/>
+                <ATTRIBUTES>
+                  <ATT name="Aggregation">KindIsAssociation</ATT>
+                  <ATT name="IsChangeable">true</ATT>
+                  <ATT name="Changeable">ReadWrite</ATT>
+                  <ATT name="IsDerived">false</ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="Visibility">Public</ATT>
+                  <ATT name="IsClass">false</ATT>
+                  <ATT name="IsAbstract">false</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Opposite">
+                    <COMPID name="" mc="AssociationEnd" uid="bb38b974-b43f-47af-b80c-1ab3018c202d"/>
+                  </COMP>
+                  <COMP relation="Association">
+                    <OBJECT>
+                      <ID name="" mc="Association" uid="ebe5c16e-a6e9-4d1a-a043-348513931a8a"/>
+                      <PID name="SecurityAuthorization : ProvidedPort" mc="Class" uid="cf814d43-5149-4181-a7fa-7c8ff7703687"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES>
+                        <COMP relation="LinkToClass">
+                          <OBJECT>
+                            <ID name="ClassAssociation" mc="ClassAssociation" uid="9fc2ed84-1869-4e5c-9b40-1ce7e4fc0295"/>
+                            <PID name="SecurityAuthorization : ProvidedPort" mc="Class" uid="cf814d43-5149-4181-a7fa-7c8ff7703687"/>
+                            <ATTRIBUTES>
+                              <ATT name="Name"><![CDATA[ClassAssociation]]></ATT>
+                              <ATT name="status">1970354901745664</ATT>
+                            </ATTRIBUTES>
+                            <DEPENDENCIES>
+                              <LINK relation="ClassPart">
+                                <ID name="SecurityAuthorizer : ToAttachment" mc="Class" uid="74fa7091-87c2-49de-9cf8-b97987ef5ad9"/>
+                              </LINK>
+                            </DEPENDENCIES>
+                          </OBJECT>
+                        </COMP>
+                      </DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Association">
+              <OBJECT>
+                <ID name="" mc="Association" uid="ebe5c16e-a6e9-4d1a-a043-348513931a8a"/>
+                <PID name="SecurityAuthorization : ProvidedPort" mc="Class" uid="cf814d43-5149-4181-a7fa-7c8ff7703687"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="LinkToClass">
+                    <OBJECT>
+                      <ID name="ClassAssociation" mc="ClassAssociation" uid="9fc2ed84-1869-4e5c-9b40-1ce7e4fc0295"/>
+                      <PID name="SecurityAuthorization : ProvidedPort" mc="Class" uid="cf814d43-5149-4181-a7fa-7c8ff7703687"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"><![CDATA[ClassAssociation]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES>
+                        <LINK relation="ClassPart">
+                          <ID name="SecurityAuthorizer : ToAttachment" mc="Class" uid="74fa7091-87c2-49de-9cf8-b97987ef5ad9"/>
+                        </LINK>
+                      </DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>

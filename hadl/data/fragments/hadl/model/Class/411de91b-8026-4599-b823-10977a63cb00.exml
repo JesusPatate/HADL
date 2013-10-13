@@ -2,7 +2,9 @@
 <!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="SecurityCheck : RequiredPort" version="3">
   <DEPS>
     <ID name="SecurityCheck : RequiredPort" mc="Class" uid="411de91b-8026-4599-b823-10977a63cb00"/>
+    <EXTID name="ClearanceRequestor : FromRole" mc="Class" uid="e1371333-4a42-432f-9262-ff683e738655"/>
     <EXTID name="SecurityAuthorization : RequiredService" mc="Class" uid="4e1b96c0-3ad3-43c4-a19c-3efd06b4d5c8"/>
+    <EXTID name="SecurityRequestor : FromAttachment" mc="Class" uid="380a85a3-ba4c-492c-a166-95e2adb9c6b4"/>
   </DEPS>
   <OBJECT>
     <ID name="SecurityCheck : RequiredPort" mc="Class" uid="411de91b-8026-4599-b823-10977a63cb00"/>
@@ -121,6 +123,10 @@
             </COMP>
           </DEPENDENCIES>
         </OBJECT>
+        <REFOBJ>
+          <ID name="" mc="AssociationEnd" uid="d779dcc4-0ce5-411b-a53e-cc56824f0e31"/>
+          <PID name="ClearanceRequestor : FromRole" mc="Class" uid="e1371333-4a42-432f-9262-ff683e738655"/>
+        </REFOBJ>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>

@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="SecurityQueryTA : ToAttachment" version="3">
+  <DEPS>
+    <ID name="SecurityQueryTA : ToAttachment" mc="Class" uid="32c961f0-d611-4e96-a5b0-a68b737ac0ef"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="SecurityQueryTA : ToAttachment" mc="Class" uid="32c961f0-d611-4e96-a5b0-a68b737ac0ef"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[SecurityQueryTA : ToAttachment]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>

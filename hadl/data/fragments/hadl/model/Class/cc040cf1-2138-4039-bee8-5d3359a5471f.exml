@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="SecurityRequestor : FromRole" version="3">
+  <DEPS>
+    <ID name="SecurityRequestor : FromRole" mc="Class" uid="cc040cf1-2138-4039-bee8-5d3359a5471f"/>
+    <EXTID name="SecurityManagement : RequiredPort" mc="Class" uid="bd31f2c1-ef07-4132-92d7-bd2126c18961"/>
+    <EXTID name="SecurityQueryFA : FromAttachment" mc="Class" uid="36c618ec-7035-4c77-a46f-a04ea8db531c"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="SecurityRequestor : FromRole" mc="Class" uid="cc040cf1-2138-4039-bee8-5d3359a5471f"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[SecurityRequestor : FromRole]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedEnd">
+        <REFOBJ>
+          <ID name="" mc="AssociationEnd" uid="58413311-ba69-4eed-acd1-7ef482daf1a6"/>
+          <PID name="SecurityManagement : RequiredPort" mc="Class" uid="bd31f2c1-ef07-4132-92d7-bd2126c18961"/>
+        </REFOBJ>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

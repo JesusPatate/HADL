@@ -3,7 +3,9 @@
   <DEPS>
     <ID name="ExternalSocket : ProvidedPort" mc="Class" uid="649300a0-c607-4fec-ac37-35fbdfcbe529"/>
     <EXTID name="ReceiveRequest : ProvidedService" mc="Class" uid="f64d9f34-16da-410f-8228-6dfc984e5149"/>
+    <EXTID name="ReceiveRequestBinding : ProvidedBinding" mc="Class" uid="32ab1eea-aec6-4463-b559-a6e3c3cd7c0e"/>
     <EXTID name="ReceiveRequestConnection" mc="Class" uid="7fca49b7-ead7-4c3b-8a96-3e95f1394a69"/>
+    <EXTID name="ReceiveRequestPort : ProvidedPort" mc="Class" uid="0a05bf8c-2315-4a1d-9a2e-db701511198d"/>
   </DEPS>
   <OBJECT>
     <ID name="ExternalSocket : ProvidedPort" mc="Class" uid="649300a0-c607-4fec-ac37-35fbdfcbe529"/>
@@ -122,6 +124,10 @@
             </COMP>
           </DEPENDENCIES>
         </OBJECT>
+        <REFOBJ>
+          <ID name="" mc="AssociationEnd" uid="a97b08f8-01ed-497c-aa20-4036c16c3e7f"/>
+          <PID name="ReceiveRequestPort : ProvidedPort" mc="Class" uid="0a05bf8c-2315-4a1d-9a2e-db701511198d"/>
+        </REFOBJ>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>

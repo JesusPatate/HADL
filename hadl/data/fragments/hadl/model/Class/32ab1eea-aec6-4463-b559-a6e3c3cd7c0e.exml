@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ReceiveRequestBinding : ProvidedBinding" version="3">
+  <DEPS>
+    <ID name="ReceiveRequestBinding : ProvidedBinding" mc="Class" uid="32ab1eea-aec6-4463-b559-a6e3c3cd7c0e"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="ReceiveRequestBinding : ProvidedBinding" mc="Class" uid="32ab1eea-aec6-4463-b559-a6e3c3cd7c0e"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[ReceiveRequestBinding : ProvidedBinding]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>

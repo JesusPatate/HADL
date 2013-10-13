@@ -1,13 +1,11 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="QueryInterface : ProvidedPort" version="3">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="SecurityManager : ToRole" version="3">
   <DEPS>
-    <ID name="QueryInterface : ProvidedPort" mc="Class" uid="5be5065c-7123-4e3b-94ca-69c33eb56fdb"/>
-    <EXTID name="HandleQuery : ProvidedService" mc="Class" uid="c2e79d87-c9a2-4fc2-814d-2986d93cd9b3"/>
-    <EXTID name="QueryConnection : ProvidedConnection" mc="Class" uid="452c3132-18a6-4fa0-8098-f89c07434ab7"/>
-    <EXTID name="SQLCallee : ToRole" mc="Class" uid="1bd7f201-1f03-47a3-aa09-53294cdd79d5"/>
+    <ID name="SecurityManager : ToRole" mc="Class" uid="4400fbe2-5244-41ff-abf1-05fc5ceff02c"/>
+    <EXTID name="CredentialQuery : ProvidedPort" mc="Class" uid="15e2dcdc-9dbb-49a1-b3cc-753fd35e3b90"/>
   </DEPS>
   <OBJECT>
-    <ID name="QueryInterface : ProvidedPort" mc="Class" uid="5be5065c-7123-4e3b-94ca-69c33eb56fdb"/>
+    <ID name="SecurityManager : ToRole" mc="Class" uid="4400fbe2-5244-41ff-abf1-05fc5ceff02c"/>
     <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
     <ATTRIBUTES>
       <ATT name="IsActive">false</ATT>
@@ -17,18 +15,14 @@
       <ATT name="IsLeaf">false</ATT>
       <ATT name="IsRoot">false</ATT>
       <ATT name="Visibility">Public</ATT>
-      <ATT name="Name"><![CDATA[QueryInterface : ProvidedPort]]></ATT>
+      <ATT name="Name"><![CDATA[SecurityManager : ToRole]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="OwnedEnd">
-        <REFOBJ>
-          <ID name="" mc="AssociationEnd" uid="701727a5-2dc7-4055-ba65-a836ac418bae"/>
-          <PID name="HandleQuery : ProvidedService" mc="Class" uid="c2e79d87-c9a2-4fc2-814d-2986d93cd9b3"/>
-        </REFOBJ>
         <OBJECT>
-          <ID name="" mc="AssociationEnd" uid="e3de3a89-16e0-4ff5-a84b-12eea9f15d5b"/>
-          <PID name="QueryInterface : ProvidedPort" mc="Class" uid="5be5065c-7123-4e3b-94ca-69c33eb56fdb"/>
+          <ID name="" mc="AssociationEnd" uid="304ce906-7e82-46fe-bbed-6fe6c3ea1279"/>
+          <PID name="SecurityManager : ToRole" mc="Class" uid="4400fbe2-5244-41ff-abf1-05fc5ceff02c"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsAssociation</ATT>
             <ATT name="IsChangeable">true</ATT>
@@ -47,8 +41,8 @@
           <DEPENDENCIES>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="AssociationEnd" uid="dd0f17ba-48c3-4513-885a-73e8e7ea864f"/>
-                <PID name="QueryInterface : ProvidedPort" mc="Class" uid="5be5065c-7123-4e3b-94ca-69c33eb56fdb"/>
+                <ID name="" mc="AssociationEnd" uid="3a88ad8e-5f1c-4d73-8b43-51e4f21abaa2"/>
+                <PID name="SecurityManager : ToRole" mc="Class" uid="4400fbe2-5244-41ff-abf1-05fc5ceff02c"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
                   <ATT name="IsChangeable">true</ATT>
@@ -66,12 +60,12 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="" mc="AssociationEnd" uid="e3de3a89-16e0-4ff5-a84b-12eea9f15d5b"/>
+                    <COMPID name="" mc="AssociationEnd" uid="304ce906-7e82-46fe-bbed-6fe6c3ea1279"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Association" uid="e4211c1a-09a4-43c6-b5cb-14c99ed505ef"/>
-                      <PID name="QueryInterface : ProvidedPort" mc="Class" uid="5be5065c-7123-4e3b-94ca-69c33eb56fdb"/>
+                      <ID name="" mc="Association" uid="3aa57913-b033-4c1d-8a9d-6ee7b230f5ef"/>
+                      <PID name="SecurityManager : ToRole" mc="Class" uid="4400fbe2-5244-41ff-abf1-05fc5ceff02c"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
                         <ATT name="status">1970354901745664</ATT>
@@ -79,15 +73,15 @@
                       <DEPENDENCIES>
                         <COMP relation="LinkToClass">
                           <OBJECT>
-                            <ID name="ClassAssociation" mc="ClassAssociation" uid="a9199a7b-0f46-4590-9dce-1d6f70e87fc3"/>
-                            <PID name="QueryInterface : ProvidedPort" mc="Class" uid="5be5065c-7123-4e3b-94ca-69c33eb56fdb"/>
+                            <ID name="ClassAssociation" mc="ClassAssociation" uid="8297642f-4f4d-45b6-a285-3b8774069ee3"/>
+                            <PID name="SecurityManager : ToRole" mc="Class" uid="4400fbe2-5244-41ff-abf1-05fc5ceff02c"/>
                             <ATTRIBUTES>
                               <ATT name="Name"><![CDATA[ClassAssociation]]></ATT>
                               <ATT name="status">1970354901745664</ATT>
                             </ATTRIBUTES>
                             <DEPENDENCIES>
                               <LINK relation="ClassPart">
-                                <ID name="DBQueryCallee : ToAttachment" mc="Class" uid="11016d17-3ab5-4641-8820-349075d980a1"/>
+                                <ID name="SecurityQueryTA : ToAttachment" mc="Class" uid="32c961f0-d611-4e96-a5b0-a68b737ac0ef"/>
                               </LINK>
                             </DEPENDENCIES>
                           </OBJECT>
@@ -100,8 +94,8 @@
             </COMP>
             <COMP relation="Association">
               <OBJECT>
-                <ID name="" mc="Association" uid="e4211c1a-09a4-43c6-b5cb-14c99ed505ef"/>
-                <PID name="QueryInterface : ProvidedPort" mc="Class" uid="5be5065c-7123-4e3b-94ca-69c33eb56fdb"/>
+                <ID name="" mc="Association" uid="3aa57913-b033-4c1d-8a9d-6ee7b230f5ef"/>
+                <PID name="SecurityManager : ToRole" mc="Class" uid="4400fbe2-5244-41ff-abf1-05fc5ceff02c"/>
                 <ATTRIBUTES>
                   <ATT name="Name"></ATT>
                   <ATT name="status">1970354901745664</ATT>
@@ -109,15 +103,15 @@
                 <DEPENDENCIES>
                   <COMP relation="LinkToClass">
                     <OBJECT>
-                      <ID name="ClassAssociation" mc="ClassAssociation" uid="a9199a7b-0f46-4590-9dce-1d6f70e87fc3"/>
-                      <PID name="QueryInterface : ProvidedPort" mc="Class" uid="5be5065c-7123-4e3b-94ca-69c33eb56fdb"/>
+                      <ID name="ClassAssociation" mc="ClassAssociation" uid="8297642f-4f4d-45b6-a285-3b8774069ee3"/>
+                      <PID name="SecurityManager : ToRole" mc="Class" uid="4400fbe2-5244-41ff-abf1-05fc5ceff02c"/>
                       <ATTRIBUTES>
                         <ATT name="Name"><![CDATA[ClassAssociation]]></ATT>
                         <ATT name="status">1970354901745664</ATT>
                       </ATTRIBUTES>
                       <DEPENDENCIES>
                         <LINK relation="ClassPart">
-                          <ID name="DBQueryCallee : ToAttachment" mc="Class" uid="11016d17-3ab5-4641-8820-349075d980a1"/>
+                          <ID name="SecurityQueryTA : ToAttachment" mc="Class" uid="32c961f0-d611-4e96-a5b0-a68b737ac0ef"/>
                         </LINK>
                       </DEPENDENCIES>
                     </OBJECT>

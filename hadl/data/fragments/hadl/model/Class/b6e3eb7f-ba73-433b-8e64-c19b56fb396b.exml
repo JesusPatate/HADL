@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="SQLCaller : FromRole" version="3">
+  <DEPS>
+    <ID name="SQLCaller : FromRole" mc="Class" uid="b6e3eb7f-ba73-433b-8e64-c19b56fb396b"/>
+    <EXTID name="DBQuery : RequiredPort" mc="Class" uid="c086217f-0993-4889-adcd-53c1864bfdb5"/>
+    <EXTID name="DBQueryCaller : FromAttachment" mc="Class" uid="285f03d7-2d59-47fa-b5e4-ab65d47824a3"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="SQLCaller : FromRole" mc="Class" uid="b6e3eb7f-ba73-433b-8e64-c19b56fb396b"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[SQLCaller : FromRole]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedEnd">
+        <REFOBJ>
+          <ID name="" mc="AssociationEnd" uid="16eff50a-ca8a-4f6e-8407-7273a2120303"/>
+          <PID name="DBQuery : RequiredPort" mc="Class" uid="c086217f-0993-4889-adcd-53c1864bfdb5"/>
+        </REFOBJ>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

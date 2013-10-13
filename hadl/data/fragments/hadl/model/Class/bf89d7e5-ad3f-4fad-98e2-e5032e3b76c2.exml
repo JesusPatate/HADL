@@ -1,0 +1,103 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="SecurityQuery : AtomicConnector" version="3">
+  <DEPS>
+    <ID name="SecurityQuery : AtomicConnector" mc="Class" uid="bf89d7e5-ad3f-4fad-98e2-e5032e3b76c2"/>
+    <EXTID name="Requestor : FromRole" mc="Class" uid="cc040cf1-2138-4039-bee8-5d3359a5471f"/>
+    <EXTID name="SecurityMgr : ToRole" mc="Class" uid="4400fbe2-5244-41ff-abf1-05fc5ceff02c"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="SecurityQuery : AtomicConnector" mc="Class" uid="bf89d7e5-ad3f-4fad-98e2-e5032e3b76c2"/>
+    <PID name="hadl" mc="Package" uid="635f2347-16e2-4bc3-b7ec-6ea290556647"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[SecurityQuery : AtomicConnector]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedEnd">
+        <REFOBJ>
+          <ID name="" mc="AssociationEnd" uid="e0756809-78df-490d-9b70-6d9311e596ae"/>
+          <PID name="SecurityMgr : ToRole" mc="Class" uid="4400fbe2-5244-41ff-abf1-05fc5ceff02c"/>
+        </REFOBJ>
+        <OBJECT>
+          <ID name="" mc="AssociationEnd" uid="489b1fae-4bbe-4143-99ad-d7a606a89db7"/>
+          <PID name="SecurityQuery : AtomicConnector" mc="Class" uid="bf89d7e5-ad3f-4fad-98e2-e5032e3b76c2"/>
+          <ATTRIBUTES>
+            <ATT name="Aggregation">KindIsComposition</ATT>
+            <ATT name="IsChangeable">true</ATT>
+            <ATT name="Changeable">ReadWrite</ATT>
+            <ATT name="IsDerived">false</ATT>
+            <ATT name="IsOrdered">false</ATT>
+            <ATT name="IsUnique">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Target">
+              <ID name="Requestor : FromRole" mc="Class" uid="cc040cf1-2138-4039-bee8-5d3359a5471f"/>
+            </LINK>
+            <COMP relation="Opposite">
+              <OBJECT>
+                <ID name="" mc="AssociationEnd" uid="5dba4cf5-3bbc-4dc6-9b1d-84e1f1fc7658"/>
+                <PID name="SecurityQuery : AtomicConnector" mc="Class" uid="bf89d7e5-ad3f-4fad-98e2-e5032e3b76c2"/>
+                <ATTRIBUTES>
+                  <ATT name="Aggregation">KindIsAssociation</ATT>
+                  <ATT name="IsChangeable">true</ATT>
+                  <ATT name="Changeable">ReadWrite</ATT>
+                  <ATT name="IsDerived">false</ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="Visibility">Public</ATT>
+                  <ATT name="IsClass">false</ATT>
+                  <ATT name="IsAbstract">false</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Opposite">
+                    <COMPID name="" mc="AssociationEnd" uid="489b1fae-4bbe-4143-99ad-d7a606a89db7"/>
+                  </COMP>
+                  <COMP relation="Association">
+                    <OBJECT>
+                      <ID name="" mc="Association" uid="33f2067d-2554-43ab-b5fc-bb22e0b1001e"/>
+                      <PID name="SecurityQuery : AtomicConnector" mc="Class" uid="bf89d7e5-ad3f-4fad-98e2-e5032e3b76c2"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Association">
+              <OBJECT>
+                <ID name="" mc="Association" uid="33f2067d-2554-43ab-b5fc-bb22e0b1001e"/>
+                <PID name="SecurityQuery : AtomicConnector" mc="Class" uid="bf89d7e5-ad3f-4fad-98e2-e5032e3b76c2"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
