@@ -6,7 +6,7 @@ import hadl.m2.Interface;
 /**
  * A role of a connector.
  */
-abstract class Role extends Interface {
+public abstract class Role extends Interface {
     
     /**
      * Creates a new role.

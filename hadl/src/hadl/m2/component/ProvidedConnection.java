@@ -18,7 +18,7 @@ class ProvidedConnection extends Connection {
     public ProvidedConnection(final String label,
             final ProvidedService service, final ProvidedPort port) {
         
-        super(label);
+        super(label, service, port);
         this.service = service;
         this.port = port;
     }

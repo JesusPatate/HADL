@@ -1,8 +1,5 @@
 package hadl.m2.component;
 
-import hadl.m2.Interface;
-
-
 /**
  * A service of a component.
  * 
@@ -16,9 +13,15 @@ import hadl.m2.Interface;
  * @see hadl.m2.component.Port
  * @see
  */
-abstract class Service extends Interface {
-    
-    protected Service(final String label) {
-        super(label);
-    }
+abstract class Service {
+
+	private final String label;
+
+	protected Service(final String label) {
+		this.label = label;
+	}
+
+	public String getLabel() {
+		return this.label;
+	}
 }

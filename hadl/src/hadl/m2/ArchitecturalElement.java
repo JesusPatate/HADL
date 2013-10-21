@@ -45,30 +45,6 @@ public abstract class ArchitecturalElement {
     }
     
     /**
-     * Returns a functional property of the element.
-     * 
-     * @param label
-     *            Name of the sought property
-     * 
-     * @return The functional property with the given name or null.
-     */
-    public FunctionalProperty getFunctionalProperty(final String label) {
-        return this.functionalProperties.get(label);
-    }
-    
-    /**
-     * Returns a non-functional property of the element.
-     * 
-     * @param label
-     *            Name of the sought property
-     * 
-     * @return The non-functional property with the given name or null.
-     */
-    public NonFunctionalProperty getNonFunctionalProperty(final String label) {
-        return this.nonFunctionalProperties.get(label);
-    }
-    
-    /**
      * Returns all functional properties of the element.
      * 
      * @return A map in wich properties are indexed using their name.

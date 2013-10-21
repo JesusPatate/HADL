@@ -20,7 +20,7 @@ class RequiredConnection extends Connection {
             final RequiredService service, final RequiredPort port)
             throws NoSuchServiceException, NoSuchPortException {
         
-        super(label);
+        super(label, service, port);
         
         this.service = service;
         this.port = port;
