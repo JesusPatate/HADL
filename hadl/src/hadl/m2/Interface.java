@@ -2,9 +2,7 @@ package hadl.m2;
 
 public abstract class Interface implements Linkable {
     
-    private final String label;
-    
-    private Link link;
+    protected final String label;
     
     protected Interface(final String label) {
         this.label = label;
@@ -12,9 +10,5 @@ public abstract class Interface implements Linkable {
     
     public String getLabel() {
         return this.label;
-    }
-    
-    public void plug(final Link link) {
-    	this.link = link;
     }
 }
