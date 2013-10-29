@@ -46,7 +46,7 @@ abstract class Configuration extends ArchitecturalElement {
     
     /**
      * Returns all internal components.
-     *  
+     * 
      * @return A map with entries (label, component)
      */
     public Map<String, AtomicComponent> getComponents() {
@@ -55,28 +55,36 @@ abstract class Configuration extends ArchitecturalElement {
     
     /**
      * Returns all internal connectors.
-     *  
+     * 
      * @return A map with entries (label, connectors)
      */
     public Map<String, AtomicConnector> getConnectors() {
         return new HashMap<String, AtomicConnector>(this.connectors);
     }
-
+    
     /**
      * Returns all from attachments.
-     *  
+     * 
      * @return A map with entries (label, attachment)
      */
     public Map<String, FromAttachment> getFromAttachments() {
         return new HashMap<String, FromAttachment>(this.fromAttachments);
     }
-
+    
     /**
      * Returns all to attachments.
-     *  
+     * 
      * @return A map with entries (label, attachment)
      */
     public Map<String, ToAttachment> getToAttachments() {
         return new HashMap<String, ToAttachment>(this.toAttachments);
+    }
+    
+    public AtomicComponent addComponent(final AtomicComponent comp) {
+        return this.components.put(comp.getLabel(), comp);
+    }
+    
+    public AtomicConnector addConnector(final AtomicConnector con) {
+        return this.connectors.put(con.getLabel(), con);
     }
 }

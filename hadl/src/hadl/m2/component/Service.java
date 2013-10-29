@@ -18,7 +18,7 @@ import hadl.m2.Linkable;
  */
 abstract class Service implements Linkable {
     
-    private final String label;
+    protected final String label;
     
     protected Service(final String label) {
         this.label = label;

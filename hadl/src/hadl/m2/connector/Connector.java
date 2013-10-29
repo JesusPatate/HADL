@@ -10,8 +10,8 @@ import java.util.Map;
  * A connector of a software architecture.
  * 
  * <p>
- * A connector models a specific communication mechanism enabling
- * interaction between components.
+ * A connector models a specific communication mechanism enabling interaction
+ * between components.
  * </p>
  */
 public abstract class Connector extends ArchitecturalElement {

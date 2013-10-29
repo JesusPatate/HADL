@@ -17,7 +17,7 @@ public abstract class ArchitecturalElement {
     /**
      * Name of the element.
      */
-    private final String label;
+    protected final String label;
     
     /**
      * Functional properties of the element.

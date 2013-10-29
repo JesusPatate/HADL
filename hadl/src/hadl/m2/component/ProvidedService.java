@@ -14,6 +14,7 @@ public abstract class ProvidedService extends Service {
         super(label);
     }
     
+    @Override
     public void plug(final Link link) {
         this.connection = link;
     }

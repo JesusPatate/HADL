@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public abstract class Component extends ArchitecturalElement {
     
-	/**
+    /**
      * Services provided by the component.
      */
     Map<String, ProvidedService> providedServices =

@@ -1,6 +1,5 @@
 package hadl.m2.component;
 
-
 /**
  * A connection between required service and port.
  */

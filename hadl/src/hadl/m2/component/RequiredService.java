@@ -14,6 +14,7 @@ public abstract class RequiredService extends Service {
         super(label);
     }
     
+    @Override
     public void plug(final Link link) {
         this.connection = link;
     }

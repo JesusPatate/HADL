@@ -1,4 +1,4 @@
-package hadl.m1.cs;
+package hadl.m1.cs.client;
 
 import hadl.m2.Message;
 import hadl.m2.component.ProvidedPort;
@@ -6,14 +6,13 @@ import hadl.m2.component.ProvidedPort;
 
 public class ReceiveResponsePort extends ProvidedPort {
     
-    public ReceiveResponsePort(String label) {
+    public ReceiveResponsePort(final String label) {
         super(label);
     }
     
     @Override
-    public void receive(Message msg) {
-        // TODO Auto-generated method stub
-        
+    public void receive(final Message msg) {
+        this.connection.send(this, msg);
     }
     
 }

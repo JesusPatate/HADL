@@ -16,10 +16,10 @@ public abstract class ProvidedPort extends Port {
     
     @Override
     public void plug(final Link link) {
-        if(link instanceof ProvidedConnection) {
+        if (link instanceof ProvidedConnection) {
             this.connection = link;
         }
-        else if (link instanceof ToAttachment){
+        else if (link instanceof ToAttachment) {
             this.attachment = link;
         }
     }
