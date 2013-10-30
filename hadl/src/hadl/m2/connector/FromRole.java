@@ -1,9 +1,14 @@
 package hadl.m2.connector;
 
+import hadl.m2.Link;
+
+
 /**
  * Provider role of a connector.
  */
 public abstract class FromRole extends Role {
+    
+    protected Link attachment = null;
     
     /**
      * Creates a new from role.
@@ -15,4 +20,8 @@ public abstract class FromRole extends Role {
         super(label);
     }
     
+    @Override
+    public void plug(Link link) {
+        this.attachment = link;
+    }
 }

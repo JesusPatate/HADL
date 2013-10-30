@@ -12,6 +12,8 @@ public class ReceiveResponsePort extends ProvidedPort {
     
     @Override
     public void receive(final Message msg) {
+        System.out.println("DBG Le port " + this.label + " reçoit : " + msg); // DBG
+        
         this.connection.send(this, msg);
     }
     

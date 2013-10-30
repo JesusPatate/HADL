@@ -7,7 +7,7 @@ import hadl.m2.connector.ToRole;
 /**
  * Attachment between a component and a connector to role.
  */
-public abstract class ToAttachment extends Attachment {
+public class ToAttachment extends Attachment {
     
     public ToAttachment(final String label, final ProvidedPort port,
             final ToRole role) {

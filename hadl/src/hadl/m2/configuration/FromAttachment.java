@@ -7,7 +7,7 @@ import hadl.m2.connector.FromRole;
 /**
  * Attachment between a component and a connector from role.
  */
-public abstract class FromAttachment extends Attachment {
+public class FromAttachment extends Attachment {
     
     public FromAttachment(final String label, final RequiredPort port,
             final FromRole role) {

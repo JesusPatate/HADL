@@ -13,6 +13,10 @@ public class ReceiveResponsePort extends RequiredPort {
     @Override
     public void receive(Message msg) {
         System.out.println("DBG Le port " + this.label + " reçoit : " + msg); // DBG
+        
+        if(this.attachment != null) {
+            this.attachment.send(this, msg);
+        }
     }
     
 }

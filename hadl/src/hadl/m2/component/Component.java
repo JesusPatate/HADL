@@ -58,27 +58,27 @@ public abstract class Component extends ArchitecturalElement {
     }
     
     public Map<String, ProvidedService> getProvidedServices() {
-        return this.providedServices;
+        return new HashMap<String, ProvidedService>(this.providedServices);
     }
     
     public Map<String, RequiredService> getRequiredServices() {
-        return this.requiredServices;
+        return new HashMap<String, RequiredService>(this.requiredServices);
     }
     
     public Map<String, ProvidedPort> getProvidedPorts() {
-        return this.providedPorts;
+        return new HashMap<String, ProvidedPort>(this.providedPorts);
     }
     
     public Map<String, RequiredPort> getRequiredPorts() {
-        return this.requiredPorts;
+        return new HashMap<String, RequiredPort>(this.requiredPorts);
     }
     
     public Map<String, ProvidedConnection> getProvidedConnections() {
-        return this.providedConnections;
+        return new HashMap<String, ProvidedConnection>(this.providedConnections);
     }
     
     public Map<String, RequiredConnection> getRequiredConnections() {
-        return this.requiredConnections;
+        return new HashMap<String, RequiredConnection>(this.requiredConnections);
     }
     
     /**
@@ -183,8 +183,8 @@ public abstract class Component extends ArchitecturalElement {
             throw new NoSuchPortException();
         }
         
-        return this.providedConnections.put(label,
-                new ProvidedConnection(label, service, port));
+        return this.providedConnections.put(label, new ProvidedConnection(
+                label, service, port));
     }
     
     /**
@@ -221,8 +221,8 @@ public abstract class Component extends ArchitecturalElement {
             throw new NoSuchPortException();
         }
         
-        return this.requiredConnections.put(label,
-                new RequiredConnection(label, service, port));
+        return this.requiredConnections.put(label, new RequiredConnection(
+                label, service, port));
     }
     
     /**

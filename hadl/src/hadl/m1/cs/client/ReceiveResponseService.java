@@ -12,7 +12,7 @@ public class ReceiveResponseService extends ProvidedService {
     
     @Override
     public void receive(final Message msg) {
-        System.out.println(msg);
+        System.out.println("DBG Le service " + this.label + " reçoit : " + msg); // DBG
     }
     
 }

@@ -2,7 +2,11 @@ package hadl.m2.configuration;
 
 import hadl.m2.component.AtomicComponent;
 import hadl.m2.component.Component;
+import hadl.m2.component.ProvidedPort;
+import hadl.m2.component.RequiredPort;
 import hadl.m2.connector.AtomicConnector;
+import hadl.m2.connector.FromRole;
+import hadl.m2.connector.ToRole;
 
 import java.util.Map;
 
@@ -75,5 +79,17 @@ public class ComponentConfiguration extends Component {
     
     public AtomicConnector addConnector(final AtomicConnector con) {
         return this.config.addConnector(con);
+    }
+    
+    public FromAttachment addFromAttachment(final String label,
+            final RequiredPort port, final FromRole role) {
+        
+        return this.config.addFromAttachment(label, port, role);
+    }
+    
+    public ToAttachment addToAttachment(final String label,
+            final ProvidedPort port, final ToRole role) {
+        
+        return this.config.addToAttachment(label, port, role);
     }
 }
