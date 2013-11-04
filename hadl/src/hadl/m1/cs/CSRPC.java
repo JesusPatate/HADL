@@ -1,4 +1,4 @@
-package hadl.m1.cs.rpc;
+package hadl.m1.cs;
 
 import hadl.m2.Message;
 import hadl.m2.connector.AtomicConnector;
@@ -8,6 +8,9 @@ import hadl.m2.connector.ToRole;
 
 public class CSRPC extends AtomicConnector {
     
+    /**
+     * RPC's caller role
+     */
     class Caller extends FromRole {
         
         public Caller(String label) {
@@ -16,13 +19,13 @@ public class CSRPC extends AtomicConnector {
         
         @Override
         public void receive(Message msg) {
-            System.out.println("DBG Le role " + this.label +
-                    " reçoit : " + msg); // DBG
-            
             calleeRole.receive(msg);
         }
     }
     
+    /**
+     * RPC's callee role
+     */
     class Callee extends ToRole {
         
         public Callee(String label) {
@@ -31,9 +34,6 @@ public class CSRPC extends AtomicConnector {
         
         @Override
         public void receive(Message msg) {
-            System.out.println("DBG Le role " + this.label +
-                    " reçoit : " + msg); // DBG
-            
             this.attachment.send(this, msg);
         }
     }

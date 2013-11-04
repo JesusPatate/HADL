@@ -1,17 +1,16 @@
 package hadl.m1;
 
-import hadl.m1.cs.client.CSClient;
-import hadl.m1.cs.client.ReceiveRequestPort;
-import hadl.m1.cs.client.ReceiveRequestService;
-import hadl.m1.cs.client.ReceiveResponsePort;
-import hadl.m1.cs.client.ReceiveResponseService;
-import hadl.m1.cs.client.SendRequestPort;
-import hadl.m1.cs.client.SendRequestService;
-import hadl.m1.cs.rpc.CSRPC;
-import hadl.m1.cs.server.CSServer;
-import hadl.m1.cs.server.SendResponseService;
+import hadl.m1.cs.CSClient;
+import hadl.m1.cs.CSConfiguration;
+import hadl.m1.cs.CSRPC;
+import hadl.m1.cs.CSServer;
+import hadl.m1.serverDetails.ConnectionManager;
+import hadl.m1.serverDetails.SecurityManager;
+import hadl.m1.serverDetails.ServerDetailsConfiguration;
+import hadl.m2.Message;
 import hadl.m2.component.NoSuchPortException;
 import hadl.m2.component.NoSuchServiceException;
+import hadl.m2.component.ProvidedConnection;
 import hadl.m2.component.ProvidedPort;
 import hadl.m2.component.RequiredPort;
 import hadl.m2.connector.FromRole;
@@ -20,28 +19,31 @@ import hadl.m2.connector.ToRole;
 
 public class Main {
     
-    private static CSClient client = new CSClient("client");
+    private static CSClient client;
     
-    private static CSServer server = new CSServer("server");
+    private static CSServer server;
+    
+    private static ConnectionManager conMgr;
+    
+    private static SecurityManager secuMgr;
     
     private static CSRPC rpc1 = new CSRPC("RPC1");
     
     private static CSRPC rpc2 = new CSRPC("RPC2");
     
-    private static CSConfiguration config = new CSConfiguration("cs");
+    private static CSConfiguration cs = new CSConfiguration("cs");
+    
+    private static ServerDetailsConfiguration serverDetails =
+            new ServerDetailsConfiguration("serverDetails");
     
     public static void main(String[] args) {
         try {
-            buildClient();
-            buildServer();
-            buildConfiguration();
+            buildServerDetails();
+            buildCS();
             
-            MessageImpl msg = new MessageImpl("test");
-            
-            SendRequestService sendRequest = (SendRequestService)
-                    client.getProvidedServices().get("sendRequest");
-            
-            sendRequest.send(msg);
+            Message msg = new Message("QUERY", "'Lundi, mardi','monPwd','SELECT * FROM data'");
+            ProvidedPort port = client.getProvidingPort("sendRequest");
+            port.receive(msg);
         }
         catch (NoSuchServiceException e) {
             e.printStackTrace();
@@ -51,66 +53,26 @@ public class Main {
         }
     }
     
-    private static void buildClient() throws NoSuchServiceException,
+    private static void buildServerDetails() throws NoSuchServiceException,
             NoSuchPortException {
         
-        ReceiveRequestService s = new ReceiveRequestService("receiveRequest");
+        conMgr = new ConnectionManager("connectionManager");
+        secuMgr = new SecurityManager("securityManager");
         
-        client.addRequiredService(s);
-        client.addRequiredPort(new ReceiveRequestPort("receiveRequest"));
-        
-        client.addProvidedService(new SendRequestService("sendRequest", s));
-        client.addProvidedService(new ReceiveResponseService("receiveResponse"));
-        
-        client.addProvidedPort(new SendRequestPort("sendRequest"));
-        client.addProvidedPort(new ReceiveResponsePort("receiveResponse"));
-        
-        client.addProvidedConnection("sendConnection", "sendRequest",
-                "sendRequest");
-        client.addProvidedConnection("receiveResponse", "receiveResponse",
-                "receiveResponse");
-        
-        client.addRequiredConnection("receiveRequest", "receiveRequest",
-                "receiveRequest");
+        serverDetails.addComponent(conMgr);
+        serverDetails.addComponent(secuMgr);
     }
     
-    private static void buildServer() throws NoSuchServiceException,
+    private static void buildCS() throws NoSuchServiceException,
             NoSuchPortException {
         
-        hadl.m1.cs.server.ReceiveResponseService reqS =
-                new hadl.m1.cs.server.ReceiveResponseService("receiveResponse");
+        client = new CSClient("client");
+        server = new CSServer("server");
         
-        server.addRequiredService(reqS);
-        
-        SendResponseService proS =
-                new SendResponseService("sendResponse", reqS);
-        
-        server.addProvidedService(proS);
-        server.addProvidedService(
-                new hadl.m1.cs.server.ReceiveRequestService("receiveRequest",
-                        proS));
-        
-        server.addRequiredPort(
-                new hadl.m1.cs.server.ReceiveResponsePort("receiveResponse"));
-        
-        server.addProvidedPort(
-                new hadl.m1.cs.server.ReceiveRequestPort("receiveRequest"));
-        server.addProvidedPort(
-                new hadl.m1.cs.server.SendResponsePort("sendResponse"));
-        
-        server.addProvidedConnection("receiveRequest", "receiveRequest",
-                "receiveRequest");
-        server.addProvidedConnection("sendResponse", "sendResponse",
-                "sendResponse");
-        server.addRequiredConnection("receiveResponse", "receiveResponse",
-                "receiveResponse");
-    }
-    
-    private static void buildConfiguration() {
-        config.addComponent(client);
-        config.addComponent(server);
-        config.addConnector(rpc1); // Request
-        config.addConnector(rpc2); // Response
+        cs.addComponent(client);
+        cs.addComponent(server);
+        cs.addConnector(rpc1); // Request
+        cs.addConnector(rpc2); // Response
         
         // Request
         
@@ -120,8 +82,8 @@ public class Main {
         FromRole caller = rpc1.getFromRoles().get("caller");
         ToRole callee = rpc1.getToRoles().get("callee");
         
-        config.addFromAttachment("receiveRequest", reqPort, caller);
-        config.addToAttachment("receiveRequest", proPort, callee);
+        cs.addFromAttachment("receiveRequest", reqPort, caller);
+        cs.addToAttachment("receiveRequest", proPort, callee);
         
         // Response
         
@@ -131,7 +93,16 @@ public class Main {
         caller = rpc2.getFromRoles().get("caller");
         callee = rpc2.getToRoles().get("callee");
         
-        config.addFromAttachment("receiveResponse", reqPort, caller);
-        config.addToAttachment("receiveResponse", proPort, callee);
+        cs.addFromAttachment("receiveResponse", reqPort, caller);
+        cs.addToAttachment("receiveResponse", proPort, callee);
+        
+        ProvidedPort port1 = server.getProvidedPorts().get("receiveRequest");
+        ProvidedPort port2 = conMgr.getProvidedPorts().get("externalSocket");
+        
+        ProvidedConnection con =
+                server.getProvidedConnections().get("receiveRequest");
+        
+        server.removeProvidedConnection(con);
+        cs.addProvidedBinding("receiveRequest", port1, port2);
     }
 }

@@ -292,6 +292,9 @@ public abstract class Component extends ArchitecturalElement {
     public ProvidedConnection removeProvidedConnection(
             final ProvidedConnection con) {
         
+        con.getConnectedPort().connection = null;
+        con.getConnectedService().connection = null;
+        
         return this.providedConnections.remove(con);
     }
     
@@ -305,6 +308,9 @@ public abstract class Component extends ArchitecturalElement {
      */
     public RequiredConnection removeRequiredConnection(
             final RequiredConnection con) {
+        
+        con.getConnectedPort().connection = null;
+        con.getConnectedService().connection = null;
         
         return this.requiredConnections.remove(con);
     }

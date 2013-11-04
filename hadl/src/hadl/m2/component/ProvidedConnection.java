@@ -3,7 +3,7 @@ package hadl.m2.component;
 /**
  * A connection between provided service and port.
  */
-class ProvidedConnection extends Connection {
+public class ProvidedConnection extends Connection {
     
     /**
      * Connected service

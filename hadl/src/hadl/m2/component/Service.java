@@ -1,5 +1,6 @@
 package hadl.m2.component;
 
+import hadl.m2.Link;
 import hadl.m2.Linkable;
 
 
@@ -16,9 +17,11 @@ import hadl.m2.Linkable;
  * @see hadl.m2.component.Port
  * @see
  */
-abstract class Service implements Linkable {
+public abstract class Service implements Linkable {
     
     protected final String label;
+    
+    protected Link connection = null;
     
     protected Service(final String label) {
         this.label = label;
@@ -26,5 +29,10 @@ abstract class Service implements Linkable {
     
     public String getLabel() {
         return this.label;
+    }
+    
+    @Override
+    public void plug(final Link link) {
+        this.connection = link;
     }
 }

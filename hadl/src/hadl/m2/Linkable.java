@@ -5,5 +5,4 @@ public interface Linkable {
     void plug(final Link link);
     
     void receive(final Message msg);
-    
 }

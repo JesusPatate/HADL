@@ -8,6 +8,7 @@ import hadl.m2.connector.AtomicConnector;
 import hadl.m2.connector.FromRole;
 import hadl.m2.connector.ToRole;
 
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -31,6 +32,12 @@ public class ComponentConfiguration extends Component {
     }
     
     private final Config config;
+    
+    protected final Map<String, CompConfProvidedBinding> providedBindings =
+            new HashMap<String, CompConfProvidedBinding>();
+    
+    protected final Map<String, CompConfRequiredBinding> requiredBindings =
+            new HashMap<String, CompConfRequiredBinding>();
     
     public ComponentConfiguration(final String label) {
         super(label);
@@ -91,5 +98,19 @@ public class ComponentConfiguration extends Component {
             final ProvidedPort port, final ToRole role) {
         
         return this.config.addToAttachment(label, port, role);
+    }
+    
+    public CompConfRequiredBinding addRequiredBinding(final String label,
+            final RequiredPort port1, final RequiredPort port2) {
+        
+        return this.requiredBindings.put(
+                label, new CompConfRequiredBinding(label, port1, port2));
+    }
+    
+    public CompConfProvidedBinding addProvidedBinding(final String label,
+            final ProvidedPort port1, final ProvidedPort port2) {
+        
+        return this.providedBindings.put(
+                label, new CompConfProvidedBinding(label, port1, port2));
     }
 }

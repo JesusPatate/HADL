@@ -1,4 +1,4 @@
-package hadl.m1;
+package hadl.m1.cs;
 
 import hadl.m2.configuration.ComponentConfiguration;
 
