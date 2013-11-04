@@ -49,16 +49,7 @@ public class ConnectorConfiguration extends Connector {
      * 
      * @return A map with entries (label, attachment)
      */
-    public Map<String, FromAttachment> getFromAttachments() {
-        return this.config.getFromAttachments();
-    }
-    
-    /**
-     * Returns all to attachments.
-     * 
-     * @return A map with entries (label, attachment)
-     */
-    public Map<String, ToAttachment> getToAttachments() {
-        return this.config.getToAttachments();
+    public Map<String, Attachment> getAttachments() {
+        return this.config.getAttachments();
     }
 }

@@ -1,9 +1,9 @@
 package hadl.m1.cs;
 
+import hadl.m2.Link;
 import hadl.m2.Message;
 import hadl.m2.connector.AtomicConnector;
-import hadl.m2.connector.FromRole;
-import hadl.m2.connector.ToRole;
+import hadl.m2.connector.Role;
 
 
 public class CSRPC extends AtomicConnector {
@@ -11,29 +11,29 @@ public class CSRPC extends AtomicConnector {
     /**
      * RPC's caller role
      */
-    class Caller extends FromRole {
+    class Caller extends Role {
         
         public Caller(String label) {
             super(label);
         }
         
         @Override
-        public void receive(Message msg) {
-            calleeRole.receive(msg);
+        public void receive(Message msg, final Link link) {
+            calleeRole.receive(msg, null);
         }
     }
     
     /**
      * RPC's callee role
      */
-    class Callee extends ToRole {
+    class Callee extends Role {
         
         public Callee(String label) {
             super(label);
         }
         
         @Override
-        public void receive(Message msg) {
+        public void receive(Message msg, final Link link) {
             this.attachment.send(this, msg);
         }
     }
@@ -44,7 +44,7 @@ public class CSRPC extends AtomicConnector {
     
     public CSRPC(String label) {
         super(label);
-        this.addFromRole(callerRole);
-        this.addToRole(calleeRole);
+        this.addRole(callerRole);
+        this.addRole(calleeRole);
     }
 }

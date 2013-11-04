@@ -1,13 +1,15 @@
 package hadl.m1.cs;
 
+import hadl.m2.Link;
 import hadl.m2.Message;
 import hadl.m2.component.AtomicComponent;
+import hadl.m2.component.Connection;
 import hadl.m2.component.NoSuchPortException;
 import hadl.m2.component.NoSuchServiceException;
-import hadl.m2.component.ProvidedPort;
 import hadl.m2.component.ProvidedService;
-import hadl.m2.component.RequiredPort;
 import hadl.m2.component.RequiredService;
+import hadl.m2.component.Port;
+import hadl.m2.configuration.Attachment;
 
 
 public class CSServer extends AtomicComponent {
@@ -19,23 +21,9 @@ public class CSServer extends AtomicComponent {
         }
         
         @Override
-        public void receive(final Message msg) {
+        public void receive(final Message msg, final Link link) {
             if (this.connection != null) {
                 this.connection.send(this, msg);
-            }
-        }
-    }
-    
-    class ReceiveResponsePort extends RequiredPort {
-        
-        public ReceiveResponsePort(final String label) {
-            super(label);
-        }
-        
-        @Override
-        public void receive(final Message msg) {
-            if (this.attachment != null) {
-                this.attachment.send(this, msg);
             }
         }
     }
@@ -47,28 +35,11 @@ public class CSServer extends AtomicComponent {
         }
         
         @Override
-        public void receive(final Message msg) {
-            System.out.println("Le serveur reçoit : " + msg);
+        public void receive(final Message msg, final Link link) {
+            System.out.println("Le serveur reçoit : " + msg); // DBG
             
             Message response = new Message("RESPONSE", msg.body + " OK");
-            sendResService.receive(response);
-        }
-    }
-    
-    class ReceiveRequestPort extends ProvidedPort {
-        
-        public ReceiveRequestPort(final String label) {
-            super(label);
-        }
-        
-        @Override
-        public void receive(final Message msg) {
-            if (this.connection != null) {
-                this.connection.send(this, msg);
-            }
-            else if (this.binding != null) {
-                this.binding.send(this, msg);
-            }
+            sendResService.receive(response, null);
         }
     }
     
@@ -79,23 +50,33 @@ public class CSServer extends AtomicComponent {
         }
         
         @Override
-        public void receive(final Message msg) {
+        public void receive(final Message msg, final Link link) {
             System.out.println("Le serveur envoie : " + msg);
-            recResService.receive(msg);
+            recResService.receive(msg, null);
         }
     }
     
-    class SendResponsePort extends ProvidedPort {
+    class ServerPort extends Port {
         
-        public SendResponsePort(final String label) {
+        public ServerPort(final String label) {
             super(label);
         }
         
         @Override
-        public void receive(final Message msg) {
-            if (this.connection != null) {
-                this.connection.send(this, msg);
-            }
+        public void receive(final Message msg, final Link link) {
+        	if(link instanceof Attachment) {
+        		for(Connection con : this.connections) {
+        			String service = con.getConnectedService().getLabel();
+        			if(service.equals("receiveRequest")) {
+        				con.send(this, msg);
+        			}
+        		}
+        	}
+        	else if (link instanceof Connection) {
+        		if (this.attachment != null) {
+        			this.attachment.send(this, msg);
+        		}
+        	}
         }
     }
     
@@ -114,20 +95,17 @@ public class CSServer extends AtomicComponent {
         super(label);
         
         this.addRequiredService(this.recResService);
-        this.addRequiredPort(new ReceiveResponsePort("receiveResponse"));
-        
         this.addProvidedService(this.recReqService);
-        this.addProvidedPort(new ReceiveRequestPort("receiveRequest"));
-        
         this.addProvidedService(this.sendResService);
-        this.addProvidedPort(new SendResponsePort("sendResponse"));
         
-        this.addRequiredConnection("receiveResponse", "receiveResponse",
-                "receiveResponse");
+        this.addPort(new ServerPort("io"));
         
-        this.addProvidedConnection("receiveRequest", "receiveRequest",
-                "receiveRequest");
-        this.addProvidedConnection("sendResponse", "sendResponse",
-                "sendResponse");
+        this.addConnection("receiveResponse", "receiveResponse",
+                "io");
+        
+        this.addConnection("receiveRequest", "receiveRequest",
+                "io");
+        this.addConnection("sendResponse", "sendResponse",
+                "io");
     }
 }

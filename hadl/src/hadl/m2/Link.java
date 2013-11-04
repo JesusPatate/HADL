@@ -25,7 +25,7 @@ public abstract class Link {
             receiver = this.end2;
         }
         
-        receiver.receive(msg);
+        receiver.receive(msg, this);
     }
     
     @Override

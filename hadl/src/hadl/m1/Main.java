@@ -11,12 +11,12 @@ import hadl.m1.serverDetails.SecurityManager;
 import hadl.m1.serverDetails.SecurityQuery;
 import hadl.m1.serverDetails.ServerDetailsConfiguration;
 import hadl.m2.Message;
+import hadl.m2.component.Connection;
 import hadl.m2.component.NoSuchPortException;
 import hadl.m2.component.NoSuchServiceException;
-import hadl.m2.component.ProvidedConnection;
-import hadl.m2.component.ProvidedPort;
-import hadl.m2.component.RequiredPort;
+import hadl.m2.component.Port;
 import hadl.m2.connector.FromRole;
+import hadl.m2.connector.Role;
 import hadl.m2.connector.ToRole;
 
 
@@ -39,26 +39,26 @@ public class Main {
     
     public static void main(String[] args) {
         try {
-            buildServerDetails();
+//            buildServerDetails();
             buildCS();
             
             // Add users to database
             
-            Message msg = new Message("ADMQUERY", "\'add\',\'monLogin\',\'monPwd\'");
-            
-            ProvidedPort port = database.getProvidingPort("manageUsers");
-            port.receive(msg);
-            
-            msg = new Message("ADMQUERY", "\'add\',\'Georges\',\'Bondiou\'");
-            port.receive(msg);
+//            Message msg = new Message("ADMQUERY", "\'add\',\'monLogin\',\'monPwd\'");
+//            
+//            Port port = database.getProvidingPort("manageUsers");
+//            port.receive(msg, null);
+//            
+//            msg = new Message("ADMQUERY", "\'add\',\'Georges\',\'Bondiou\'");
+//            port.receive(msg, null);
             
             // Send SQL query
             
-            msg = new Message("QUERY", "'Georges','Bondiou',"
+            Message msg = new Message("QUERY", "'Georges','Bondiou',"
                     + "'SELECT * FROM data'");
             
-            port = client.getProvidingPort("sendRequest");
-            port.receive(msg);
+            Port port = client.getProvidingPort("sendRequest");
+            port.receive(msg, null);
         }
         catch (NoSuchServiceException e) {
             e.printStackTrace();
@@ -85,16 +85,16 @@ public class Main {
         ClearanceQuery clearanceQuery = new ClearanceQuery("clearanceQuery");
         serverDetails.addConnector(clearanceQuery);
         
-        RequiredPort senderPort =
+        Port senderPort =
                 connectionMgr.getRequestingPort("securityAuthorization");
-        FromRole senderRole = clearanceQuery.getFromRoles().get("sender");
-        serverDetails.addFromAttachment("clearanceQueryFA", senderPort,
+        Role senderRole = clearanceQuery.getRoles().get("sender");
+        serverDetails.addAttachment("clearanceQueryFA", senderPort,
                 senderRole);
         
-        ProvidedPort receiverPort =
+        Port receiverPort =
                 securityMgr.getProvidingPort("securityAuthorization");
-        ToRole receiverRole = clearanceQuery.getToRoles().get("receiver");
-        serverDetails.addToAttachment("clearanceQueryTA", receiverPort,
+        Role receiverRole = clearanceQuery.getRoles().get("receiver");
+        serverDetails.addAttachment("clearanceQueryTA", receiverPort,
                 receiverRole);
         
         // Security query
@@ -103,13 +103,13 @@ public class Main {
         serverDetails.addConnector(securityQuery);
         
         senderPort = securityMgr.getRequestingPort("credentialQuery");
-        senderRole = securityQuery.getFromRoles().get("sender");
-        serverDetails.addFromAttachment("credentialQueryFA", senderPort,
+        senderRole = securityQuery.getRoles().get("sender");
+        serverDetails.addAttachment("credentialQueryFA", senderPort,
                 senderRole);
         
         receiverPort = database.getProvidingPort("securityManagement");
-        receiverRole = securityQuery.getToRoles().get("receiver");
-        serverDetails.addToAttachment("credentialQueryTA", receiverPort,
+        receiverRole = securityQuery.getRoles().get("receiver");
+        serverDetails.addAttachment("credentialQueryTA", receiverPort,
                 receiverRole);
     }
     
@@ -130,34 +130,32 @@ public class Main {
         
         // Request
         
-        RequiredPort reqPort = client.getRequestingPort("receiveRequest");
-        FromRole caller = rpc1.getFromRoles().get("caller");
-        cs.addFromAttachment("receiveRequest", reqPort, caller);
+        Port reqPort = client.getRequestingPort("receiveRequest");
+        Role caller = rpc1.getRoles().get("caller");
+        cs.addAttachment("receiveRequest", reqPort, caller);
         
-        ProvidedPort proPort = server.getProvidingPort("receiveRequest");
-        ToRole callee = rpc1.getToRoles().get("callee");
-        cs.addToAttachment("receiveRequest", proPort, callee);
+        Port proPort = server.getProvidingPort("receiveRequest");
+        Role callee = rpc1.getRoles().get("callee");
+        cs.addAttachment("receiveRequest", proPort, callee);
         
         // Response
         
-        reqPort = server.getRequestingPort("receiveResponse");
-        caller = rpc2.getFromRoles().get("caller");
-        cs.addFromAttachment("receiveResponse", reqPort, caller);
-        
-        proPort = client.getProvidingPort("receiveResponse");
-        callee = rpc2.getToRoles().get("callee");
-        cs.addToAttachment("receiveResponse", proPort, callee);
+//        reqPort = server.getRequestingPort("receiveResponse");
+//        caller = rpc2.getRoles().get("caller");
+//        cs.addAttachment("receiveResponse", reqPort, caller);
+//        
+//        proPort = client.getProvidingPort("receiveResponse");
+//        callee = rpc2.getRoles().get("callee");
+//        cs.addAttachment("receiveResponse", proPort, callee);
         
         // Binding
         
-        ProvidedPort port1 = server.getProvidedPorts().get("receiveRequest");
-        ProvidedPort port2 =
-                connectionMgr.getProvidedPorts().get("externalSocket");
-        
-        ProvidedConnection con =
-                server.getProvidedConnections().get("receiveRequest");
-        
-        server.removeProvidedConnection(con);
-        cs.addProvidedBinding("receiveRequest", port1, port2);
+//        Port port1 = server.getPorts().get("receiveRequest");
+//        Port port2 = connectionMgr.getPorts().get("externalSocket");
+//        
+//        Connection con = server.getConnections().get("receiveRequest");
+//        
+//        server.removeProvidedConnection(con);
+//        cs.addBinding("receiveRequest", port1, port2);
     }
 }

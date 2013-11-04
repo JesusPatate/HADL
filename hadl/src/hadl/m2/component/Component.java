@@ -26,26 +26,14 @@ public abstract class Component extends ArchitecturalElement {
     /**
      * Ports which can be connected to component provided services.
      */
-    Map<String, ProvidedPort> providedPorts =
-            new HashMap<String, ProvidedPort>();
-    
-    /**
-     * Ports which can be connected to component required services.
-     */
-    Map<String, RequiredPort> requiredPorts =
-            new HashMap<String, RequiredPort>();
+    Map<String, Port> ports =
+            new HashMap<String,Port>();
     
     /**
      * Connections between provided service and port of the component.
      */
-    Map<String, ProvidedConnection> providedConnections =
-            new HashMap<String, ProvidedConnection>();
-    
-    /**
-     * Connections between required service and port of the component.
-     */
-    Map<String, RequiredConnection> requiredConnections =
-            new HashMap<String, RequiredConnection>();
+    Map<String, Connection> connections =
+            new HashMap<String, Connection>();
     
     /**
      * Creates a new empty component.
@@ -65,20 +53,8 @@ public abstract class Component extends ArchitecturalElement {
         return new HashMap<String, RequiredService>(this.requiredServices);
     }
     
-    public Map<String, ProvidedPort> getProvidedPorts() {
-        return new HashMap<String, ProvidedPort>(this.providedPorts);
-    }
-    
-    public Map<String, RequiredPort> getRequiredPorts() {
-        return new HashMap<String, RequiredPort>(this.requiredPorts);
-    }
-    
-    public Map<String, ProvidedConnection> getProvidedConnections() {
-        return new HashMap<String, ProvidedConnection>(this.providedConnections);
-    }
-    
-    public Map<String, RequiredConnection> getRequiredConnections() {
-        return new HashMap<String, RequiredConnection>(this.requiredConnections);
+    public Map<String, Port> getPorts() {
+        return new HashMap<String, Port>(this.ports);
     }
     
     /**
@@ -91,12 +67,12 @@ public abstract class Component extends ArchitecturalElement {
      *         if the service is not connected to any port or provided by
      *         the component
      */
-    public ProvidedPort getProvidingPort(final String serviceLabel) {
-        ProvidedPort port = null;
+    public Port getProvidingPort(final String serviceLabel) {
+        Port port = null;
         ProvidedService service = this.getProvidedServices().get(serviceLabel);
         
         if (service != null) {
-            for (ProvidedConnection con : this.providedConnections.values()) {
+            for (Connection con : this.connections.values()) {
                 if (con.getConnectedService() == service) {
                     port = con.getConnectedPort();
                     break;
@@ -118,17 +94,17 @@ public abstract class Component extends ArchitecturalElement {
      *         the component
      * @throws NoSuchServiceException
      */
-    public RequiredPort getRequestingPort(final String serviceLabel)
+    public Port getRequestingPort(final String serviceLabel)
             throws NoSuchServiceException {
         
-        RequiredPort port = null;
+        Port port = null;
         RequiredService service = this.getRequiredServices().get(serviceLabel);
         
         if (service == null) {
             throw new NoSuchServiceException();
         }
         else {
-            for (RequiredConnection con : this.requiredConnections.values()) {
+            for (Connection con : this.connections.values()) {
                 if (con.getConnectedService() == service) {
                     port = con.getConnectedPort();
                     break;
@@ -139,20 +115,20 @@ public abstract class Component extends ArchitecturalElement {
         return port;
     }
     
-    public ProvidedService addProvidedService(final ProvidedService service) {
+    public Map<String, Connection> getConnections() {
+    	return new HashMap<String, Connection>(this.connections);
+    }
+    
+    protected ProvidedService addProvidedService(final ProvidedService service) {
         return this.providedServices.put(service.getLabel(), service);
     }
     
-    public RequiredService addRequiredService(final RequiredService service) {
+    protected RequiredService addRequiredService(final RequiredService service) {
         return this.requiredServices.put(service.getLabel(), service);
     }
     
-    public ProvidedPort addProvidedPort(final ProvidedPort port) {
-        return this.providedPorts.put(port.getLabel(), port);
-    }
-    
-    public RequiredPort addRequiredPort(final RequiredPort port) {
-        return this.requiredPorts.put(port.getLabel(), port);
+    protected Port addPort(final Port port) {
+        return this.ports.put(port.getLabel(), port);
     }
     
     /**
@@ -174,117 +150,31 @@ public abstract class Component extends ArchitecturalElement {
      *             The given name doesn't match with any provided port of the
      *             component
      */
-    public ProvidedConnection addProvidedConnection(final String label,
+    public Connection addConnection(final String label,
             final String serviceLabel, final String portLabel)
             throws NoSuchServiceException, NoSuchPortException {
         
-        ProvidedService service = this.providedServices.get(serviceLabel);
-        ProvidedPort port = this.providedPorts.get(portLabel);
+    	// Retrieve the service
+    	
+        Service service = this.providedServices.get(serviceLabel);
+        
+        if(service == null) {
+        	service = this.requiredServices.get(serviceLabel);
+        }
         
         if (service == null) {
             throw new NoSuchServiceException();
         }
         
-        if (port == null) {
-            throw new NoSuchPortException();
-        }
+        // Retrieve the port
         
-        return this.providedConnections.put(label, new ProvidedConnection(
-                label, service, port));
-    }
-    
-    /**
-     * Connects a required service and a required port of the component.
-     * 
-     * @param label
-     *            Name of the connection
-     * @param serviceLabel
-     *            Name of the service
-     * @param portLabel
-     *            Name of the port
-     * 
-     * @return The new connection.
-     * 
-     * @throws NoSuchServiceException
-     *             The given name doesn't match with any required service of the
-     *             component
-     * @throws NoSuchPortException
-     *             The given name doesn't match with any required port of the
-     *             component
-     */
-    public RequiredConnection addRequiredConnection(final String label,
-            final String serviceLabel, final String portLabel)
-            throws NoSuchServiceException, NoSuchPortException {
-        
-        RequiredService service = this.requiredServices.get(serviceLabel);
-        RequiredPort port = this.requiredPorts.get(portLabel);
-        
-        if (service == null) {
-            throw new NoSuchServiceException();
-        }
+        Port port = this.ports.get(portLabel);
         
         if (port == null) {
             throw new NoSuchPortException();
         }
         
-        return this.requiredConnections.put(label, new RequiredConnection(
-                label, service, port));
-    }
-    
-    /**
-     * Removes a provided service.
-     * 
-     * @param service
-     *            Provided service to remove
-     * 
-     * @return Removed service or null if removal failed
-     */
-    public ProvidedService removeProvidedService(
-            final ProvidedService service) {
-        
-        return this.providedServices.remove(service);
-    }
-    
-    /**
-     * Removes a required service.
-     * 
-     * @param service
-     *            Required service to remove
-     * 
-     * @return Removed service or null if removal failed
-     */
-    public RequiredService removeRequiredService(
-            final RequiredService service) {
-        
-        return this.requiredServices.remove(service);
-    }
-    
-    /**
-     * Removes a provided port.
-     * 
-     * @param port
-     *            Provided port to remove
-     * 
-     * @return Removed port or null if removal failed
-     */
-    public ProvidedPort removeProvidedPort(
-            final ProvidedPort port) {
-        
-        return this.providedPorts.remove(port);
-    }
-    
-    /**
-     * Removes a required port.
-     * 
-     * @param port
-     *            Required port to remove
-     * 
-     * @return Removed port or null if removal failed
-     */
-    public RequiredPort removeRequiredPort(
-            final RequiredPort port) {
-        
-        return this.requiredPorts.remove(port);
+        return this.connections.put(label, new Connection(label, service, port));
     }
     
     /**
@@ -295,29 +185,11 @@ public abstract class Component extends ArchitecturalElement {
      * 
      * @return Removed connection or null if removal failed
      */
-    public ProvidedConnection removeProvidedConnection(
-            final ProvidedConnection con) {
+    public Connection removeProvidedConnection(final Connection con) {
         
-        con.getConnectedPort().connection = null;
+        con.getConnectedPort().connections.remove(con);
         con.getConnectedService().connection = null;
         
-        return this.providedConnections.remove(con);
-    }
-    
-    /**
-     * Removes a connection between required service and port.
-     * 
-     * @param con
-     *            Connection to remove
-     * 
-     * @return Removed connection or null if removal failed
-     */
-    public RequiredConnection removeRequiredConnection(
-            final RequiredConnection con) {
-        
-        con.getConnectedPort().connection = null;
-        con.getConnectedService().connection = null;
-        
-        return this.requiredConnections.remove(con);
+        return this.connections.remove(con);
     }
 }

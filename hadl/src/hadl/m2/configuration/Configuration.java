@@ -2,11 +2,9 @@ package hadl.m2.configuration;
 
 import hadl.m2.ArchitecturalElement;
 import hadl.m2.component.AtomicComponent;
-import hadl.m2.component.ProvidedPort;
-import hadl.m2.component.RequiredPort;
+import hadl.m2.component.Port;
 import hadl.m2.connector.AtomicConnector;
-import hadl.m2.connector.FromRole;
-import hadl.m2.connector.ToRole;
+import hadl.m2.connector.Role;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,14 +27,8 @@ abstract class Configuration extends ArchitecturalElement {
     /**
      * Connection from attachments
      */
-    private final Map<String, FromAttachment> fromAttachments =
-            new HashMap<String, FromAttachment>();
-    
-    /**
-     * Connection to attachments
-     */
-    private final Map<String, ToAttachment> toAttachments =
-            new HashMap<String, ToAttachment>();
+    private final Map<String, Attachment> attachments =
+            new HashMap<String, Attachment>();
     
     /**
      * Creates a new empty configuration.
@@ -67,21 +59,12 @@ abstract class Configuration extends ArchitecturalElement {
     }
     
     /**
-     * Returns all from attachments.
+     * Returns all attachments.
      * 
      * @return A map with entries (label, attachment)
      */
-    public Map<String, FromAttachment> getFromAttachments() {
-        return new HashMap<String, FromAttachment>(this.fromAttachments);
-    }
-    
-    /**
-     * Returns all to attachments.
-     * 
-     * @return A map with entries (label, attachment)
-     */
-    public Map<String, ToAttachment> getToAttachments() {
-        return new HashMap<String, ToAttachment>(this.toAttachments);
+    public Map<String,Attachment> getAttachments() {
+        return new HashMap<String, Attachment>(this.attachments);
     }
     
     public AtomicComponent addComponent(final AtomicComponent comp) {
@@ -92,17 +75,10 @@ abstract class Configuration extends ArchitecturalElement {
         return this.connectors.put(con.getLabel(), con);
     }
     
-    public FromAttachment addFromAttachment(final String label,
-            final RequiredPort port, final FromRole role) {
+    public Attachment addAttachment(final String label,
+            final Port port, final Role role) {
         
-        return this.fromAttachments.put(label, new FromAttachment(label, port,
-                role));
-    }
-    
-    public ToAttachment addToAttachment(final String label,
-            final ProvidedPort port, final ToRole role) {
-        
-        return this.toAttachments.put(label, new ToAttachment(label, port,
+        return this.attachments.put(label, new Attachment(label, port,
                 role));
     }
 }

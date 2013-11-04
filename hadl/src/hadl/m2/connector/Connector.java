@@ -16,10 +16,7 @@ import java.util.Map;
  */
 public abstract class Connector extends ArchitecturalElement {
     
-    private final Map<String, FromRole> fromRoles =
-            new HashMap<String, FromRole>();
-    
-    private final Map<String, ToRole> toRoles = new HashMap<String, ToRole>();
+    private final Map<String, Role> roles = new HashMap<String, Role>();
     
     /**
      * Creates a new empty connector.
@@ -31,35 +28,11 @@ public abstract class Connector extends ArchitecturalElement {
         super(label);
     }
     
-    public FromRole getFromRole(final String label) {
-        return this.fromRoles.get(label);
+    public Map<String, Role> getRoles() {
+        return new HashMap<String, Role>(this.roles);
     }
     
-    public ToRole getToRole(final String label) {
-        return this.toRoles.get(label);
-    }
-    
-    public Map<String, FromRole> getFromRoles() {
-        return new HashMap<String, FromRole>(this.fromRoles);
-    }
-    
-    public Map<String, ToRole> getToRoles() {
-        return new HashMap<String, ToRole>(this.toRoles);
-    }
-    
-    public FromRole addFromRole(final FromRole role) {
-        return this.fromRoles.put(role.getLabel(), role);
-    }
-    
-    public ToRole addToRole(final ToRole role) {
-        return this.toRoles.put(role.getLabel(), role);
-    }
-    
-    public FromRole removeFromRole(final String label) {
-        return this.fromRoles.remove(label);
-    }
-    
-    public ToRole removeToRole(final String label) {
-        return this.toRoles.remove(label);
+    protected Role addRole(final Role role) {
+        return this.roles.put(role.getLabel(), role);
     }
 }

@@ -8,7 +8,7 @@ import hadl.m2.connector.Role;
 /**
  * An attachment link of a configuration.
  */
-public abstract class Attachment extends Link {
+public class Attachment extends Link {
     
     private final String label;
     

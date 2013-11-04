@@ -1,9 +1,11 @@
 package hadl.m1.serverDetails;
 
+import hadl.m2.Link;
 import hadl.m2.Message;
 import hadl.m2.component.AtomicComponent;
 import hadl.m2.component.NoSuchPortException;
 import hadl.m2.component.NoSuchServiceException;
+import hadl.m2.component.Port;
 import hadl.m2.component.ProvidedPort;
 import hadl.m2.component.ProvidedService;
 import hadl.m2.component.RequiredPort;
@@ -19,7 +21,7 @@ public class ConnectionManager extends AtomicComponent {
         }
         
         @Override
-        public void receive(final Message msg) {
+        public void receive(final Message msg, final Link link) {
             System.out.println("Le gestionnaire de connection reçoit : " + msg);
             
             if (msg.header.contentEquals("QUERY")) {
@@ -35,7 +37,7 @@ public class ConnectionManager extends AtomicComponent {
         }
         
         @Override
-        public void receive(Message msg) {
+        public void receive(Message msg, final Link link) {
             if (this.connection != null) {
                 this.connection.send(this, msg);
             }
@@ -49,7 +51,7 @@ public class ConnectionManager extends AtomicComponent {
         }
         
         @Override
-        public void receive(final Message msg) {
+        public void receive(final Message msg, final Link link) {
             if (this.connection != null) {
                 this.connection.send(this, msg);
             }
@@ -63,7 +65,7 @@ public class ConnectionManager extends AtomicComponent {
         }
         
         @Override
-        public void receive(final Message msg) {
+        public void receive(final Message msg, final Link link) {
             if (this.connection != null) {
                 this.connection.send(this, msg);
             }
@@ -71,14 +73,14 @@ public class ConnectionManager extends AtomicComponent {
         
     }
     
-    class ExternalSocketPro extends ProvidedPort {
+    class ExternalSocketPro extends Port {
         
         public ExternalSocketPro(final String label) {
             super(label);
         }
         
         @Override
-        public void receive(final Message msg) {
+        public void receive(final Message msg, final Link link) {
             if (this.connection != null) {
                 this.connection.send(this, msg);
             }

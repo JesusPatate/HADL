@@ -2,11 +2,9 @@ package hadl.m2.configuration;
 
 import hadl.m2.component.AtomicComponent;
 import hadl.m2.component.Component;
-import hadl.m2.component.ProvidedPort;
-import hadl.m2.component.RequiredPort;
+import hadl.m2.component.Port;
 import hadl.m2.connector.AtomicConnector;
-import hadl.m2.connector.FromRole;
-import hadl.m2.connector.ToRole;
+import hadl.m2.connector.Role;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,11 +31,8 @@ public class ComponentConfiguration extends Component {
     
     private final Config config;
     
-    protected final Map<String, CompConfProvidedBinding> providedBindings =
-            new HashMap<String, CompConfProvidedBinding>();
-    
-    protected final Map<String, CompConfRequiredBinding> requiredBindings =
-            new HashMap<String, CompConfRequiredBinding>();
+    protected final Map<String, CompConfBinding> bindings =
+            new HashMap<String, CompConfBinding>();
     
     public ComponentConfiguration(final String label) {
         super(label);
@@ -67,17 +62,8 @@ public class ComponentConfiguration extends Component {
      * 
      * @return A map with entries (label, attachment)
      */
-    public Map<String, FromAttachment> getFromAttachments() {
-        return this.config.getFromAttachments();
-    }
-    
-    /**
-     * Returns all to attachments.
-     * 
-     * @return A map with entries (label, attachment)
-     */
-    public Map<String, ToAttachment> getToAttachments() {
-        return this.config.getToAttachments();
+    public Map<String, Attachment> getAttachments() {
+        return this.config.getAttachments();
     }
     
     public AtomicComponent addComponent(final AtomicComponent comp) {
@@ -88,29 +74,16 @@ public class ComponentConfiguration extends Component {
         return this.config.addConnector(con);
     }
     
-    public FromAttachment addFromAttachment(final String label,
-            final RequiredPort port, final FromRole role) {
+    public Attachment addAttachment(final String label,
+            final Port port, final Role role) {
         
-        return this.config.addFromAttachment(label, port, role);
+        return this.config.addAttachment(label, port, role);
     }
     
-    public ToAttachment addToAttachment(final String label,
-            final ProvidedPort port, final ToRole role) {
+    public CompConfBinding addBinding(final String label,
+            final Port port1, final Port port2) {
         
-        return this.config.addToAttachment(label, port, role);
-    }
-    
-    public CompConfRequiredBinding addRequiredBinding(final String label,
-            final RequiredPort port1, final RequiredPort port2) {
-        
-        return this.requiredBindings.put(
-                label, new CompConfRequiredBinding(label, port1, port2));
-    }
-    
-    public CompConfProvidedBinding addProvidedBinding(final String label,
-            final ProvidedPort port1, final ProvidedPort port2) {
-        
-        return this.providedBindings.put(
-                label, new CompConfProvidedBinding(label, port1, port2));
+        return this.bindings.put(
+                label, new CompConfBinding(label, port1, port2));
     }
 }
