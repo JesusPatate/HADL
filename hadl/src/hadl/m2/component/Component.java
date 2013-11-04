@@ -116,12 +116,18 @@ public abstract class Component extends ArchitecturalElement {
      * @return The required port connected to the given service or null
      *         if the service is not connected to any port or required by
      *         the component
+     * @throws NoSuchServiceException
      */
-    public RequiredPort getRequestingPort(final String serviceLabel) {
+    public RequiredPort getRequestingPort(final String serviceLabel)
+            throws NoSuchServiceException {
+        
         RequiredPort port = null;
         RequiredService service = this.getRequiredServices().get(serviceLabel);
         
-        if (service != null) {
+        if (service == null) {
+            throw new NoSuchServiceException();
+        }
+        else {
             for (RequiredConnection con : this.requiredConnections.values()) {
                 if (con.getConnectedService() == service) {
                     port = con.getConnectedPort();

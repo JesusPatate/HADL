@@ -50,7 +50,7 @@ public class CSServer extends AtomicComponent {
         public void receive(final Message msg) {
             System.out.println("Le serveur reçoit : " + msg);
             
-            Message response = new Message("RESPONSE", msg.content + " OK");
+            Message response = new Message("RESPONSE", msg.body + " OK");
             sendResService.receive(response);
         }
     }

@@ -145,7 +145,7 @@ public class ConnectionManager extends AtomicComponent {
     private final HandleQuery handleQuery = new HandleQuery("handleQuery");
     
     private final SecurityAuthorization securityAuth =
-            new SecurityAuthorization("securityAuth");
+            new SecurityAuthorization("securityAuthorization");
     
     public ConnectionManager(String label) throws NoSuchServiceException,
             NoSuchPortException {
@@ -159,8 +159,8 @@ public class ConnectionManager extends AtomicComponent {
         
         this.addRequiredService(this.securityAuth);
         this.addRequiredPort(new SecurityQuery("securityQuery"));
-        this.addRequiredConnection("securityAuth", "securityAuth",
-                "securityQuery");
+        this.addRequiredConnection("securityAuthorization",
+                "securityAuthorization", "securityQuery");
         
         this.addRequiredService(this.handleQuery);
         this.addRequiredPort(new DBQuery("dbQuery"));
@@ -168,8 +168,8 @@ public class ConnectionManager extends AtomicComponent {
     }
     
     private void getAuthorization(final Message msg) {
-        int idx = msg.content.lastIndexOf(',');
-        Message query = new Message("AUTH", msg.content.substring(0, idx));
+        int idx = msg.body.lastIndexOf(',');
+        Message query = new Message("AUTH", msg.body.substring(0, idx));
         
         this.securityAuth.receive(query);
     }
