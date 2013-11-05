@@ -15,9 +15,7 @@ import hadl.m2.component.Connection;
 import hadl.m2.component.NoSuchPortException;
 import hadl.m2.component.NoSuchServiceException;
 import hadl.m2.component.Port;
-import hadl.m2.connector.FromRole;
 import hadl.m2.connector.Role;
-import hadl.m2.connector.ToRole;
 
 
 public class Main {
@@ -39,25 +37,25 @@ public class Main {
     
     public static void main(String[] args) {
         try {
-//            buildServerDetails();
+            buildServerDetails();
             buildCS();
             
             // Add users to database
             
-//            Message msg = new Message("ADMQUERY", "\'add\',\'monLogin\',\'monPwd\'");
-//            
-//            Port port = database.getProvidingPort("manageUsers");
-//            port.receive(msg, null);
-//            
-//            msg = new Message("ADMQUERY", "\'add\',\'Georges\',\'Bondiou\'");
-//            port.receive(msg, null);
+            Message msg = new Message("ADMQUERY", "\'add\',\'monLogin\',\'monPwd\'");
+            
+            Port port = database.getProvidingPort("manageUsers");
+            port.receive(msg, null);
+            
+            msg = new Message("ADMQUERY", "\'add\',\'Georges\',\'Bondiou\'");
+            port.receive(msg, null);
             
             // Send SQL query
             
-            Message msg = new Message("QUERY", "'Georges','Bondiou',"
+            msg = new Message("QUERY", "'Georges','Bondiou',"
                     + "'SELECT * FROM data'");
             
-            Port port = client.getProvidingPort("sendRequest");
+            port = client.getProvidingPort("sendRequest");
             port.receive(msg, null);
         }
         catch (NoSuchServiceException e) {
@@ -150,12 +148,12 @@ public class Main {
         
         // Binding
         
-//        Port port1 = server.getPorts().get("receiveRequest");
-//        Port port2 = connectionMgr.getPorts().get("externalSocket");
-//        
-//        Connection con = server.getConnections().get("receiveRequest");
-//        
-//        server.removeProvidedConnection(con);
-//        cs.addBinding("receiveRequest", port1, port2);
+        Port port1 = server.getPorts().get("io");
+        Port port2 = connectionMgr.getPorts().get("externalSocket");
+        
+        Connection con = server.getConnections().get("receiveRequest");
+        
+        server.removeProvidedConnection(con);
+        cs.addBinding("receiveRequest", port1, port2);
     }
 }

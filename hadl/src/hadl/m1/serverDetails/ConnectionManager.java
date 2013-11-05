@@ -6,9 +6,7 @@ import hadl.m2.component.AtomicComponent;
 import hadl.m2.component.NoSuchPortException;
 import hadl.m2.component.NoSuchServiceException;
 import hadl.m2.component.Port;
-import hadl.m2.component.ProvidedPort;
 import hadl.m2.component.ProvidedService;
-import hadl.m2.component.RequiredPort;
 import hadl.m2.component.RequiredService;
 
 
@@ -81,23 +79,18 @@ public class ConnectionManager extends AtomicComponent {
         
         @Override
         public void receive(final Message msg, final Link link) {
-            if (this.connection != null) {
-                this.connection.send(this, msg);
-            }
-            else if (this.binding != null) {
-                this.binding.send(this, msg);
-            }
+            // TODO Router le message
         }
     }
     
-    class ExternalSocketReq extends RequiredPort {
+    class ExternalSocketReq extends Port {
         
         public ExternalSocketReq(final String label) {
             super(label);
         }
         
         @Override
-        public void receive(final Message msg) {
+        public void receive(final Message msg, final Link link) {
             if (this.attachment != null) {
                 this.attachment.send(this, msg);
             }
@@ -107,14 +100,14 @@ public class ConnectionManager extends AtomicComponent {
         }
     }
     
-    class DBQuery extends RequiredPort {
+    class DBQuery extends Port {
         
         public DBQuery(final String label) {
             super(label);
         }
         
         @Override
-        public void receive(final Message msg) {
+        public void receive(final Message msg, final Link link) {
             if (this.attachment != null) {
                 this.attachment.send(this, msg);
             }
@@ -124,14 +117,14 @@ public class ConnectionManager extends AtomicComponent {
         }
     }
     
-    class SecurityQuery extends RequiredPort {
+    class SecurityQuery extends Port {
         
         public SecurityQuery(final String label) {
             super(label);
         }
         
         @Override
-        public void receive(final Message msg) {
+        public void receive(final Message msg, final Link link) {
             if (this.attachment != null) {
                 this.attachment.send(this, msg);
             }
@@ -155,24 +148,24 @@ public class ConnectionManager extends AtomicComponent {
         super(label);
         
         this.addProvidedService(this.receiveRequest);
-        this.addProvidedPort(new ExternalSocketPro("externalSocket"));
-        this.addProvidedConnection("receiveRequest", "receiveRequest",
+        this.addPort(new ExternalSocketPro("externalSocket"));
+        this.addConnection("receiveRequest", "receiveRequest",
                 "externalSocket");
         
         this.addRequiredService(this.securityAuth);
-        this.addRequiredPort(new SecurityQuery("securityQuery"));
-        this.addRequiredConnection("securityAuthorization",
+        this.addPort(new SecurityQuery("securityQuery"));
+        this.addConnection("securityAuthorization",
                 "securityAuthorization", "securityQuery");
         
         this.addRequiredService(this.handleQuery);
-        this.addRequiredPort(new DBQuery("dbQuery"));
-        this.addRequiredConnection("handleQuery", "handleQuery", "dbQuery");
+        this.addPort(new DBQuery("dbQuery"));
+        this.addConnection("handleQuery", "handleQuery", "dbQuery");
     }
     
     private void getAuthorization(final Message msg) {
         int idx = msg.body.lastIndexOf(',');
         Message query = new Message("AUTH", msg.body.substring(0, idx));
         
-        this.securityAuth.receive(query);
+        this.securityAuth.receive(query, null);
     }
 }

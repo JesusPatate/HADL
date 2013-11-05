@@ -1,10 +1,11 @@
 package hadl.m1.serverDetails;
 
+import hadl.m2.Link;
 import hadl.m2.Message;
 import hadl.m2.component.AtomicComponent;
 import hadl.m2.component.NoSuchPortException;
 import hadl.m2.component.NoSuchServiceException;
-import hadl.m2.component.ProvidedPort;
+import hadl.m2.component.Port;
 import hadl.m2.component.ProvidedService;
 
 import java.util.HashMap;
@@ -20,7 +21,7 @@ public class Database extends AtomicComponent {
         }
         
         @Override
-        public void receive(Message msg) {
+        public void receive(Message msg, final Link link) {
             System.out.println("La BD reçoit : " + msg); // DBG
             
             check(msg);
@@ -34,7 +35,7 @@ public class Database extends AtomicComponent {
         }
 
         @Override
-        public void receive(Message msg) {
+        public void receive(Message msg, final Link link) {
             System.out.println("La BD reçoit : " + msg); // DBG
             
             if (msg.header.contentEquals("ADMQUERY")) {
@@ -53,31 +54,27 @@ public class Database extends AtomicComponent {
         }
     }
     
-    class SecurityManagementPort extends ProvidedPort {
+    class SecurityManagementPort extends Port {
         
         public SecurityManagementPort(String label) {
             super(label);
         }
         
         @Override
-        public void receive(Message msg) {
-            if (this.connection != null) {
-                this.connection.send(this, msg);
-            }
+        public void receive(Message msg, final Link link) {
+            // TODO Router le message
         }
     }
     
-    class ManageUsersPort extends ProvidedPort {
+    class ManageUsersPort extends Port {
 
         public ManageUsersPort(String label) {
             super(label);
         }
 
         @Override
-        public void receive(Message msg) {
-            if (this.connection != null) {
-                this.connection.send(this, msg);
-            }
+        public void receive(Message msg, final Link link) {
+            // TODO Router le message
         }
     }
     
@@ -89,13 +86,13 @@ public class Database extends AtomicComponent {
         
         this.addProvidedService(
                 new SecurityManagementService("securityManagement"));
-        this.addProvidedPort(new SecurityManagementPort("securityManagement"));
-        this.addProvidedConnection("securityManagement", "securityManagement",
+        this.addPort(new SecurityManagementPort("securityManagement"));
+        this.addConnection("securityManagement", "securityManagement",
                 "securityManagement");
         
         this.addProvidedService(new ManageUsersService("manageUsers"));
-        this.addProvidedPort(new ManageUsersPort("manageUsers"));
-        this.addProvidedConnection("manageUsers", "manageUsers", "manageUsers");
+        this.addPort(new ManageUsersPort("manageUsers"));
+        this.addConnection("manageUsers", "manageUsers", "manageUsers");
     }
     
     private boolean addUser(final String login, final String pwd) {

@@ -3,13 +3,12 @@ package hadl.m1.serverDetails;
 import hadl.m2.Link;
 import hadl.m2.Message;
 import hadl.m2.connector.AtomicConnector;
-import hadl.m2.connector.FromRole;
-import hadl.m2.connector.ToRole;
+import hadl.m2.connector.Role;
 
 
 public class ClearanceQuery extends AtomicConnector {
     
-    class ClearanceQuerySender extends FromRole {
+    class ClearanceQuerySender extends Role {
         
         public ClearanceQuerySender(String label) {
             super(label);
@@ -21,7 +20,7 @@ public class ClearanceQuery extends AtomicConnector {
         }
     }
     
-    class ClearanceQueryReceiver extends ToRole {
+    class ClearanceQueryReceiver extends Role {
         
         public ClearanceQueryReceiver(String label) {
             super(label);

@@ -1,12 +1,12 @@
 package hadl.m1.serverDetails;
 
+import hadl.m2.Link;
 import hadl.m2.Message;
 import hadl.m2.component.AtomicComponent;
 import hadl.m2.component.NoSuchPortException;
 import hadl.m2.component.NoSuchServiceException;
-import hadl.m2.component.ProvidedPort;
+import hadl.m2.component.Port;
 import hadl.m2.component.ProvidedService;
-import hadl.m2.component.RequiredPort;
 import hadl.m2.component.RequiredService;
 
 
@@ -19,7 +19,7 @@ public class SecurityManager extends AtomicComponent {
         }
         
         @Override
-        public void receive(Message msg) {
+        public void receive(Message msg, final Link link) {
             System.out.println("Le gestionnaire de sécurité reçoit : " + msg);
             
             if (msg.header.contentEquals("AUTH")) {
@@ -38,7 +38,7 @@ public class SecurityManager extends AtomicComponent {
         }
         
         @Override
-        public void receive(Message msg) {
+        public void receive(Message msg, final Link link) {
             
         }
         
@@ -54,28 +54,26 @@ public class SecurityManager extends AtomicComponent {
         }
     }
     
-    class SecurityAuthorization extends ProvidedPort {
+    class SecurityAuthorization extends Port {
         
         public SecurityAuthorization(String label) {
             super(label);
         }
         
         @Override
-        public void receive(Message msg) {
-            if (this.connection != null) {
-                this.connection.send(this, msg);
-            }
+        public void receive(Message msg, final Link link) {
+            // XXX Router le message
         }
     }
     
-    class CredentialQueryPort extends RequiredPort {
+    class CredentialQueryPort extends Port {
         
         public CredentialQueryPort(String label) {
             super(label);
         }
         
         @Override
-        public void receive(Message msg) {
+        public void receive(Message msg, final Link link) {
             if (this.attachment != null) {
                 this.attachment.send(this, msg);
             }
@@ -91,13 +89,13 @@ public class SecurityManager extends AtomicComponent {
         super(label);
         
         this.addProvidedService(new SecurityAuthService("securityAuthorization"));
-        this.addProvidedPort(new SecurityAuthorization("securityAuthorization"));
-        this.addProvidedConnection("securityAuthorization",
+        this.addPort(new SecurityAuthorization("securityAuthorization"));
+        this.addConnection("securityAuthorization",
                 "securityAuthorization", "securityAuthorization");
         
         this.addRequiredService(this.credentialQueryService);
-        this.addRequiredPort(new CredentialQueryPort("credentialQuery"));
-        this.addRequiredConnection("credentialQuery", "credentialQuery",
+        this.addPort(new CredentialQueryPort("credentialQuery"));
+        this.addConnection("credentialQuery", "credentialQuery",
                 "credentialQuery");
     }
 }

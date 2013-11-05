@@ -1,33 +1,33 @@
 package hadl.m1.serverDetails;
 
+import hadl.m2.Link;
 import hadl.m2.Message;
 import hadl.m2.connector.AtomicConnector;
-import hadl.m2.connector.FromRole;
-import hadl.m2.connector.ToRole;
+import hadl.m2.connector.Role;
 
 
 public class SecurityQuery extends AtomicConnector {
     
-    class SecurityQuerySender extends FromRole {
+    class SecurityQuerySender extends Role {
         
         public SecurityQuerySender(String label) {
             super(label);
         }
         
         @Override
-        public void receive(Message msg) {
-            receiverRole.receive(msg);
+        public void receive(Message msg, final Link link) {
+            receiverRole.receive(msg, null);
         }
     }
     
-    class SecurityQueryReceiver extends ToRole {
+    class SecurityQueryReceiver extends Role {
         
         public SecurityQueryReceiver(String label) {
             super(label);
         }
         
         @Override
-        public void receive(Message msg) {
+        public void receive(Message msg, final Link link) {
             if (this.attachment != null) {
                 this.attachment.send(this, msg);
             }
@@ -42,7 +42,7 @@ public class SecurityQuery extends AtomicConnector {
     
     public SecurityQuery(String label) {
         super(label);
-        this.addFromRole(this.senderRole);
-        this.addToRole(this.receiverRole);
+        this.addRole(this.senderRole);
+        this.addRole(this.receiverRole);
     }
 }
