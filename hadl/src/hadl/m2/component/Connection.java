@@ -21,6 +21,8 @@ public class Connection extends Link {
         this.label = label;
         this.service = service;
         this.port = port;
+        
+        this.plug();
     }
     
     public String getLabel() {

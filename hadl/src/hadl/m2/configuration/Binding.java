@@ -11,6 +11,7 @@ public abstract class Binding extends Link {
     public Binding(final String label, final Port end1, final Port end2) {
         super(end1, end2);
         this.label = label;
+        this.plug();
     }
     
     public String getLabel() {

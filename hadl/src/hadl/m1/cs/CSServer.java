@@ -1,15 +1,18 @@
 package hadl.m1.cs;
 
-import hadl.m2.Link;
+import hadl.m1.Call;
+import hadl.m1.CSMessage;
+import hadl.m1.RPCCall;
 import hadl.m2.Message;
 import hadl.m2.component.AtomicComponent;
-import hadl.m2.component.Connection;
 import hadl.m2.component.NoSuchPortException;
 import hadl.m2.component.NoSuchServiceException;
+import hadl.m2.component.Port;
 import hadl.m2.component.ProvidedService;
 import hadl.m2.component.RequiredService;
-import hadl.m2.component.Port;
-import hadl.m2.configuration.Attachment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CSServer extends AtomicComponent {
@@ -21,11 +24,7 @@ public class CSServer extends AtomicComponent {
         }
         
         @Override
-        public void receive(final Message msg, final Link link) {
-            if (this.connection != null) {
-                this.connection.send(this, msg);
-            }
-        }
+        public void receive(final Message msg) {}
     }
     
     class ReceiveRequestService extends ProvidedService {
@@ -35,48 +34,52 @@ public class CSServer extends AtomicComponent {
         }
         
         @Override
-        public void receive(final Message msg, final Link link) {
+        public void receive(final Message msg) {
+            boolean wrongParam = false;
+            
             System.out.println("Le serveur reçoit : " + msg); // DBG
             
-            Message response = new Message("RESPONSE", msg.body + " OK");
-            sendResService.receive(response, null);
-        }
-    }
-    
-    class SendResponseService extends ProvidedService {
-        
-        public SendResponseService(final String label) {
-            super(label);
-        }
-        
-        @Override
-        public void receive(final Message msg, final Link link) {
-            System.out.println("Le serveur envoie : " + msg);
-            recResService.receive(msg, null);
+            if (msg.getHeader().equals("CALL")) {
+                Call call = (Call) msg;
+                
+                if (call.getCalledService().equals(this.label)) {
+                    // TODO Vérifier les paramètres
+                    
+                    if (wrongParam) {
+                        // TODO Gérer appel incorrect
+                    }
+                    
+                    Message request = (Message) call.getParameters().get(0);
+                    
+                    CSServer.this.sendResponse(request);
+                }
+                else {
+                    // TODO Gérer appel incorrect
+                }
+            }
         }
     }
     
     class ServerPort extends Port {
         
-        public ServerPort(final String label) {
-            super(label);
+        public ServerPort(final CSServer component) {
+            super("port");
         }
         
         @Override
-        public void receive(final Message msg, final Link link) {
-        	if(link instanceof Attachment) {
-        		for(Connection con : this.connections) {
-        			String service = con.getConnectedService().getLabel();
-        			if(service.equals("receiveRequest")) {
-        				con.send(this, msg);
-        			}
-        		}
-        	}
-        	else if (link instanceof Connection) {
-        		if (this.attachment != null) {
-        			this.attachment.send(this, msg);
-        		}
-        	}
+        public void receive(final Message msg) {
+            Call call = (Call) msg;
+            String service = call.getCalledService();
+            
+            if (this.linked(service)) {
+                this.getLink(service).send(this, msg);
+            }
+            
+            else {
+                if(this.binding != null) {
+                    this.binding.send(this, msg);
+                }
+            }
         }
     }
     
@@ -86,9 +89,6 @@ public class CSServer extends AtomicComponent {
     private final ReceiveRequestService recReqService =
             new ReceiveRequestService("receiveRequest");
     
-    private final SendResponseService sendResService =
-            new SendResponseService("sendResponse");
-    
     public CSServer(final String label) throws NoSuchServiceException,
             NoSuchPortException {
         
@@ -96,16 +96,19 @@ public class CSServer extends AtomicComponent {
         
         this.addRequiredService(this.recResService);
         this.addProvidedService(this.recReqService);
-        this.addProvidedService(this.sendResService);
         
-        this.addPort(new ServerPort("io"));
+        Port port = new ServerPort(this);
+        this.addPort(port);
         
-        this.addConnection("receiveResponse", "receiveResponse",
-                "io");
+        this.addConnection(this.recResService.getLabel(), this.recResService,
+                port);
         
-        this.addConnection("receiveRequest", "receiveRequest",
-                "io");
-        this.addConnection("sendResponse", "sendResponse",
-                "io");
+        this.addConnection(this.recReqService.getLabel(), this.recReqService,
+                port);
+    }
+
+    private void sendResponse(Message request) {
+        // TODO Auto-generated method stub
+        
     }
 }

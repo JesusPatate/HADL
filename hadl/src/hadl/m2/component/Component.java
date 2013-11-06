@@ -1,6 +1,7 @@
 package hadl.m2.component;
 
 import hadl.m2.ArchitecturalElement;
+import hadl.m2.Link;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,25 +15,31 @@ public abstract class Component extends ArchitecturalElement {
     /**
      * Services provided by the component.
      */
-    Map<String, ProvidedService> providedServices =
+    protected Map<String, ProvidedService> providedServices =
             new HashMap<String, ProvidedService>();
     
     /**
      * Services required by the component.
      */
-    Map<String, RequiredService> requiredServices =
+    protected Map<String, RequiredService> requiredServices =
             new HashMap<String, RequiredService>();
     
     /**
      * Ports which can be connected to component provided services.
      */
-    Map<String, Port> ports =
-            new HashMap<String,Port>();
+    protected Map<String, Port> ports =
+            new HashMap<String, Port>();
     
     /**
      * Connections between provided service and port of the component.
      */
-    Map<String, Connection> connections =
+    protected Map<String, Connection> connections =
+            new HashMap<String, Connection>();
+    
+    /**
+     * 
+     */
+    protected Map<String, Connection> serviceToConnection =
             new HashMap<String, Connection>();
     
     /**
@@ -104,10 +111,9 @@ public abstract class Component extends ArchitecturalElement {
             throw new NoSuchServiceException();
         }
         else {
-            for (Connection con : this.connections.values()) {
-                if (con.getConnectedService() == service) {
-                    port = con.getConnectedPort();
-                    break;
+            for (Port p : this.ports.values()) {
+                if (p.linked(serviceLabel)) {
+                    port = p;
                 }
             }
         }
@@ -116,7 +122,36 @@ public abstract class Component extends ArchitecturalElement {
     }
     
     public Map<String, Connection> getConnections() {
-    	return new HashMap<String, Connection>(this.connections);
+        return new HashMap<String, Connection>(this.connections);
+    }
+    
+    /**
+     * Returns the connection between a service and a port.
+     * 
+     * <p>
+     * Method used by component ports to solve call routing.
+     * </p>
+     * 
+     * @param soughtService
+     *            Called service
+     * @param enquirer
+     *            Requesting port
+     * 
+     * @return Connection between the given service and the requesting port or
+     *         null if it doesn't exist.
+     */
+    protected Connection getConnection(final String soughtService,
+            final Port enquirer) {
+        
+        Connection con = null;
+        
+        Connection c = this.serviceToConnection.get(soughtService);
+        
+        if (c != null && c.getConnectedPort() == enquirer) {
+            con = c;
+        }
+        
+        return con;
     }
     
     protected ProvidedService addProvidedService(final ProvidedService service) {
@@ -150,21 +185,12 @@ public abstract class Component extends ArchitecturalElement {
      *             The given name doesn't match with any provided port of the
      *             component
      */
-    public Connection addConnection(final String label,
+    public Link addConnection(final String label,
             final String serviceLabel, final String portLabel)
             throws NoSuchServiceException, NoSuchPortException {
         
-    	// Retrieve the service
-    	
-        Service service = this.providedServices.get(serviceLabel);
-        
-        if(service == null) {
-        	service = this.requiredServices.get(serviceLabel);
-        }
-        
-        if (service == null) {
-            throw new NoSuchServiceException();
-        }
+        Service service = null;
+        Link link = null;
         
         // Retrieve the port
         
@@ -174,7 +200,56 @@ public abstract class Component extends ArchitecturalElement {
             throw new NoSuchPortException();
         }
         
-        return this.connections.put(label, new Connection(label, service, port));
+        // Retrieve the service
+        
+        if (providedServices.containsKey(serviceLabel)) {
+            service = this.providedServices.get(serviceLabel);
+            
+            Connection con = new Connection(label, service, port);
+            this.connections.put(label, con);
+            this.serviceToConnection.put(serviceLabel, con);
+            link = con;
+        }
+        
+        else if (this.requiredServices.containsKey(serviceLabel)) {
+            port.connectRequiredService(serviceLabel);
+        }
+        
+        else {
+            throw new NoSuchServiceException();
+        }
+        
+        return link;
+    }
+    
+    protected Link addConnection(final String label, final Service service,
+            final Port port) throws NoSuchServiceException, NoSuchPortException {
+        
+        Link link = null;
+        
+        String sLabel = service.getLabel();
+        String pLabel = port.getLabel();
+        
+        if (this.ports.containsKey(pLabel) == false) {
+            throw new NoSuchPortException();
+        }
+        
+        if (this.providedServices.containsKey(sLabel)) {
+            Connection con = new Connection(label, service, port);
+            this.connections.put(label, con);
+            this.serviceToConnection.put(sLabel, con);
+            link = con;
+        }
+        
+        else if (this.requiredServices.containsKey(sLabel)) {
+            port.connectRequiredService(sLabel);
+        }
+        
+        else {
+            throw new NoSuchServiceException();
+        }
+        
+        return link;
     }
     
     /**
@@ -185,11 +260,24 @@ public abstract class Component extends ArchitecturalElement {
      * 
      * @return Removed connection or null if removal failed
      */
-    public Connection removeProvidedConnection(final Connection con) {
+    public Connection removeConnection(final String connection) {
+        Connection con = this.connections.get(connection);
+        String service = con.getConnectedService().getLabel();
         
-        con.getConnectedPort().connections.remove(con);
-        con.getConnectedService().connection = null;
+        if (con != null) {
+            con.getConnectedPort().disconnect(service);
+            con.getConnectedService().disconnect();
+            this.connections.remove(con);
+        }
         
-        return this.connections.remove(con);
+        return con;
+    }
+    
+    public boolean provides(final String service) {
+        return this.providedServices.containsKey(service);
+    }
+    
+    public boolean requires(final String service) {
+        return this.requiredServices.containsKey(service);
     }
 }

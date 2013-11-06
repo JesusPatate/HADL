@@ -1,6 +1,6 @@
 package hadl.m1.cs;
 
-import hadl.m2.Link;
+import hadl.m1.Call;
 import hadl.m2.Message;
 import hadl.m2.connector.AtomicConnector;
 import hadl.m2.connector.Role;
@@ -18,8 +18,21 @@ public class CSRPC extends AtomicConnector {
         }
         
         @Override
-        public void receive(Message msg, final Link link) {
-            calleeRole.receive(msg, null);
+        public void receive(Message msg) {
+            if(msg.getHeader().equals("CALL")) {
+                Call call = (Call) msg;
+                String service = call.getCalledService();
+                
+                if(service.equals("receiveRequest")) {
+                    calleeRole.receive(msg);
+                }
+                
+                else if (service.equals("receiveResponse")) {
+                    if(this.attachment != null) {
+                        this.attachment.send(this, msg);
+                    }
+                }
+            }
         }
     }
     
@@ -33,8 +46,21 @@ public class CSRPC extends AtomicConnector {
         }
         
         @Override
-        public void receive(Message msg, final Link link) {
-            this.attachment.send(this, msg);
+        public void receive(Message msg) {
+            if(msg.getHeader().equals("CALL")) {
+                Call call = (Call) msg;
+                String service = call.getCalledService();
+                
+                if(service.equals("receiveRequest")) {
+                    if(this.attachment != null) {
+                        this.attachment.send(this, msg);
+                    }
+                }
+                
+                else if (service.equals("receiveResponse")) {
+                    callerRole.receive(msg);
+                }
+            }
         }
     }
     

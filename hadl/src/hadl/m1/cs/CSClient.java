@@ -1,118 +1,124 @@
 package hadl.m1.cs;
 
-import hadl.m2.Link;
+import java.util.ArrayList;
+import java.util.List;
+
+import hadl.m1.CSMessage;
+import hadl.m1.Call;
+import hadl.m1.RPCCall;
 import hadl.m2.Message;
 import hadl.m2.component.AtomicComponent;
-import hadl.m2.component.Connection;
 import hadl.m2.component.NoSuchPortException;
 import hadl.m2.component.NoSuchServiceException;
 import hadl.m2.component.Port;
 import hadl.m2.component.ProvidedService;
 import hadl.m2.component.RequiredService;
-import hadl.m2.configuration.Attachment;
 
 
 public class CSClient extends AtomicComponent {
     
     class ReceiveRequestService extends RequiredService {
         
-        public ReceiveRequestService(final String label) {
-            super(label);
+        public ReceiveRequestService() {
+            super("receiveRequest");
         }
         
         @Override
-        public void receive(final Message msg, final Link link) {
-            if (this.connection != null) {
-                this.connection.send(this, msg);
-            }
+        public void receive(final Message msg) {
         }
     }
     
+    /**
+     * Client reception service.
+     */
     class ReceiveResponseService extends ProvidedService {
         
-        public ReceiveResponseService(final String label) {
-            super(label);
+        public ReceiveResponseService() {
+            super("receiveResponse");
         }
         
         @Override
-        public void receive(final Message msg, final Link link) {
-            System.out.println("Le client reçoit : " + msg);
-        }
-    }
-    
-    class SendRequestService extends ProvidedService {
-        
-        public SendRequestService(final String label) {
-            super(label);
-        }
-        
-        @Override
-        public void receive(final Message msg, final Link link) {
-            System.out.println("Le client envoie : " + msg);
-            recReqService.receive(msg, null);
-        }
-    }
-    
-    class ClientPort extends Port {
-        
-        public ClientPort(final String label) {
-            super(label);
-        }
-
-		@Override
-		public void receive(Message msg, Link link) {
-			if(link == null) {
-				sendReqService.receive(msg, null); // XXX Utiliser la connection !!
-			}
-			if(link instanceof Connection) {
-				if(this.attachment != null) {
-					this.attachment.send(this, msg);
-				}
-			}
-			if(link instanceof Attachment) {
-				receiveResponseService.receive(msg, null); // XXX Utiliser la connection !!
-			}
-		}
-    }
-    
-    class ReceiveRequestPort extends Port {
-        
-        public ReceiveRequestPort(final String label) {
-            super(label);
-        }
-        
-        @Override
-        public void receive(final Message msg, final Link link) {
-            if (this.attachment != null) {
-                this.attachment.send(this, msg);
+        public void receive(final Message msg) {
+            boolean wrongParam = false;
+            
+            if (msg.getHeader().equals("CALL")) {
+                Call call = (Call) msg;
+                
+                if (call.getCalledService().equals(this.label)) {
+                    // TODO Vérifier les paramètres
+                    
+                    if (wrongParam) {
+                        // TODO Gérer appel incorrect
+                    }
+                    
+                    System.out.println("Le client reçoit : " + call); // DBG
+                }
+                else {
+                    // TODO Gérer appel incorrect
+                }
             }
         }
     }
     
-    private final ReceiveResponseService receiveResponseService =
-    		new ReceiveResponseService("receiveResponse");
-    
-    private final ReceiveRequestService recReqService =
-            new ReceiveRequestService("receiveRequest");
-    
-    private final SendRequestService sendReqService =
-            new SendRequestService("sendRequest");
+    class SendRequestPort extends Port {
+        
+        public SendRequestPort(final CSClient component) {
+            super("sendRequest");
+        }
+        
+        @Override
+        public void receive(final Message msg) {
+            Call call = (Call) msg;
+            String service = call.getCalledService();
+            
+            if (this.linked(service)) {
+                this.getLink(service).send(this, msg);
+            }
+        }
+    }
     
     public CSClient(final String label) throws NoSuchServiceException,
             NoSuchPortException {
         
         super(label);
-
-        this.addPort(new ClientPort("io"));
         
-        this.addRequiredService(this.recReqService);
-        this.addPort(new ReceiveRequestPort("receiveRequest"));
-        this.addConnection("receiveRequest", "receiveRequest","io");
+        RequiredService receiveReq = new ReceiveRequestService();
+        this.addRequiredService(receiveReq);
         
-        this.addProvidedService(this.sendReqService);
-        this.addConnection("sendRequest", "sendRequest", "io");
+        ProvidedService receiveRes = new ReceiveResponseService();
+        this.addProvidedService(receiveRes);
         
-        this.addProvidedService(this.receiveResponseService);
-        this.addConnection("receiveResponse", "receiveResponse","io");
+        Port port = new SendRequestPort(this);
+        this.addPort(port);
+        
+        this.addConnection(receiveReq.getLabel(), receiveReq.getLabel(),
+                port.getLabel());
+        
+        this.addConnection(receiveRes.getLabel(), receiveRes.getLabel(),
+                port.getLabel());
+    }
+    
+    public void query(final String query, final String login, final String pwd) {
+        Message queryMsg = new CSMessage("QUERY", "\'" + login + "\',\'"
+                + pwd + "\',\'" + query + "\',\'");
+        
+        this.sendRequest(queryMsg);
+    }
+    
+    private void sendRequest(final Message msg) {
+        List<Object> args = new ArrayList<Object>();
+        args.add(msg);
+        
+        Call call = new RPCCall("receiveRequest", args);
+        
+        System.out.println("Le client envoie : " + call); // DBG
+        
+        try {
+            Port port = getRequestingPort("receiveRequest");
+            port.receive(call);
+        }
+        catch (NoSuchServiceException e) {
+            // Couldn't be reachable
+        }
     }
 }

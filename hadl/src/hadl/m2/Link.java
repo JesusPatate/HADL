@@ -1,5 +1,6 @@
 package hadl.m2;
 
+
 public abstract class Link {
     
     private final Linkable end1;
@@ -9,9 +10,6 @@ public abstract class Link {
     protected Link(final Linkable end1, final Linkable end2) {
         this.end1 = end1;
         this.end2 = end2;
-        
-        this.end1.plug(this);
-        this.end2.plug(this);
     }
     
     public Linkable[] getEnds() {
@@ -25,7 +23,12 @@ public abstract class Link {
             receiver = this.end2;
         }
         
-        receiver.receive(msg, this);
+        receiver.receive(msg);
+    }
+    
+    protected void plug() {
+        this.end1.plug(this);
+        this.end2.plug(this);
     }
     
     @Override

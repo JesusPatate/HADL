@@ -35,4 +35,8 @@ public abstract class Service implements Linkable {
     public void plug(final Link link) {
         this.connection = link;
     }
+    
+    public void disconnect() {
+        this.connection = null;
+    }
 }

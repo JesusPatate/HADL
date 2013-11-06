@@ -15,6 +15,7 @@ public class Attachment extends Link {
     public Attachment(final String label, final Port port, final Role role) {
         super(port, role);
         this.label = label;
+        this.plug();
     }
     
     public String getLabel() {

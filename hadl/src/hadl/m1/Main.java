@@ -8,10 +8,7 @@ import hadl.m1.serverDetails.ClearanceQuery;
 import hadl.m1.serverDetails.ConnectionManager;
 import hadl.m1.serverDetails.Database;
 import hadl.m1.serverDetails.SecurityManager;
-import hadl.m1.serverDetails.SecurityQuery;
 import hadl.m1.serverDetails.ServerDetailsConfiguration;
-import hadl.m2.Message;
-import hadl.m2.component.Connection;
 import hadl.m2.component.NoSuchPortException;
 import hadl.m2.component.NoSuchServiceException;
 import hadl.m2.component.Port;
@@ -40,23 +37,15 @@ public class Main {
             buildServerDetails();
             buildCS();
             
-            // Add users to database
-            
-            Message msg = new Message("ADMQUERY", "\'add\',\'monLogin\',\'monPwd\'");
-            
-            Port port = database.getProvidingPort("manageUsers");
-            port.receive(msg, null);
-            
-            msg = new Message("ADMQUERY", "\'add\',\'Georges\',\'Bondiou\'");
-            port.receive(msg, null);
+            database.addUser("monLogin", "monPwd");
             
             // Send SQL query
             
-            msg = new Message("QUERY", "'Georges','Bondiou',"
-                    + "'SELECT * FROM data'");
+            String query = "SELECT * FROM data";
+            String login = "monLogin";
+            String pwd = "monPwd";
             
-            port = client.getProvidingPort("sendRequest");
-            port.receive(msg, null);
+            client.query(query, login, pwd);
         }
         catch (NoSuchServiceException e) {
             e.printStackTrace();
@@ -97,18 +86,18 @@ public class Main {
         
         // Security query
         
-        SecurityQuery securityQuery = new SecurityQuery("securityQuery");
-        serverDetails.addConnector(securityQuery);
-        
-        senderPort = securityMgr.getRequestingPort("credentialQuery");
-        senderRole = securityQuery.getRoles().get("sender");
-        serverDetails.addAttachment("credentialQueryFA", senderPort,
-                senderRole);
-        
-        receiverPort = database.getProvidingPort("securityManagement");
-        receiverRole = securityQuery.getRoles().get("receiver");
-        serverDetails.addAttachment("credentialQueryTA", receiverPort,
-                receiverRole);
+        // SecurityQuery securityQuery = new SecurityQuery("securityQuery");
+        // serverDetails.addConnector(securityQuery);
+        //
+        // senderPort = securityMgr.getRequestingPort("credentialQuery");
+        // senderRole = securityQuery.getRoles().get("sender");
+        // serverDetails.addAttachment("credentialQueryFA", senderPort,
+        // senderRole);
+        //
+        // receiverPort = database.getProvidingPort("securityManagement");
+        // receiverRole = securityQuery.getRoles().get("receiver");
+        // serverDetails.addAttachment("credentialQueryTA", receiverPort,
+        // receiverRole);
     }
     
     private static void buildCS() throws NoSuchServiceException,
@@ -120,40 +109,23 @@ public class Main {
         server = new CSServer("server");
         cs.addComponent(server);
         
-        CSRPC rpc1 = new CSRPC("RPC1"); // Request
-        cs.addConnector(rpc1);
-        
-        CSRPC rpc2 = new CSRPC("RPC2"); // Response
-        cs.addConnector(rpc2);
-        
-        // Request
+        CSRPC rpc = new CSRPC("RPC"); // Request
+        cs.addConnector(rpc);
         
         Port reqPort = client.getRequestingPort("receiveRequest");
-        Role caller = rpc1.getRoles().get("caller");
+        Role caller = rpc.getRoles().get("caller");
         cs.addAttachment("receiveRequest", reqPort, caller);
         
         Port proPort = server.getProvidingPort("receiveRequest");
-        Role callee = rpc1.getRoles().get("callee");
+        Role callee = rpc.getRoles().get("callee");
         cs.addAttachment("receiveRequest", proPort, callee);
-        
-        // Response
-        
-//        reqPort = server.getRequestingPort("receiveResponse");
-//        caller = rpc2.getRoles().get("caller");
-//        cs.addAttachment("receiveResponse", reqPort, caller);
-//        
-//        proPort = client.getProvidingPort("receiveResponse");
-//        callee = rpc2.getRoles().get("callee");
-//        cs.addAttachment("receiveResponse", proPort, callee);
         
         // Binding
         
-        Port port1 = server.getPorts().get("io");
-        Port port2 = connectionMgr.getPorts().get("externalSocket");
+        Port port1 = server.getProvidingPort("receiveRequest");
+        Port port2 = connectionMgr.getProvidingPort("receiveRequest");
         
-        Connection con = server.getConnections().get("receiveRequest");
-        
-        server.removeProvidedConnection(con);
+        server.removeConnection("receiveRequest");
         cs.addBinding("receiveRequest", port1, port2);
     }
 }

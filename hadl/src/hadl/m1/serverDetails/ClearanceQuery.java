@@ -1,6 +1,6 @@
 package hadl.m1.serverDetails;
 
-import hadl.m2.Link;
+import hadl.m1.Call;
 import hadl.m2.Message;
 import hadl.m2.connector.AtomicConnector;
 import hadl.m2.connector.Role;
@@ -15,8 +15,8 @@ public class ClearanceQuery extends AtomicConnector {
         }
         
         @Override
-        public void receive(Message msg, final Link link) {
-            receiverRole.receive(msg, null);
+        public void receive(Message msg) {
+            receiverRole.receive(msg);
         }
     }
     
@@ -27,7 +27,7 @@ public class ClearanceQuery extends AtomicConnector {
         }
         
         @Override
-        public void receive(Message msg, final Link link) {
+        public void receive(Message msg) {
             if (this.attachment != null) {
                 this.attachment.send(this, msg);
             }
