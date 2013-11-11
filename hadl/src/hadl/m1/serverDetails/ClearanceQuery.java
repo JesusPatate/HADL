@@ -10,35 +10,52 @@ public class ClearanceQuery extends AtomicConnector {
     
     class ClearanceQuerySender extends Role {
         
-        public ClearanceQuerySender(String label) {
-            super(label);
+        public ClearanceQuerySender() {
+            super("sender");
         }
         
         @Override
         public void receive(Message msg) {
-            receiverRole.receive(msg);
+            Call call = (Call) msg;
+            String service = call.getCalledService();
+            
+            if(service.equals("receiveAuthorization")) {
+                if(this.attachment != null) {
+                    this.attachment.send(this, msg);
+                }
+            }
+            else {
+                receiverRole.receive(msg);
+            }
         }
     }
     
     class ClearanceQueryReceiver extends Role {
         
-        public ClearanceQueryReceiver(String label) {
-            super(label);
+        public ClearanceQueryReceiver() {
+            super("receiver");
         }
         
         @Override
         public void receive(Message msg) {
-            if (this.attachment != null) {
+            Call call = (Call) msg;
+            String service = call.getCalledService();
+            
+            if(service.equals("receiveAuthorization")) {
+                ClearanceQuery.this.senderRole.receive(msg);
+            }
+            
+            else if (this.attachment != null) {
                 this.attachment.send(this, msg);
             }
         }
     }
     
     private final ClearanceQuerySender senderRole =
-            new ClearanceQuerySender("sender");
+            new ClearanceQuerySender();
     
     private final ClearanceQueryReceiver receiverRole =
-            new ClearanceQueryReceiver("receiver");
+            new ClearanceQueryReceiver();
     
     public ClearanceQuery(String label) {
         super(label);

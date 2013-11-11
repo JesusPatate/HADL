@@ -2,6 +2,7 @@ package hadl.m1.cs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import hadl.m1.CSMessage;
 import hadl.m1.Call;
@@ -99,8 +100,14 @@ public class CSClient extends AtomicComponent {
     }
     
     public void query(final String query, final String login, final String pwd) {
-        Message queryMsg = new CSMessage("QUERY", "\'" + login + "\',\'"
-                + pwd + "\',\'" + query + "\',\'");
+        Random rand = new Random();
+        Integer id = new Integer(rand.nextInt(100000) + 100000);
+        CSMessage queryMsg = new CSMessage(id.toString());
+        
+        queryMsg.addHeaderElement("type", "QUERY");
+        queryMsg.addBodyElement("query", query);
+        queryMsg.addBodyElement("login", login);
+        queryMsg.addBodyElement("password", pwd);
         
         this.sendRequest(queryMsg);
     }

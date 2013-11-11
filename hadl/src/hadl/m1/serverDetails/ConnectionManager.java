@@ -12,7 +12,9 @@ import hadl.m2.component.ProvidedService;
 import hadl.m2.component.RequiredService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class ConnectionManager extends AtomicComponent {
@@ -37,12 +39,22 @@ public class ConnectionManager extends AtomicComponent {
                         // TODO Gérer appel incorrect
                     }
                     
-                    System.out.println("Le gestionnaire de connection reçoit : "
-                            + call); // DBG
+                    System.out
+                            .println("Le gestionnaire de connection reçoit : "
+                                    + call); // DBG
                     
-                    Message request = (Message) call.getParameters().get(0);
+                    CSMessage query = (CSMessage) call.getParameters().get(0);
                     
-                    ConnectionManager.this.checkSecurity(request);
+                    String msgType = (String) query.getElement(
+                            CSMessage.Part.HEADER, "type");
+                    
+                    String queryID = (String) query.getElement(
+                            CSMessage.Part.HEADER, "id");
+                    
+                    if (msgType.equals("QUERY")) {
+                        ConnectionManager.this.queryBuffer.put(queryID, query);
+                        ConnectionManager.this.checkSecurity(query);
+                    }
                 }
                 else {
                     // TODO Gérer appel incorrect
@@ -71,14 +83,56 @@ public class ConnectionManager extends AtomicComponent {
                         // TODO Gérer appel incorrect
                     }
                     
-                    System.out.println("Le gestionnaire de connection envoie : "
-                            + call); // DBG
+                    System.out
+                            .println("Le gestionnaire de connection envoie : "
+                                    + call); // DBG
                 }
                 else {
                     // TODO Gérer appel incorrect
                 }
             }
         }
+    }
+    
+    class ReceiveAuthorization extends ProvidedService {
+
+        public ReceiveAuthorization() {
+            super("receiveAuthorization");
+        }
+
+        @Override
+        public void receive(Message msg) {
+            boolean wrongParam = false;
+            
+            if (msg.getHeader().equals("CALL")) {
+                Call call = (Call) msg;
+                
+                if (call.getCalledService().equals(this.label)) {
+                    // TODO Vérifier les paramètres
+                    
+                    if (wrongParam) {
+                        // TODO Gérer appel incorrect
+                    }
+                    
+                    System.out.println("Le gestionnaire de connexion reçoit : "
+                            + call); // DBG
+                    
+                    CSMessage response =
+                            (CSMessage) call.getParameters().get(0);
+                    
+                    String msgType = (String) response.getElement(
+                            CSMessage.Part.HEADER, "type");
+                    
+                    if (msgType.equals("AUTHRESP")) {
+                        ConnectionManager.this.queryDatabase(response);
+                    }
+                }
+                else {
+                    // TODO Gérer appel incorrect
+                }
+            }
+        }
+        
     }
     
     class ReceiveResponse extends RequiredService {
@@ -110,9 +164,7 @@ public class ConnectionManager extends AtomicComponent {
         }
         
         @Override
-        public void receive(final Message msg) {
-        }
-        
+        public void receive(final Message msg) {}
     }
     
     class ExternalSocket extends Port {
@@ -172,6 +224,9 @@ public class ConnectionManager extends AtomicComponent {
         }
     }
     
+    private final Map<String, CSMessage> queryBuffer =
+            new HashMap<String, CSMessage>();
+    
     public ConnectionManager(String label) throws NoSuchServiceException,
             NoSuchPortException {
         
@@ -179,6 +234,7 @@ public class ConnectionManager extends AtomicComponent {
         
         RequiredService securityAuth = new SecurityAuthorization();
         ProvidedService receiveRequest = new ReceiveRequest();
+        ProvidedService receiveAuth = new ReceiveAuthorization();
         
         Port externalSocket = new ExternalSocket(this);
         Port securityQuery = new SecurityQuery(this);
@@ -188,35 +244,78 @@ public class ConnectionManager extends AtomicComponent {
         this.addConnection(receiveRequest.getLabel(), receiveRequest,
                 externalSocket);
         
-        this.addRequiredService(securityAuth);
+        this.addProvidedService(receiveAuth);
         this.addPort(securityQuery);
+        this.addConnection(receiveAuth.getLabel(), receiveAuth,
+                securityQuery);
+        
+        this.addRequiredService(securityAuth);
         this.addConnection(securityAuth.getLabel(), securityAuth,
                 securityQuery);
     }
+
+    private void checkSecurity(final CSMessage msg) {
+        String id = (String) msg.getElement(CSMessage.Part.HEADER, "id");
+        String login = (String) msg.getElement(CSMessage.Part.BODY, "login");
+        String pwd = (String) msg.getElement(CSMessage.Part.BODY, "password");
+        
+        CSMessage queryMsg = new CSMessage(id);
+        
+        queryMsg.addHeaderElement("type", "AUTH");
+        queryMsg.addBodyElement("login", login);
+        queryMsg.addBodyElement("password", pwd);
+        
+        List<Object> args = new ArrayList<Object>();
+        args.add(queryMsg);
+        
+        Call call = new RPCCall("securityAuthorization", args);
+        
+        System.out.println("Le gestionnaire de connection envoie : "
+                + call); // DBG
+        
+        try {
+            Port port = getRequestingPort("securityAuthorization");
+            port.receive(call);
+        }
+        catch (NoSuchServiceException e) {
+            // Couldn't be reachable
+        }
+    }
     
-    public void checkSecurity(final Message msg) {
-        if(msg.getHeader().equals("QUERY")) {
-            String login = ((CSMessage) msg).getBodyElement(0);
-            String pwd = ((CSMessage) msg).getBodyElement(1);
+    private void queryDatabase(CSMessage msg) {
+        String id = (String) msg.getElement(CSMessage.Part.HEADER, "id");
+        Boolean auth = (Boolean) msg.getElement(CSMessage.Part.BODY, "auth");
+        
+        if (auth) {
+            CSMessage queryMsg = this.queryBuffer.get(id);
+            String query = (String) queryMsg.getElement(CSMessage.Part.BODY,
+                    "query");
             
-            Message query = new CSMessage("AUTH", "\'" + login + "\',\""
-                    + pwd + "\'");
-            
-            List<Object> args = new ArrayList<Object>();
-            args.add(query);
-            
-            Call call = new RPCCall("securityAuthorization", args);
-            
-            System.out.println("Le gestionnaire de connection envoie : "
-                    + call); // DBG
-            
-            try {
-                Port port = getRequestingPort("securityAuthorization");
-                port.receive(call);
+            if (queryMsg != null) {
+                CSMessage response = new CSMessage(id);
+                
+                response.addHeaderElement("type", "QUERY");
+                response.addBodyElement("query", query);
+                
+                List<Object> args = new ArrayList<Object>();
+                args.add(response);
+                
+                Call call = new RPCCall("handleQuery", args);
+                
+                System.out.println("Le gestionnaire de connexion envoie : " + call); // DBG
+                
+                try {
+                    Port port = getRequestingPort("receiveAuthorization");
+                    port.receive(call);
+                }
+                catch (NoSuchServiceException e) {
+                    // Couldn't be reachable
+                }
             }
-            catch (NoSuchServiceException e) {
-                // Couldn't be reachable
-            }
+        }
+        
+        else {
+            
         }
     }
 }

@@ -8,6 +8,7 @@ import hadl.m1.serverDetails.ClearanceQuery;
 import hadl.m1.serverDetails.ConnectionManager;
 import hadl.m1.serverDetails.Database;
 import hadl.m1.serverDetails.SecurityManager;
+import hadl.m1.serverDetails.SecurityQuery;
 import hadl.m1.serverDetails.ServerDetailsConfiguration;
 import hadl.m2.component.NoSuchPortException;
 import hadl.m2.component.NoSuchServiceException;
@@ -37,13 +38,14 @@ public class Main {
             buildServerDetails();
             buildCS();
             
-            database.addUser("monLogin", "monPwd");
+            String login = "monLogin";
+            String pwd = "monPwd";
+            
+            database.addUser(login, pwd);
             
             // Send SQL query
             
             String query = "SELECT * FROM data";
-            String login = "monLogin";
-            String pwd = "monPwd";
             
             client.query(query, login, pwd);
         }
@@ -78,26 +80,26 @@ public class Main {
         serverDetails.addAttachment("clearanceQueryFA", senderPort,
                 senderRole);
         
-        Port receiverPort =
-                securityMgr.getProvidingPort("securityAuthorization");
+        Port receiverPort = securityMgr.getProvidingPort(
+                "securityAuthorization");
         Role receiverRole = clearanceQuery.getRoles().get("receiver");
         serverDetails.addAttachment("clearanceQueryTA", receiverPort,
                 receiverRole);
         
         // Security query
         
-        // SecurityQuery securityQuery = new SecurityQuery("securityQuery");
-        // serverDetails.addConnector(securityQuery);
-        //
-        // senderPort = securityMgr.getRequestingPort("credentialQuery");
-        // senderRole = securityQuery.getRoles().get("sender");
-        // serverDetails.addAttachment("credentialQueryFA", senderPort,
-        // senderRole);
-        //
-        // receiverPort = database.getProvidingPort("securityManagement");
-        // receiverRole = securityQuery.getRoles().get("receiver");
-        // serverDetails.addAttachment("credentialQueryTA", receiverPort,
-        // receiverRole);
+         SecurityQuery securityQuery = new SecurityQuery("securityQuery");
+         serverDetails.addConnector(securityQuery);
+        
+         senderPort = securityMgr.getRequestingPort("securityManagement");
+         senderRole = securityQuery.getRoles().get("sender");
+         serverDetails.addAttachment("credentialQueryFA", senderPort,
+         senderRole);
+        
+         receiverPort = database.getProvidingPort("securityManagement");
+         receiverRole = securityQuery.getRoles().get("receiver");
+         serverDetails.addAttachment("credentialQueryTA", receiverPort,
+         receiverRole);
     }
     
     private static void buildCS() throws NoSuchServiceException,

@@ -40,10 +40,14 @@ public class SecurityManager extends AtomicComponent {
                     System.out.println("Le gestionnaire de sécurité reçoit : "
                             + call); // DBG
                     
-                    Message queryMsg = (Message) call.getParameters().get(0);
+                    CSMessage query =
+                            (CSMessage) call.getParameters().get(0);
                     
-                    if(queryMsg.getHeader().equals("AUTH")) {
-                        SecurityManager.this.checkCredentials(queryMsg);
+                    String msgType = (String) query.getElement(
+                            CSMessage.Part.HEADER, "type");
+                    
+                    if (msgType.equals("AUTH")) {
+                        SecurityManager.this.checkCredentials(query);
                     }
                 }
                 else {
@@ -53,12 +57,63 @@ public class SecurityManager extends AtomicComponent {
         }
     }
     
-    class CredentialQueryService extends RequiredService {
+    class ReceiveCredAuth extends ProvidedService {
         
-        public CredentialQueryService() {
-            super("credentialQuery");
+        public ReceiveCredAuth() {
+            super("receiveCredentialsAuthentication");
         }
         
+        @Override
+        public void receive(final Message msg) {
+            boolean wrongParam = false;
+            
+            if (msg.getHeader().equals("CALL")) {
+                Call call = (Call) msg;
+                
+                if (call.getCalledService().equals(this.label)) {
+                    // TODO Vérifier les paramètres
+                    
+                    if (wrongParam) {
+                        // TODO Gérer appel incorrect
+                    }
+                    
+                    System.out.println("Le gestionnaire de sécurité reçoit : "
+                            + call); // DBG
+                    
+                    CSMessage queryMsg =
+                            (CSMessage) call.getParameters().get(0);
+                    
+                    String msgType = (String) queryMsg.getElement(
+                            CSMessage.Part.HEADER, "type");
+                    
+                    if (msgType.equals("CREDRESP")) {
+                        SecurityManager.this.sendAuthorization(queryMsg);
+                    }
+                }
+                else {
+                    // TODO Gérer appel incorrect
+                }
+            }
+        }
+    }
+    
+    class SecurityManagement extends RequiredService {
+        
+        public SecurityManagement() {
+            super("securityManagement");
+        }
+        
+        @Override
+        public void receive(Message msg) {
+        }
+    }
+    
+    class ReceiveAuthorization extends RequiredService {
+
+        public ReceiveAuthorization() {
+            super("receiveAuthorization");
+        }
+
         @Override
         public void receive(Message msg) {}
     }
@@ -80,9 +135,9 @@ public class SecurityManager extends AtomicComponent {
         }
     }
     
-    class CredentialQueryPort extends Port {
+    class CredentialQuery extends Port {
         
-        public CredentialQueryPort(final SecurityManager component) {
+        public CredentialQuery(final SecurityManager component) {
             super("credentialQuery");
         }
         
@@ -102,40 +157,84 @@ public class SecurityManager extends AtomicComponent {
         
         super(label);
         
-        RequiredService credentialQuery = new CredentialQueryService();
+        RequiredService securityMgmt = new SecurityManagement();
+        RequiredService receiveAuth = new ReceiveAuthorization();
         ProvidedService securityAuth = new SecurityAuthService();
+        ProvidedService receiveCredAuth = new ReceiveCredAuth();
         
         Port securityAuthPort = new SecurityAuthPort(this);
+        Port credentialQuery = new CredentialQuery(this);
         
         this.addProvidedService(securityAuth);
         this.addPort(securityAuthPort);
         this.addConnection(securityAuth.getLabel(), securityAuth,
                 securityAuthPort);
         
-        this.addRequiredService(credentialQuery);
-        this.addConnection(credentialQuery.getLabel(), credentialQuery,
+        this.addRequiredService(receiveAuth);
+        this.addConnection(receiveAuth.getLabel(), receiveAuth,
                 securityAuthPort);
+        
+        this.addProvidedService(receiveCredAuth);
+        this.addPort(credentialQuery);
+        this.addConnection(receiveCredAuth.getLabel(), receiveCredAuth,
+                credentialQuery);
+        
+        this.addRequiredService(securityMgmt);
+        this.addConnection(securityMgmt.getLabel(), securityMgmt,
+                credentialQuery);
     }
     
-    private void checkCredentials(final Message msg) {
-        Message queryMsg = new CSMessage("CREDQUERY", msg.getBody());
+    private void checkCredentials(final CSMessage msg) {
+        String id = (String) msg.getElement(CSMessage.Part.HEADER, "id");
+        String login = (String) msg.getElement(CSMessage.Part.BODY, "login");
+        String pwd = (String) msg.getElement(CSMessage.Part.BODY, "password");
+        
+        CSMessage queryMsg = new CSMessage(id);
+        
+        queryMsg.addHeaderElement("type", "CREDQUERY");
+        queryMsg.addBodyElement("login", login);
+        queryMsg.addBodyElement("password", pwd);
         
         List<Object> args = new ArrayList<Object>();
         args.add(queryMsg);
         
         Call call = new RPCCall("securityManagement", args);
         
-        System.out.println("Le gestionnaire de sécurité envoie : "
-                + call); // DBG
+        System.out.println("Le gestionnaire de sécurité envoie : " + call); // DBG
         
         try {
             Port port = this.getRequestingPort("securityManagement");
             
-            if(port != null) {
+            if (port != null) {
                 port.receive(call);
             }
         }
-        catch(NoSuchServiceException e) {
+        catch (NoSuchServiceException e) {
+            // Couldn't be reachable
+        }
+    }
+    
+    private void sendAuthorization(CSMessage msg) {
+        String id = (String) msg.getElement(CSMessage.Part.HEADER, "id");
+        Boolean auth = (Boolean) msg.getElement(CSMessage.Part.BODY, "auth");
+        
+        CSMessage response = new CSMessage(id);
+        
+        response.addHeaderElement("type", "AUTHRESP");
+        response.addBodyElement("auth", auth);
+        
+        List<Object> args = new ArrayList<Object>();
+        args.add(response);
+        
+        Call call = new RPCCall("receiveAuthorization", args);
+        
+        System.out.println("Le gestionnaire de sécurité envoie : " + call); // DBG
+        
+        try {
+            Port port = getRequestingPort("receiveAuthorization");
+            port.receive(call);
+        }
+        catch (NoSuchServiceException e) {
             // Couldn't be reachable
         }
     }

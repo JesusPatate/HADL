@@ -49,7 +49,7 @@ public class CSServer extends AtomicComponent {
                         // TODO Gérer appel incorrect
                     }
                     
-                    Message request = (Message) call.getParameters().get(0);
+                    CSMessage request = (CSMessage) call.getParameters().get(0);
                     
                     CSServer.this.sendResponse(request);
                 }
@@ -107,8 +107,7 @@ public class CSServer extends AtomicComponent {
                 port);
     }
 
-    private void sendResponse(Message request) {
-        // TODO Auto-generated method stub
-        
+    private void sendResponse(CSMessage request) {
+        // TODO
     }
 }
