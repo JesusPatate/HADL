@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-abstract class Configuration extends ArchitecturalElement {
+public abstract class Configuration extends ArchitecturalElement {
     
     /**
      * Configuration components

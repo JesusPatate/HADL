@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 import hadl.m1.CSMessage;
-import hadl.m1.Call;
 import hadl.m1.RPCCall;
+import hadl.m2.Call;
 import hadl.m2.Message;
 import hadl.m2.component.AtomicComponent;
 import hadl.m2.component.NoSuchPortException;
@@ -17,17 +17,6 @@ import hadl.m2.component.RequiredService;
 
 
 public class CSClient extends AtomicComponent {
-    
-    class ReceiveRequestService extends RequiredService {
-        
-        public ReceiveRequestService() {
-            super("receiveRequest");
-        }
-        
-        @Override
-        public void receive(final Message msg) {
-        }
-    }
     
     /**
      * Client reception service.
@@ -59,6 +48,16 @@ public class CSClient extends AtomicComponent {
                 }
             }
         }
+    }
+    
+    class ReceiveRequestService extends RequiredService {
+        
+        public ReceiveRequestService() {
+            super("receiveRequest");
+        }
+        
+        @Override
+        public void receive(final Message msg) {}
     }
     
     class SendRequestPort extends Port {

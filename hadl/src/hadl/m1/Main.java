@@ -7,6 +7,7 @@ import hadl.m1.cs.CSServer;
 import hadl.m1.serverDetails.ClearanceQuery;
 import hadl.m1.serverDetails.ConnectionManager;
 import hadl.m1.serverDetails.Database;
+import hadl.m1.serverDetails.SQLQuery;
 import hadl.m1.serverDetails.SecurityManager;
 import hadl.m1.serverDetails.SecurityQuery;
 import hadl.m1.serverDetails.ServerDetailsConfiguration;
@@ -100,6 +101,19 @@ public class Main {
          receiverRole = securityQuery.getRoles().get("receiver");
          serverDetails.addAttachment("credentialQueryTA", receiverPort,
          receiverRole);
+         
+         // SQL query
+         
+         SQLQuery sqlQuery = new SQLQuery();
+         serverDetails.addConnector(sqlQuery);
+         
+         senderPort = connectionMgr.getRequestingPort("handleQuery");
+         senderRole = sqlQuery.getRoles().get("sender");
+         serverDetails.addAttachment("sqlQueryFA", senderPort, senderRole);
+         
+         receiverPort = database.getProvidingPort("handleQuery");
+         receiverRole = sqlQuery.getRoles().get("receiver");
+         serverDetails.addAttachment("sqlQueryTA", receiverPort, receiverRole);
     }
     
     private static void buildCS() throws NoSuchServiceException,

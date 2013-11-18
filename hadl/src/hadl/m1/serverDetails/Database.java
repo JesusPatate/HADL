@@ -1,8 +1,8 @@
 package hadl.m1.serverDetails;
 
 import hadl.m1.CSMessage;
-import hadl.m1.Call;
 import hadl.m1.RPCCall;
+import hadl.m2.Call;
 import hadl.m2.Message;
 import hadl.m2.component.AtomicComponent;
 import hadl.m2.component.NoSuchPortException;
@@ -61,10 +61,60 @@ public class Database extends AtomicComponent {
         }
     }
     
+    class HandleQuery extends ProvidedService {
+        
+        public HandleQuery() {
+            super("handleQuery");
+        }
+        
+        @Override
+        public void receive(final Message msg) {
+            boolean wrongParam = false;
+            
+            if (msg.getHeader().equals("CALL")) {
+                Call call = (Call) msg;
+                
+                if (call.getCalledService().equals(this.label)) {
+                    // TODO Vérifier les paramètres
+                    
+                    if (wrongParam) {
+                        // TODO Gérer appel incorrect
+                    }
+                    
+                    System.out.println("La base de données reçoit : "
+                            + call); // DBG
+                    
+                    CSMessage queryMsg = (CSMessage)
+                            call.getParameters().get(0);
+                    
+                    String msgType = (String) queryMsg.getElement(
+                            CSMessage.Part.HEADER, "type");
+                    
+                    if (msgType.equals("QUERY")) {
+                    	Database.this.sendQueryResponse(queryMsg, "meuh");
+                    }
+                }
+                else {
+                    // TODO Gérer appel incorrect
+                }
+            }
+        }
+    }
+    
     class ReceiveCredAuth extends RequiredService {
 
         public ReceiveCredAuth() {
             super("receiveCredentialsAuthentication");
+        }
+
+        @Override
+        public void receive(Message msg) {}
+    }
+    
+    class ReceiveDBResponse extends RequiredService {
+
+        public ReceiveDBResponse() {
+            super("receiveDBResponse");
         }
 
         @Override
@@ -88,6 +138,23 @@ public class Database extends AtomicComponent {
         }
     }
     
+    class QueryInterface extends Port {
+        
+        public QueryInterface(final Database component) {
+            super("queryInterface");
+        }
+        
+        @Override
+        public void receive(final Message msg) {
+            Call call = (Call) msg;
+            String service = call.getCalledService();
+            
+            if (this.linked(service)) {
+                this.getLink(service).send(this, msg);
+            }
+        }
+    }
+    
     private Map<String, String> users = new HashMap<String, String>();
     
     public Database(String label) throws NoSuchServiceException,
@@ -96,15 +163,25 @@ public class Database extends AtomicComponent {
         super(label);
 
         RequiredService recCredAuth = new ReceiveCredAuth();
+        RequiredService recDBResponse = new ReceiveDBResponse();
         ProvidedService secuMgmt = new SecurityManagementService();
-        Port port = new SecurityManagementPort(this);
+        ProvidedService handleQuery = new HandleQuery();
+        Port securityPort = new SecurityManagementPort(this);
+        Port queryPort = new QueryInterface(this);
         
         this.addProvidedService(secuMgmt);
-        this.addPort(port);
-        this.addConnection(secuMgmt.getLabel(), secuMgmt, port);
+        this.addPort(securityPort);
+        this.addConnection(secuMgmt.getLabel(), secuMgmt, securityPort);
+        
+        this.addProvidedService(handleQuery);
+        this.addPort(queryPort);
+        this.addConnection(handleQuery.getLabel(), handleQuery, queryPort);
         
         this.addRequiredService(recCredAuth);
-        this.addConnection(recCredAuth.getLabel(), recCredAuth, port);
+        this.addConnection(recCredAuth.getLabel(), recCredAuth, securityPort);
+        
+        this.addRequiredService(recDBResponse);
+        this.addConnection(recDBResponse.getLabel(), recDBResponse, queryPort);
     }
 
     public boolean addUser(final String login, final String pwd) {
@@ -172,6 +249,30 @@ public class Database extends AtomicComponent {
         
         try {
             Port port = getRequestingPort("receiveCredentialsAuthentication");
+            port.receive(call);
+        }
+        catch (NoSuchServiceException e) {
+            // Couldn't be reachable
+        }
+    }
+    
+    private void sendQueryResponse(CSMessage queryMsg, Object response) {
+        String id = (String) queryMsg.getElement(
+        		CSMessage.Part.HEADER, "id");
+    	
+    	CSMessage responseMsg = new CSMessage(id);
+    	responseMsg.addHeaderElement("type", "QUERYRESP");
+    	responseMsg.addBodyElement("response", response);
+        
+        List<Object> args = new ArrayList<Object>();
+        args.add(responseMsg);
+    	
+    	Call call = new RPCCall("receiveDBResponse", args);
+    	
+    	System.out.println("La base de données envoie : " + call); // DBG
+        
+        try {
+            Port port = getRequestingPort("receiveDBResponse");
             port.receive(call);
         }
         catch (NoSuchServiceException e) {

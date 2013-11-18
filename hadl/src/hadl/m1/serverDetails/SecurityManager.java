@@ -1,8 +1,8 @@
 package hadl.m1.serverDetails;
 
 import hadl.m1.CSMessage;
-import hadl.m1.Call;
 import hadl.m1.RPCCall;
+import hadl.m2.Call;
 import hadl.m2.Message;
 import hadl.m2.component.AtomicComponent;
 import hadl.m2.component.NoSuchPortException;

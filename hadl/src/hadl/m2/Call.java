@@ -1,6 +1,4 @@
-package hadl.m1;
-
-import hadl.m2.Message;
+package hadl.m2;
 
 import java.util.List;
 

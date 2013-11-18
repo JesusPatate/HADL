@@ -1,6 +1,6 @@
 package hadl.m1.serverDetails;
 
-import hadl.m1.Call;
+import hadl.m2.Call;
 import hadl.m2.Message;
 import hadl.m2.connector.AtomicConnector;
 import hadl.m2.connector.Role;
@@ -56,8 +56,8 @@ public class SQLQuery extends AtomicConnector {
     private final SQLQueryReceiver receiverRole =
             new SQLQueryReceiver();
     
-    public SQLQuery(String label) {
-        super(label);
+    public SQLQuery() {
+        super("SQLQuery");
         this.addRole(this.senderRole);
         this.addRole(this.receiverRole);
     }
