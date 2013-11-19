@@ -1,8 +1,12 @@
 package hadl.m2.connector;
 
 import hadl.m2.ArchitecturalElement;
+import hadl.m2.Request;
+import hadl.m2.Response;
+import hadl.m2.service.Service;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 
@@ -15,51 +19,31 @@ import java.util.Map;
  * </p>
  */
 public abstract class Connector extends ArchitecturalElement {
+    private Map<Role, Service> roleToProvided = new HashMap<Role, Service>();
+    private Map<Role, Service> roleToRequired = new HashMap<Role, Service>();
+    private Map<Service, Role> providedToRole = new HashMap<Service, Role>();
+    private Map<Service, Role> requiredToRole = new HashMap<Service, Role>();
+    private Map<Service, Service> providedToRequired = new HashMap<Service, Service>();
     
-    private final Map<String, FromRole> fromRoles =
-            new HashMap<String, FromRole>();
     
-    private final Map<String, ToRole> toRoles = new HashMap<String, ToRole>();
-    
-    /**
-     * Creates a new empty connector.
-     * 
-     * @param label
-     *            Name of the connector
-     */
     public Connector(final String label) {
         super(label);
     }
     
-    public FromRole getFromRole(final String label) {
-        return this.fromRoles.get(label);
-    }
-    
-    public ToRole getToRole(final String label) {
-        return this.toRoles.get(label);
-    }
-    
-    public Map<String, FromRole> getFromRoles() {
-        return new HashMap<String, FromRole>(this.fromRoles);
-    }
-    
-    public Map<String, ToRole> getToRoles() {
-        return new HashMap<String, ToRole>(this.toRoles);
-    }
-    
-    public FromRole addFromRole(final FromRole role) {
-        return this.fromRoles.put(role.getLabel(), role);
-    }
-    
-    public ToRole addToRole(final ToRole role) {
-        return this.toRoles.put(role.getLabel(), role);
-    }
-    
-    public FromRole removeFromRole(final String label) {
-        return this.fromRoles.remove(label);
-    }
-    
-    public ToRole removeToRole(final String label) {
-        return this.toRoles.remove(label);
+    Response receive(Request request){
+    	Service providedService = null;
+    	Iterator<Service> it = providedToRequired.keySet().iterator();
+    	
+    	while(it.hasNext() && providedService == null){
+    		Service currentService = it.next();
+    		
+    		if(currentService.getLabel().equals(request.getService())){
+    			providedService = currentService;
+    		}
+    	}
+    	
+    	Service requiredService = providedToRequired.get(providedService);
+    	Role role = requiredToRole.get(requiredService);
+    	return role.send(request);
     }
 }

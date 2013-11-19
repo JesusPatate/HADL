@@ -5,7 +5,7 @@ import hadl.m2.component.AtomicComponent;
 import hadl.m2.component.NoSuchPortException;
 import hadl.m2.component.NoSuchServiceException;
 import hadl.m2.component.ProvidedPort;
-import hadl.m2.component.ProvidedService;
+import hadl.m2.service.ProvidedService;
 
 import java.util.HashMap;
 import java.util.Map;
