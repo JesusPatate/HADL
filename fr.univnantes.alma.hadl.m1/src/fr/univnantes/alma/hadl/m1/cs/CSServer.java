@@ -6,21 +6,13 @@ import fr.univnantes.alma.hadl.m2.Response;
 import fr.univnantes.alma.hadl.m2.component.AtomicComponent;
 import fr.univnantes.alma.hadl.m2.component.Port;
 import fr.univnantes.alma.hadl.m2.service.ProvidedService;
-import fr.univnantes.alma.hadl.m2.service.Service;
 
 
 public class CSServer extends AtomicComponent {
-    
-    private class ReceiveResponseService extends Service {
-        
-        public ReceiveResponseService() {
-            super("receiveResponse", null, null);
-        }
-    }
-    
     private class ReceiveRequestService extends ProvidedService {
         
-        public ReceiveRequestService() {
+        ReceiveRequestService() {
+        	// TODO: signature à compléter
             super("receiveRequest", null, null);
         }
 
@@ -31,27 +23,12 @@ public class CSServer extends AtomicComponent {
 		}
     }
     
-    private class SendResponseService extends ProvidedService {
-        
-        public SendResponseService() {
-            super("sendResponse", null, null);
-        }
-
-		@Override
-		public Response excecute(Map<String, Object> parameters) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-    }
-    
+    // TODO: comment faire la jonction avec le binding ?
     public CSServer(final String label){
         super(label);
-        Port receiveRequestPort = new Port("receiveRequest");
-        Port sendResponsePort = new Port("sendResponse");
-        Port receiveResponsePort = new Port("receiveResponse");
+        Port receiveRequest = new Port("receiveRequest");
+        ProvidedService provided = new ReceiveRequestService();
         
-        addRequiredConnection(receiveRequestPort, new ReceiveRequestService());
-        addRequiredConnection(receiveResponsePort, new ReceiveResponseService());
-        addProvidedConnection(sendResponsePort, new SendResponseService());
+        addProvidedConnection(receiveRequest, provided);
     }
 }

@@ -13,18 +13,8 @@ public class SecurityManager extends AtomicComponent {
     
     private class SecurityAuthService extends ProvidedService {
         public SecurityAuthService() {
+        	// TODO: signature à compléter
             super("securityAuthorization", null, null);
-        }
-        
-        public void receive(Message msg) {
-            System.out.println("Le gestionnaire de sécurité reçoit : " + msg);
-            
-            if (msg.header.contentEquals("AUTH")) {
-                final String login = msg.getBodyElement(0);
-                final String pwd = msg.getBodyElement(1);
-                
-                credentialQueryService.requestDatabase(login, pwd);
-            }
         }
 
 		@Override
@@ -35,29 +25,18 @@ public class SecurityManager extends AtomicComponent {
     }
     
     private class CredentialQueryService extends Service {
-        
         public CredentialQueryService() {
+        	// TODO: signature à compléter
             super("credentialQuery", null, null);
-        }
-        
-        public void requestDatabase(final String login, final String pwd) {
-            Message query = new Message("CREDQUERY",
-                    "\'" + login + "\',\'" + pwd + "\'");
-            
-            System.out.println("Le gestionnaire de sécurité envoie : " + query); // DBG
-            
-            if (this.connection != null) {
-                this.connection.send(this, query);
-            }
         }
     }
     
     public SecurityManager(String label){
         super(label);
-        Port securityAuthorizationPort = new Port("securityAuthorization");
-        Port credentialQueryPort = new Port("credentialQuery");
+        Port securityAuthorization = new Port("securityAuthorization");
+        Port credentialQuery = new Port("credentialQuery");
         
-        addProvidedConnection(securityAuthorizationPort, new SecurityAuthService());
-        addRequiredConnection(credentialQueryPort, new CredentialQueryService());
+        addProvidedConnection(securityAuthorization, new SecurityAuthService());
+        addRequiredConnection(credentialQuery, new CredentialQueryService());
     }
 }

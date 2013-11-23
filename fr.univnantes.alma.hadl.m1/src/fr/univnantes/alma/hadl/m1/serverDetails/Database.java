@@ -7,53 +7,22 @@ import fr.univnantes.alma.hadl.m2.Response;
 import fr.univnantes.alma.hadl.m2.component.AtomicComponent;
 import fr.univnantes.alma.hadl.m2.component.Port;
 import fr.univnantes.alma.hadl.m2.service.ProvidedService;
+import fr.univnantes.alma.hadl.m2.service.Service;
 
 
 public class Database extends AtomicComponent {
     
-    private class SecurityManagementService extends ProvidedService {
-        
+    private class SecurityManagementService extends Service {
         public SecurityManagementService() {
+        	// TODO: signature à compléter
             super("securityManagement", null, null);
         }
-        
-        @Override
-        public void receive(Message msg) {
-            System.out.println("La BD reçoit : " + msg); // DBG
-            
-            check(msg);
-        }
-
-		@Override
-		public Response excecute(Map<String, Object> parameters) {
-			// TODO Auto-generated method stub
-			return null;
-		}
     }
     
-    private class ManageUsersService extends ProvidedService {
-
-        public ManageUsersService() {
+    private class QueryService extends ProvidedService {
+        public QueryService() {
+        	// TODO: signature à compléter
             super("manageUsers", null, null);
-        }
-
-        @Override
-        public void receive(Message msg) {
-            System.out.println("La BD reçoit : " + msg); // DBG
-            
-            if (msg.header.contentEquals("ADMQUERY")) {
-                String operation = msg.getBodyElement(0);
-                
-                final String login = msg.getBodyElement(1);
-                final String pwd = msg.getBodyElement(2);
-                
-                if(operation.contentEquals("add")) {
-                    addUser(login, pwd);
-                }
-                else if (operation.contentEquals("delete")) {
-                    deleteUser(login, pwd);
-                }
-            }
         }
 
 		@Override
@@ -67,14 +36,14 @@ public class Database extends AtomicComponent {
     
     public Database(String label){
         super(label);
-        Port securityManagementPort = new Port("securityManagement");
-        Port manageUsersPort = new Port("manageUsers");
+        Port securityManagement = new Port("securityManagement");
+        Port query = new Port("query");
         
-        addProvidedConnection(securityManagementPort, new SecurityManagementService());
-        addProvidedConnection(manageUsersPort, new ManageUsersService());
+        addRequiredConnection(securityManagement, new SecurityManagementService());
+        addProvidedConnection(query, new QueryService());
     }
     
-    private boolean addUser(final String login, final String pwd) {
+    /*private boolean addUser(final String login, final String pwd) {
         boolean res = false;
         
         String output = this.users.get(login);
@@ -121,5 +90,5 @@ public class Database extends AtomicComponent {
         }
         
         return res;
-    }
+    }*/
 }

@@ -7,22 +7,22 @@ import fr.univnantes.alma.hadl.m2.service.NotConnectedServiceException;
 import fr.univnantes.alma.hadl.m2.service.Service;
 
 
-public class SecurityQuery extends AtomicConnector {
-	private class SecurityManagerService extends Service {
-		SecurityManagerService() {
+public class ClearanceRequest extends AtomicConnector {
+	private class ClearanceRequestService extends Service {
+		ClearanceRequestService() {
 			// TODO: signature à compléter
-			super("securityManager", null, null);
+			super("clearanceRequest", null, null);
 		}
     }
 	
-    public SecurityQuery(String label) {
+    public ClearanceRequest(String label) {
         super(label);
         Role requestor = new Role("requestor");
-        Role securityManager = new Role("securityManager");
-        SecurityManagerService required = new SecurityManagerService();
-        SecurityManagerService provided = new SecurityManagerService();
+        Role grantor = new Role("grantor");
+        ClearanceRequestService required = new ClearanceRequestService();
+        ClearanceRequestService provided = new ClearanceRequestService();
         
-        addRequiredService(securityManager, required);
+        addRequiredService(grantor, required);
         try {
 			addProvidedService(requestor, provided, required);
 		} catch (NotConnectedServiceException e) {

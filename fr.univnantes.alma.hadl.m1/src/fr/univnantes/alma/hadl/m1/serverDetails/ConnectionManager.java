@@ -13,19 +13,10 @@ import fr.univnantes.alma.hadl.m2.service.Service;
 
 public class ConnectionManager extends AtomicComponent {
     
-    private class ReceiveRequest extends ProvidedService {
-        
-        public ReceiveRequest() {
+    private class ReceiveRequestService extends ProvidedService {
+    	// TODO: signature à compléter
+        public ReceiveRequestService() {
             super("receiveRequest", null, null);
-        }
-        
-        @Override
-        public void receive(final Message msg) {
-            System.out.println("Le gestionnaire de connection reçoit : " + msg);
-            
-            if (msg.header.contentEquals("QUERY")) {
-                getAuthorization(msg);
-            }
         }
 
 		@Override
@@ -35,16 +26,10 @@ public class ConnectionManager extends AtomicComponent {
 		}
     }
     
-    private class ReceiveResponse extends Service {
-        
-        public ReceiveResponse() {
-            super("", null, null);
-        }
-    }
-    
     private class HandleQuery extends Service {
         
         public HandleQuery() {
+        	// TODO: signature à compléter
         	super("handleQuery", null, null);
         }
     }
@@ -52,25 +37,26 @@ public class ConnectionManager extends AtomicComponent {
     private class SecurityAuthorization extends Service {
         
         public SecurityAuthorization() {
+        	// TODO: signature à compléter
         	super("securityAuthorization", null, null);
         }        
     }
     
     public ConnectionManager(String label){
         super(label);
-        Port externalSocketPro = new Port("externalSocket");
-        Port securityQueryPort = new Port("securityQuery");
-        Port dbQueryPort = new Port("dbQuery");
+        Port externalSocket = new Port("externalSocket");
+        Port securityCheck = new Port("securityCheck");
+        Port dbQuery = new Port("dbQuery");
         
-        addProvidedConnection(externalSocketPro, new ReceiveRequest());
-        addRequiredConnection(securityQueryPort, new SecurityAuthorization());
-        addRequiredConnection(dbQueryPort, new HandleQuery());
+        addProvidedConnection(externalSocket, new ReceiveRequestService());
+        addRequiredConnection(securityCheck, new SecurityAuthorization());
+        addRequiredConnection(dbQuery, new HandleQuery());
     }
     
-    private void getAuthorization(final Message msg) {
+    /*private void getAuthorization(final Message msg) {
         int idx = msg.body.lastIndexOf(',');
         Message query = new Message("AUTH", msg.body.substring(0, idx));
         
         this.securityAuth.receive(query);
-    }
+    }*/
 }

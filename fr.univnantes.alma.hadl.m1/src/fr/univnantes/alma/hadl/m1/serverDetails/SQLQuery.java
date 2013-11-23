@@ -6,25 +6,24 @@ import fr.univnantes.alma.hadl.m2.service.IncompatibleServiceException;
 import fr.univnantes.alma.hadl.m2.service.NotConnectedServiceException;
 import fr.univnantes.alma.hadl.m2.service.Service;
 
-
-public class SecurityQuery extends AtomicConnector {
-	private class SecurityManagerService extends Service {
-		SecurityManagerService() {
+public class SQLQuery extends AtomicConnector {
+	private class SQLQueryService extends Service {
+		SQLQueryService() {
 			// TODO: signature à compléter
-			super("securityManager", null, null);
+			super("sqlQuery", null, null);
 		}
     }
 	
-    public SecurityQuery(String label) {
+    public SQLQuery(String label) {
         super(label);
-        Role requestor = new Role("requestor");
-        Role securityManager = new Role("securityManager");
-        SecurityManagerService required = new SecurityManagerService();
-        SecurityManagerService provided = new SecurityManagerService();
+        Role caller = new Role("caller");
+        Role callee = new Role("callee");
+        SQLQueryService required = new SQLQueryService();
+        SQLQueryService provided = new SQLQueryService();
         
-        addRequiredService(securityManager, required);
+        addRequiredService(callee, required);
         try {
-			addProvidedService(requestor, provided, required);
+			addProvidedService(caller, provided, required);
 		} catch (NotConnectedServiceException e) {
 			e.printStackTrace();
 		} catch (IncompatibleServiceException e) {
