@@ -10,7 +10,7 @@ import fr.univnantes.alma.hadl.m2.Response;
  * A service provided by a component.
  */
 public abstract class ProvidedService extends Service {
-    public ProvidedService(final String label, final String returnType, final Map<String, String> parameters) {
+    public ProvidedService(final String label, final Class<?> returnType, final Map<String, Class<?>> parameters) {
         super(label, returnType, parameters);
     }
     

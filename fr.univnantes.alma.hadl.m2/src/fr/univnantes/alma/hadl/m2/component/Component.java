@@ -72,7 +72,7 @@ public abstract class Component extends ArchitecturalElement{
     	
     	addProvidedService(service);
     	portToProvided.get(port).add(service);
-    	providedToPort.put(service, null);
+    	providedToPort.put(service, port);
     }
         
     protected Response send(Request request){

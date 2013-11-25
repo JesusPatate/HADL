@@ -19,4 +19,9 @@ public class Request {
 	public Map<String, Object> getParameters(){
 		return new HashMap<String, Object>(parameters);
 	}
+	
+	@Override
+	public String toString() {
+	    return String.format("%s(%s)", service, parameters);
+	}
 }

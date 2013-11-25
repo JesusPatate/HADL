@@ -1,34 +1,64 @@
 package fr.univnantes.alma.hadl.m1.cs;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import fr.univnantes.alma.hadl.m1.DBRequest;
+import fr.univnantes.alma.hadl.m2.Request;
 import fr.univnantes.alma.hadl.m2.Response;
 import fr.univnantes.alma.hadl.m2.component.AtomicComponent;
 import fr.univnantes.alma.hadl.m2.component.Port;
 import fr.univnantes.alma.hadl.m2.service.ProvidedService;
+import fr.univnantes.alma.hadl.m2.service.Service;
 
 
 public class CSServer extends AtomicComponent {
-    private class ReceiveRequestService extends ProvidedService {
+    
+    private static final Map<String, Class<?>> PARAMETERS =
+            new HashMap<String, Class<?>>();
+    
+    static {
+        PARAMETERS.put("request", DBRequest.class);
+    }
+    
+    private class ReceiveRequest extends ProvidedService {
         
-        ReceiveRequestService() {
-        	// TODO: signature à compléter
-            super("receiveRequest", null, null);
+        ReceiveRequest() {
+            super("receiveRequest", DBResponse.class, PARAMETERS);
         }
 
 		@Override
 		public Response excecute(Map<String, Object> parameters) {
-			// TODO Auto-generated method stub
-			return null;
+			Request req = new Request("internalReceiveRequest", parameters);
+			
+			System.out.println("DBG send request : " + req); // DBG
+			
+			List<String> values = new ArrayList<String>();
+			values.add("pouet");
+			Response resp = new Response(new DBResponse(values));
+			
+//			return send(req);
+			return resp;
 		}
     }
     
-    // TODO: comment faire la jonction avec le binding ?
+    private class InternalReceiveRequest  extends Service {
+        
+        public InternalReceiveRequest() {
+            super("internalReceiveRequest", DBResponse.class, PARAMETERS);
+        }
+    }
+    
     public CSServer(final String label){
         super(label);
         Port receiveRequest = new Port("receiveRequest");
-        ProvidedService provided = new ReceiveRequestService();
+        Port internalConfiguration = new Port("internalConfiguration");
+        ProvidedService provided = new ReceiveRequest();
+        Service internalService = new InternalReceiveRequest(); 
         
         addProvidedConnection(receiveRequest, provided);
+        addRequiredConnection(internalConfiguration, internalService);
     }
 }

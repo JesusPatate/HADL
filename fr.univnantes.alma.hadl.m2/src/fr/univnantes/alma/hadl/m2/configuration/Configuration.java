@@ -57,16 +57,20 @@ public abstract class Configuration extends ArchitecturalElement {
         connectors.add(con);
     }
     
-    // vérifier que les services sont bien compatibles
+    // TODO vérifier que les services sont bien compatibles
     public void addAttachment(final Port port, final Role role){
         prAttachements.put(port, role);
         rpAttachements.put(role, port);
+        port.setConfiguration(this);
+        role.setConfiguration(this);
     }
     
-    // vérifier que les services sont bien compatibles
+    // TODO vérifier que les services sont bien compatibles
     public void addBinding(final Port configPort, final Port compPort){
     	bindings.put(configPort, compPort);
     	bindings.put(compPort, configPort);
+        compPort.setConfiguration(this);
+        configPort.setConfiguration(this);
     }
     
     public Response receive(Port port, Request request){

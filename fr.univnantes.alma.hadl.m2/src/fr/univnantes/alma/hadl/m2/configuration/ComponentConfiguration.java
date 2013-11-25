@@ -1,9 +1,14 @@
 package fr.univnantes.alma.hadl.m2.configuration;
 
+import fr.univnantes.alma.hadl.m2.Request;
+import fr.univnantes.alma.hadl.m2.Response;
 import fr.univnantes.alma.hadl.m2.component.AtomicComponent;
 import fr.univnantes.alma.hadl.m2.component.Component;
+import fr.univnantes.alma.hadl.m2.component.Port;
 import fr.univnantes.alma.hadl.m2.connector.AtomicConnector;
+import fr.univnantes.alma.hadl.m2.connector.Role;
 
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -49,5 +54,31 @@ public class ComponentConfiguration extends Component {
      */
     public Set<AtomicConnector> getConnectors() {
         return this.config.getConnectors();
+    }
+    
+    public void addComponent(final AtomicComponent comp){
+        this.config.addComponent(comp);
+    }
+    
+    public void addConnector(final AtomicConnector con){
+        this.config.addConnector(con);
+    }
+    
+    // TODO vérifier que les services sont bien compatibles
+    public void addAttachment(final Port port, final Role role){
+        this.config.addAttachment(port, role);
+    }
+    
+    // TODO vérifier que les services sont bien compatibles
+    public void addBinding(final Port configPort, final Port compPort){
+        this.config.addBinding(configPort, compPort);
+    }
+    
+    public Response receive(Port port, Request request){
+        return this.config.receive(port, request);
+    }
+    
+    public Response receive(Role role, Request request){
+        return this.receive(role, request);
     }
 }

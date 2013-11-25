@@ -6,7 +6,7 @@ import fr.univnantes.alma.hadl.m2.connector.Connector;
 
 import java.util.Set;
 
-
+// TODO Rajouter les methodes de la config 
 public class ConnectorConfiguration extends Connector {
     
     /**
