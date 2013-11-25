@@ -1,8 +1,14 @@
 package fr.univnantes.alma.hadl.m1.serverDetails;
 
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
+import fr.univnantes.alma.hadl.m1.DBRequest;
+import fr.univnantes.alma.hadl.m1.cs.DBResponse;
+import fr.univnantes.alma.hadl.m2.Request;
 import fr.univnantes.alma.hadl.m2.Response;
 import fr.univnantes.alma.hadl.m2.component.AtomicComponent;
 import fr.univnantes.alma.hadl.m2.component.Port;
@@ -12,33 +18,59 @@ import fr.univnantes.alma.hadl.m2.service.Service;
 
 
 public class ConnectionManager extends AtomicComponent {
+	
+	private static final Map<String, Class<?>> RECEIVE_REQUEST_PARAMS =
+            new HashMap<String, Class<?>>();
+	
+	private static final Map<String, Class<?>> SECURITY_AUTHORIZATION_PARAMS =
+            new HashMap<String, Class<?>>();
+    
+    static {
+        RECEIVE_REQUEST_PARAMS.put("request", DBRequest.class);
+        SECURITY_AUTHORIZATION_PARAMS.put("login", String.class);
+        SECURITY_AUTHORIZATION_PARAMS.put("password", String.class);
+    }
     
     private class ReceiveRequestService extends ProvidedService {
-    	// TODO: signature à compléter
         public ReceiveRequestService() {
-            super("receiveRequest", null, null);
+            super("receiveRequest", DBResponse.class, RECEIVE_REQUEST_PARAMS);
         }
 
 		@Override
 		public Response excecute(Map<String, Object> parameters) {
-			// TODO Auto-generated method stub
-			return null;
+			Response resp = null;
+			Map<String, Object> authParameters = new HashMap<String, Object>();
+			authParameters.put("login", parameters.get("login"));
+			authParameters.put("password", parameters.get("password"));
+			Request authRequest = new Request("securityAuthorization", authParameters);
+			resp = send(authRequest);
+			boolean authorized = (Boolean) resp.getValue();
+			
+			if(authorized){
+				resp = send(new Request("handleQuery", parameters));
+			}
+			else{
+				List<Object> values = new LinkedList<Object>();
+				values.add("Not authorized to access to server");
+				DBResponse dbResp = new DBResponse(values, true);
+				resp = new Response(dbResp);
+			}
+			
+			return resp;
 		}
     }
     
     private class HandleQuery extends Service {
         
         public HandleQuery() {
-        	// TODO: signature à compléter
-        	super("handleQuery", null, null);
+        	super("handleQuery", DBResponse.class, RECEIVE_REQUEST_PARAMS);
         }
     }
     
     private class SecurityAuthorization extends Service {
         
         public SecurityAuthorization() {
-        	// TODO: signature à compléter
-        	super("securityAuthorization", null, null);
+        	super("securityAuthorization", boolean.class, SECURITY_AUTHORIZATION_PARAMS);
         }        
     }
     
@@ -52,11 +84,4 @@ public class ConnectionManager extends AtomicComponent {
         addRequiredConnection(securityCheck, new SecurityAuthorization());
         addRequiredConnection(dbQuery, new HandleQuery());
     }
-    
-    /*private void getAuthorization(final Message msg) {
-        int idx = msg.body.lastIndexOf(',');
-        Message query = new Message("AUTH", msg.body.substring(0, idx));
-        
-        this.securityAuth.receive(query);
-    }*/
 }

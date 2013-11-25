@@ -6,13 +6,24 @@ import java.util.List;
 
 public class DBResponse {
     
-    private final List<String> values;
+	// if error occured, the error message is the only object in value list.
+	private final boolean error; 
+    private final List<Object> values;
     
-    public DBResponse(final List<String> values) {
+    public DBResponse(final List<Object> values, boolean error) {
+    	this.error = error;
         this.values = values;
     }
+    
+    public DBResponse(final List<Object> values) {
+    	this(values, false);
+    }
 
-    public List<String> getValues() {
-        return new ArrayList<String>(values);
+    public List<Object> getValues() {
+        return new ArrayList<Object>(values);
+    }
+    
+    public boolean getError() {
+        return error;
     }
 }

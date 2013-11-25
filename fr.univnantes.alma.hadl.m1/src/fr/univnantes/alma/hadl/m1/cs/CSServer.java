@@ -35,7 +35,7 @@ public class CSServer extends AtomicComponent {
 			
 			System.out.println("DBG send request : " + req); // DBG
 			
-			List<String> values = new ArrayList<String>();
+			List<Object> values = new ArrayList<Object>();
 			values.add("pouet");
 			Response resp = new Response(new DBResponse(values));
 			
