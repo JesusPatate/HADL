@@ -19,9 +19,8 @@ public class Role extends Interface{
     	this.connector = connector;
     }
     
-    @Override
-	protected Response send(Request request){
-    	return configuration.receive(this, request);
+    public Connector getConnector() {
+    	return this.connector;
     }
     
     @Override

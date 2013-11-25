@@ -1,6 +1,5 @@
++ distinguer bindings composant interne / configuration et composant / configuration interne
 + Commenter
 + Tester
-+ Vérifier si requête compatible et quand/où ?
 + Vérifier si les connexions sont biens faites ?
-+ les configs à compléter
-+ rajouter un moniteur pour observer le parcour ?
++ Vérifier la validité des bindings/attachements

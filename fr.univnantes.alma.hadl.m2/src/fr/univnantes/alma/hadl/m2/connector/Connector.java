@@ -8,6 +8,7 @@ import java.util.Set;
 import fr.univnantes.alma.hadl.m2.ArchitecturalElement;
 import fr.univnantes.alma.hadl.m2.Request;
 import fr.univnantes.alma.hadl.m2.Response;
+import fr.univnantes.alma.hadl.m2.configuration.Configuration;
 import fr.univnantes.alma.hadl.m2.service.IncompatibleServiceException;
 import fr.univnantes.alma.hadl.m2.service.NotConnectedServiceException;
 import fr.univnantes.alma.hadl.m2.service.Service;
@@ -44,8 +45,14 @@ public abstract class Connector extends ArchitecturalElement {
     
     private Glue glue = new Glue();
     
+    private Configuration configuration = null;
+    
     public Connector(final String label) {
         super(label);
+    }
+    
+    public void setConfiguration(final Configuration config) {
+    	this.configuration = config;
     }
     
     public Set<Role> getRoles() {
@@ -106,7 +113,7 @@ public abstract class Connector extends ArchitecturalElement {
         Role role = providedToRole.get(equivalent);
         Request transformedReq =
                 glue.getTransformedRequest(service, request);
-        return role.send(transformedReq);
+        return this.configuration.receive(role, transformedReq);
     }
     
     public Role getProvidingRole(final String service) {

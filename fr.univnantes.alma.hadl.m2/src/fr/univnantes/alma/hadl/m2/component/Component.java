@@ -8,6 +8,7 @@ import java.util.Set;
 import fr.univnantes.alma.hadl.m2.ArchitecturalElement;
 import fr.univnantes.alma.hadl.m2.Request;
 import fr.univnantes.alma.hadl.m2.Response;
+import fr.univnantes.alma.hadl.m2.configuration.Configuration;
 import fr.univnantes.alma.hadl.m2.service.ProvidedService;
 import fr.univnantes.alma.hadl.m2.service.Service;
 
@@ -22,9 +23,14 @@ public abstract class Component extends ArchitecturalElement{
     private Map<ProvidedService, Port> providedToPort = new HashMap<ProvidedService, Port>();
     private Map<Port, Set<Service>> portToRequired = new HashMap<Port, Set<Service>>();
     private Map<Service, Port> requiredToPort = new HashMap<Service, Port>();
+    protected Configuration configuration = null;
 	
     public Component(final String label){
         super(label);
+    }
+    
+    public void setConfiguration(final Configuration config) {
+    	this.configuration = config;
     }
     
     public Set<Service> getProvidedServices(){
@@ -84,13 +90,13 @@ public abstract class Component extends ArchitecturalElement{
     	}
     	else if(requiredServices.containsKey(service)){
     		Port port = getRequestingPort(service);
-    		resp = port.send(request);
+    		resp = configuration.receive(port, request);
     	}
     	
     	return resp;
     }
     
-    Response receive(Request request){
+    Response receive(Request request) {
     	ProvidedService service = providedServices.get(request.getService());
     	return service.excecute(request.getParameters());
     }

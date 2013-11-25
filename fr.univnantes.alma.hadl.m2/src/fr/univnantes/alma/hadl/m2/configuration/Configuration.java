@@ -51,6 +51,7 @@ public abstract class Configuration extends ArchitecturalElement {
     
     public void addComponent(final AtomicComponent comp){
         components.add(comp);
+        comp.setConfiguration(this);
     }
     
     public void addConnector(final AtomicConnector con){
@@ -61,16 +62,12 @@ public abstract class Configuration extends ArchitecturalElement {
     public void addAttachment(final Port port, final Role role){
         prAttachements.put(port, role);
         rpAttachements.put(role, port);
-        port.setConfiguration(this);
-        role.setConfiguration(this);
     }
     
     // TODO vérifier que les services sont bien compatibles
     public void addBinding(final Port configPort, final Port compPort){
     	bindings.put(configPort, compPort);
     	bindings.put(compPort, configPort);
-        compPort.setConfiguration(this);
-        configPort.setConfiguration(this);
     }
     
     public Response receive(Port port, Request request){
@@ -87,6 +84,13 @@ public abstract class Configuration extends ArchitecturalElement {
     }
     
     public Response receive(Role role, Request request){
-    	return rpAttachements.get(role).receive(request);
+    	Port port = rpAttachements.get(role);
+    	Response resp = port.receive(request);
+    	
+    	if(!resp.getProcessed()) {  // La requête doit être traitée par le composite
+    		resp = bindings.get(port).receive(request);
+    	}
+    	
+    	return resp;
     }
 }

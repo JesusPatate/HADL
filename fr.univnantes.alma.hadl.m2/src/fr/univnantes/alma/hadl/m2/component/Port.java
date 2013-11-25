@@ -17,9 +17,8 @@ public class Port extends Interface{
     	this.component = component;
     }
     
-    @Override
-	protected Response send(Request request){
-    	return configuration.receive(this, request);
+    public Component getComponent() {
+    	return this.component;
     }
     
     @Override

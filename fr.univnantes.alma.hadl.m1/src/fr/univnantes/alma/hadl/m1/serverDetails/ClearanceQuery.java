@@ -22,7 +22,7 @@ public class ClearanceQuery extends AtomicConnector {
 	
 	private class SecurityAuthorization extends Service {
 		SecurityAuthorization() {
-			super("clearanceRequest", boolean.class, SECURITY_AUTHORIZATION_PARAMS);
+			super("securityAuthorization", boolean.class, SECURITY_AUTHORIZATION_PARAMS);
 		}
     }
 	

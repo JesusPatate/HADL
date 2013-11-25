@@ -19,7 +19,7 @@ import java.util.Set;
  * A component which holds an internal configuration.
  * </p>
  */
-public class ComponentConfiguration extends Component {
+public abstract class ComponentConfiguration extends Component {
     
     /**
      * Internal configuration
