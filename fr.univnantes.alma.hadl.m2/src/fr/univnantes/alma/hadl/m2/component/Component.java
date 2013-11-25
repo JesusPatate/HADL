@@ -96,7 +96,7 @@ public abstract class Component extends ArchitecturalElement{
     	return resp;
     }
     
-    Response receive(Request request) {
+    protected Response receive(Request request) {
     	ProvidedService service = providedServices.get(request.getService());
     	return service.excecute(request.getParameters());
     }

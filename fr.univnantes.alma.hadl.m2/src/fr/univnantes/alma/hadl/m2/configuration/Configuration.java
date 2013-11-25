@@ -56,6 +56,7 @@ public abstract class Configuration extends ArchitecturalElement {
     
     public void addConnector(final AtomicConnector con){
         connectors.add(con);
+        con.setConfiguration(this);
     }
     
     // TODO vérifier que les services sont bien compatibles

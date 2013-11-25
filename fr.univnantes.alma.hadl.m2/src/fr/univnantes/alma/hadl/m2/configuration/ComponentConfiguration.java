@@ -1,5 +1,7 @@
 package fr.univnantes.alma.hadl.m2.configuration;
 
+import java.util.Set;
+
 import fr.univnantes.alma.hadl.m2.Request;
 import fr.univnantes.alma.hadl.m2.Response;
 import fr.univnantes.alma.hadl.m2.component.AtomicComponent;
@@ -7,10 +9,10 @@ import fr.univnantes.alma.hadl.m2.component.Component;
 import fr.univnantes.alma.hadl.m2.component.Port;
 import fr.univnantes.alma.hadl.m2.connector.AtomicConnector;
 import fr.univnantes.alma.hadl.m2.connector.Role;
+import fr.univnantes.alma.hadl.m2.service.ProvidedService;
 
-import java.util.HashSet;
-import java.util.Set;
 
+// TODO: passage de la config haut niveau vers la config bas niveau
 
 /**
  * A composite component.
@@ -75,10 +77,18 @@ public abstract class ComponentConfiguration extends Component {
     }
     
     public Response receive(Port port, Request request){
+    	System.out.println("config interne");
         return this.config.receive(port, request);
     }
     
     public Response receive(Role role, Request request){
         return this.receive(role, request);
+    }
+    
+    protected Response receive(Request request) {
+    	/*ProvidedService service = providedServices.get(request.getService());
+    	return service.excecute(request.getParameters());*/
+    	Port port = getProvidingPort(request.getService());
+    	return config.receive(port, request);
     }
 }

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import fr.univnantes.alma.hadl.m1.DBRequest;
+import fr.univnantes.alma.hadl.m1.DBResponse;
 import fr.univnantes.alma.hadl.m2.connector.AtomicConnector;
 import fr.univnantes.alma.hadl.m2.connector.Role;
 import fr.univnantes.alma.hadl.m2.service.IncompatibleServiceException;

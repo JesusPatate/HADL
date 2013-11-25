@@ -82,7 +82,7 @@ public class Main {
         
         // Binding
         
-        Port configPort = serverDetails.getRequestingPort("receiveRequest");
+        Port configPort = serverDetails.getProvidingPort("receiveRequest");
         Port conMgrPort = connectionMgr.getProvidingPort("receiveRequest");
         serverDetails.addBinding(configPort, conMgrPort);
     }
@@ -94,6 +94,7 @@ public class Main {
         
         server = new CSServer("server");
         cs.addComponent(server);
+        //cs.addComponent(serverDetails);
         
         CSRPC rpc = new CSRPC("RPC"); // Request
         cs.addConnector(rpc);
@@ -110,8 +111,8 @@ public class Main {
         
         // Binding
         
-        Port configPort = serverDetails.getRequestingPort("receiveRequest");
-        Port conMgrPort = connectionMgr.getProvidingPort("receiveRequest");
-        serverDetails.addBinding(configPort, conMgrPort);
+        Port compositePort = serverDetails.getProvidingPort("receiveRequest");
+        Port componentPort = server.getProvidingPort("receiveRequest");
+        cs.addBinding(compositePort, componentPort);
     }
 }

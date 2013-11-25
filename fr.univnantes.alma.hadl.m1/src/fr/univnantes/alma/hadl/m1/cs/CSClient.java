@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import fr.univnantes.alma.hadl.m1.DBRequest;
+import fr.univnantes.alma.hadl.m1.DBResponse;
 import fr.univnantes.alma.hadl.m2.Request;
 import fr.univnantes.alma.hadl.m2.Response;
 import fr.univnantes.alma.hadl.m2.component.AtomicComponent;
@@ -46,6 +47,7 @@ public class CSClient extends AtomicComponent {
         
         DBResponse dbResp = (DBResponse) resp.getValue();
         
-        System.out.println("Réponse de la BD : " + dbResp.getValues());
+        System.out.println("Réponse de la BD : " + resp.getValue());
+        //System.out.println("Réponse de la BD : " + dbResp.getValues());
     }
 }

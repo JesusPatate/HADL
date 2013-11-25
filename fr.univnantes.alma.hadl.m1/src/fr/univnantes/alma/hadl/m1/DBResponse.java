@@ -1,4 +1,4 @@
-package fr.univnantes.alma.hadl.m1.cs;
+package fr.univnantes.alma.hadl.m1;
 
 import java.util.ArrayList;
 import java.util.List;

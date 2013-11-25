@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import fr.univnantes.alma.hadl.m1.DBRequest;
-import fr.univnantes.alma.hadl.m1.cs.DBResponse;
+import fr.univnantes.alma.hadl.m1.DBResponse;
 import fr.univnantes.alma.hadl.m2.Request;
 import fr.univnantes.alma.hadl.m2.Response;
 import fr.univnantes.alma.hadl.m2.component.AtomicComponent;
