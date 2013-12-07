@@ -8,6 +8,7 @@ import fr.univnantes.alma.hadl.m2.component.AtomicComponent;
 import fr.univnantes.alma.hadl.m2.component.Component;
 import fr.univnantes.alma.hadl.m2.component.Port;
 import fr.univnantes.alma.hadl.m2.connector.AtomicConnector;
+import fr.univnantes.alma.hadl.m2.connector.Connector;
 import fr.univnantes.alma.hadl.m2.connector.Role;
 import fr.univnantes.alma.hadl.m2.service.ProvidedService;
 
@@ -67,8 +68,11 @@ public abstract class ComponentConfiguration extends Component {
     }
     
     // TODO vérifier que les services sont bien compatibles
-    public void addAttachment(final Port port, final Role role){
-        this.config.addAttachment(port, role);
+    public void addAttachment(final Port port, final Component component,
+            final Role role, final Connector connector)
+                    throws IllegalAttachmentException{
+        
+        this.config.addAttachment(port, component, role, connector);
     }
     
     // TODO vérifier que les services sont bien compatibles

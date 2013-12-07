@@ -4,10 +4,14 @@ import fr.univnantes.alma.hadl.m2.ArchitecturalElement;
 import fr.univnantes.alma.hadl.m2.Request;
 import fr.univnantes.alma.hadl.m2.Response;
 import fr.univnantes.alma.hadl.m2.component.AtomicComponent;
+import fr.univnantes.alma.hadl.m2.component.Component;
 import fr.univnantes.alma.hadl.m2.component.Port;
 import fr.univnantes.alma.hadl.m2.connector.AtomicConnector;
+import fr.univnantes.alma.hadl.m2.connector.Connector;
 import fr.univnantes.alma.hadl.m2.connector.Role;
+import fr.univnantes.alma.hadl.m2.service.Service;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -15,10 +19,17 @@ import java.util.Set;
 
 
 public abstract class Configuration extends ArchitecturalElement {
-    private final Set<AtomicComponent> components = new HashSet<AtomicComponent>();
-    private final Set<AtomicConnector> connectors = new HashSet<AtomicConnector>();
+    
+    private final Set<AtomicComponent> components =
+            new HashSet<AtomicComponent>();
+    
+    private final Set<AtomicConnector> connectors =
+            new HashSet<AtomicConnector>();
+    
     private final Map<Port, Port> bindings = new HashMap<Port, Port>();
+    
     private final Map<Role, Port> rpAttachements = new HashMap<Role, Port>();
+    
     private final Map<Port, Role> prAttachements = new HashMap<Port, Role>();
     
     /**
@@ -27,7 +38,7 @@ public abstract class Configuration extends ArchitecturalElement {
      * @param label
      *            Name of the new configuration
      */
-    public Configuration(final String label){
+    public Configuration(final String label) {
         super(label);
     }
     
@@ -36,7 +47,7 @@ public abstract class Configuration extends ArchitecturalElement {
      * 
      * @return A map with entries (label, component)
      */
-    public Set<AtomicComponent> getComponents(){
+    public Set<AtomicComponent> getComponents() {
         return new HashSet<AtomicComponent>(components);
     }
     
@@ -45,53 +56,84 @@ public abstract class Configuration extends ArchitecturalElement {
      * 
      * @return A map with entries (label, connectors)
      */
-    public Set<AtomicConnector> getConnectors(){
+    public Set<AtomicConnector> getConnectors() {
         return new HashSet<AtomicConnector>(connectors);
     }
     
-    public void addComponent(final AtomicComponent comp){
+    public void addComponent(final AtomicComponent comp) {
         components.add(comp);
         comp.setConfiguration(this);
     }
     
-    public void addConnector(final AtomicConnector con){
+    public void addConnector(final AtomicConnector con) {
         connectors.add(con);
         con.setConfiguration(this);
     }
     
     // TODO vérifier que les services sont bien compatibles
-    public void addAttachment(final Port port, final Role role){
+    public void addAttachment(final Port port, final Component component,
+            final Role role, final Connector connector)
+            throws IllegalAttachmentException {
+        
+//        this.checkAttachment(port, component, role, connector);
         prAttachements.put(port, role);
         rpAttachements.put(role, port);
     }
     
+    private void checkAttachment(Port port, Component component, Role role,
+            Connector connector) throws IllegalAttachmentException {
+        
+        Set<Service> portProServices = component.getProvidedServices(port);
+        Set<Service> portReqServices = component.getRequiredServices(port);
+        
+        Set<Service> roleProServices = connector.getProvidedServices(role);
+        Set<Service> roleReqServices = connector.getRequiredServices(role);
+        
+        for (Service s : roleProServices) {
+            if (!portProServices.contains(s)) {
+                throw new IllegalAttachmentException(s.getLabel() +
+                        " service is not provided by " + component.getLabel()
+                        + "'s port " + port.getLabel());
+            }
+        }
+        
+        for (Service s : portReqServices) {
+            if (!roleReqServices.contains(s)) {
+                throw new IllegalAttachmentException(s.getLabel() +
+                        " service is not required by " + connector.getLabel()
+                        + "'s role " + role.getLabel());
+            }
+        }
+    }
+    
     // TODO vérifier que les services sont bien compatibles
-    public void addBinding(final Port configPort, final Port compPort){
-    	bindings.put(configPort, compPort);
-    	bindings.put(compPort, configPort);
+    public void addBinding(final Port configPort, final Port compPort) {
+        bindings.put(configPort, compPort);
+        bindings.put(compPort, configPort);
     }
     
-    public Response receive(Port port, Request request){
-    	Response resp = null;
-    	
-    	if(bindings.containsKey(port)){
-    		resp = bindings.get(port).receive(request);
-    	}
-    	else{
-    		resp = prAttachements.get(port).receive(request);
-    	}
-    	
-    	return resp;
+    public Response receive(Port port, Request request) {
+        Response resp = null;
+        
+        if (bindings.containsKey(port)) {
+            resp = bindings.get(port).receive(request);
+        }
+        else {
+            resp = prAttachements.get(port).receive(request);
+        }
+        
+        return resp;
     }
     
-    public Response receive(Role role, Request request){
-    	Port port = rpAttachements.get(role);
-    	Response resp = port.receive(request);
-    	
-    	if(!resp.getProcessed()) {  // La requête doit être traitée par le composite
-    		resp = bindings.get(port).receive(request);
-    	}
-    	
-    	return resp;
+    public Response receive(Role role, Request request) {
+        Port port = rpAttachements.get(role);
+        Response resp = port.receive(request);
+        
+        if (!resp.getProcessed()) {  // La requête doit être traitée par le
+                                    // composite
+            resp = bindings.get(port).receive(request);
+        }
+        
+        return resp;
     }
 }

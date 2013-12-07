@@ -41,6 +41,14 @@ public abstract class Component extends ArchitecturalElement{
         return new HashSet<Service>(requiredServices.values());
     }
     
+    public Set<Service> getProvidedServices(final Port port){
+        return new HashSet<Service>(portToProvided.get(port));
+    }
+    
+    public Set<Service> getRequiredServices(final Port port){
+        return new HashSet<Service>(portToRequired.get(port));
+    }
+    
     public Set<Port> getPorts(){
         return new HashSet<Port>(portToProvided.keySet());
     }

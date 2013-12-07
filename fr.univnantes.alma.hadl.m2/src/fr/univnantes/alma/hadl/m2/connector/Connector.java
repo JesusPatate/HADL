@@ -125,4 +125,12 @@ public abstract class Connector extends ArchitecturalElement {
         Service requiredService = requiredServices.get(service);
         return requiredToRole.get(requiredService);
     }
+    
+    public Set<Service> getProvidedServices(final Role role) {
+        return new HashSet<Service>(this.roleToProvided.get(role));
+    }
+    
+    public Set<Service> getRequiredServices(final Role role) {
+        return new HashSet<Service>(this.roleToRequired.get(role));
+    }
 }

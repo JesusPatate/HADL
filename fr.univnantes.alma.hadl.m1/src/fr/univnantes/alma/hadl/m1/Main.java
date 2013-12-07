@@ -11,6 +11,7 @@ import fr.univnantes.alma.hadl.m1.serverDetails.SecurityManager;
 import fr.univnantes.alma.hadl.m1.serverDetails.SecurityQuery;
 import fr.univnantes.alma.hadl.m1.serverDetails.ServerDetailsConfiguration;
 import fr.univnantes.alma.hadl.m2.component.Port;
+import fr.univnantes.alma.hadl.m2.configuration.IllegalAttachmentException;
 import fr.univnantes.alma.hadl.m2.connector.Role;
 
 
@@ -31,7 +32,7 @@ public class Main {
     private static ServerDetailsConfiguration serverDetails =
             new ServerDetailsConfiguration("serverDetails");
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalAttachmentException {
         buildServerDetails();
         buildCS();
         
@@ -39,7 +40,7 @@ public class Main {
         client.send(req);
     }
     
-    private static void buildServerDetails() {
+    private static void buildServerDetails() throws IllegalAttachmentException {
         
         connectionMgr = new ConnectionManager("connectionManager");
         serverDetails.addComponent(connectionMgr);
@@ -59,13 +60,15 @@ public class Main {
         		"securityAuthorization");
         Role senderRole = clearanceQuery.getRequestingRole(
         		"securityAuthorization");
-        serverDetails.addAttachment(senderPort, senderRole);
+        serverDetails.addAttachment(senderPort, connectionMgr, senderRole,
+                clearanceQuery);
         
         Port receiverPort = securityMgr.getProvidingPort(
         		"securityAuthorization");
         Role receiverRole = clearanceQuery.getProvidingRole(
         		"securityAuthorization");
-        serverDetails.addAttachment(receiverPort, receiverRole);
+        serverDetails.addAttachment(receiverPort, securityMgr, receiverRole,
+                clearanceQuery);
         
         // Security query
         
@@ -74,11 +77,13 @@ public class Main {
         
         senderPort = database.getRequestingPort("securityManagement");
         senderRole = securityQuery.getRequestingRole("securityManagement");        		
-        serverDetails.addAttachment(senderPort, senderRole);
+        serverDetails.addAttachment(senderPort, database, senderRole,
+                securityQuery);
         
         receiverPort = securityMgr.getProvidingPort("securityManagement");
         receiverRole = securityQuery.getProvidingRole("securityManagement");
-        serverDetails.addAttachment(receiverPort, receiverRole);
+        serverDetails.addAttachment(receiverPort, securityMgr, receiverRole,
+                securityQuery);
         
         // Binding
         
@@ -87,7 +92,7 @@ public class Main {
         serverDetails.addBinding(configPort, conMgrPort);
     }
     
-    private static void buildCS() {
+    private static void buildCS() throws IllegalAttachmentException {
         
         client = new CSClient("client");
         cs.addComponent(client);
@@ -103,11 +108,11 @@ public class Main {
         
         Port reqPort = client.getRequestingPort("receiveRequest");
         Role caller = rpc.getRequestingRole("receiveRequest");
-        cs.addAttachment(reqPort, caller);
+        cs.addAttachment(reqPort, client, caller, rpc);
         
         Port proPort = server.getProvidingPort("receiveRequest");
         Role callee = rpc.getProvidingRole("receiveRequest");
-        cs.addAttachment(proPort, callee);
+        cs.addAttachment(proPort, server, callee, rpc);
         
         // Binding
         

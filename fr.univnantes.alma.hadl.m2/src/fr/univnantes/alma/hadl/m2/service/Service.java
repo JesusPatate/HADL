@@ -62,4 +62,35 @@ public abstract class Service{
     	return compatible && 
     			parameters.size() == service.parameters.size();
     }
+    
+    public boolean equals(final Object obj) {
+        boolean result = true;
+ 
+        if ((obj != this) && (obj instanceof Service)) {
+            Service other = (Service) obj;
+ 
+            if (!this.isCompatible(other)) {
+                result = false;
+            }
+        }
+ 
+        return result;
+    }
+    
+    public String toString() {
+        StringBuffer buf = new StringBuffer("service ");
+        buf.append(this.getLabel() + "(");
+        
+        for(Entry<String, Class<?>> param : this.parameters.entrySet()) {
+            buf.append(param.getKey() + ": " + param.getValue().getSimpleName()+ ", ");
+        }
+        
+        buf = buf.delete(buf.length() - 2, buf.length());
+        
+        buf.append(") : ");
+        
+        buf.append(this.returnType.getSimpleName());
+        
+        return buf.toString();
+    }
 }
