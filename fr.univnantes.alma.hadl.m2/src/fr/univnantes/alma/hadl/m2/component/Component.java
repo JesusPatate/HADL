@@ -105,8 +105,24 @@ public abstract class Component extends ArchitecturalElement{
     }
     
     protected Response receive(Request request) {
+    	Response resp = null;
     	ProvidedService service = providedServices.get(request.getService());
-    	return service.excecute(request.getParameters());
+    	
+    	if (request.isFromComposite()) {
+			if (service != null) {
+				resp = service.excecute(request.getParameters());
+			} else {
+				Request fromComponent = new Request(request.getService(), request.getParameters());
+				Port requestingPort = getRequestingPort(request.getService());
+				resp = configuration.receive(requestingPort, fromComponent);
+			}
+		} else {
+			
+			resp = service.excecute(request.getParameters());
+		}
+    	
+    	
+    	return resp;
     }
     
     public Port getProvidingPort(final String service){

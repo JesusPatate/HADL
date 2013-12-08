@@ -4,15 +4,11 @@ import java.util.Set;
 
 import fr.univnantes.alma.hadl.m2.Request;
 import fr.univnantes.alma.hadl.m2.Response;
-import fr.univnantes.alma.hadl.m2.component.AtomicComponent;
 import fr.univnantes.alma.hadl.m2.component.Component;
 import fr.univnantes.alma.hadl.m2.component.Port;
-import fr.univnantes.alma.hadl.m2.connector.AtomicConnector;
 import fr.univnantes.alma.hadl.m2.connector.Connector;
 import fr.univnantes.alma.hadl.m2.connector.Role;
 
-
-// TODO: passage de la config haut niveau vers la config bas niveau
 
 /**
  * A composite component.
@@ -45,7 +41,7 @@ public abstract class ComponentConfiguration extends Component {
      * 
      * @return A map with entries (label, component)
      */
-    public Set<AtomicComponent> getComponents() {
+    public Set<Component> getComponents() {
         return internalConfiguration.getComponents();
     }
     
@@ -54,15 +50,15 @@ public abstract class ComponentConfiguration extends Component {
      * 
      * @return A map with entries (label, connectors)
      */
-    public Set<AtomicConnector> getConnectors() {
+    public Set<Connector> getConnectors() {
         return internalConfiguration.getConnectors();
     }
     
-    public void addComponent(final AtomicComponent comp){
+    public void addComponent(final Component comp){
         internalConfiguration.addComponent(comp);
     }
     
-    public void addConnector(final AtomicConnector con){
+    public void addConnector(final Connector con){
         internalConfiguration.addConnector(con);
     }
     
@@ -81,7 +77,8 @@ public abstract class ComponentConfiguration extends Component {
     	Port bindedPort = internalConfiguration.bindings.get(port);
     	
 		if (portToProvided.containsKey(bindedPort)) {
-			response = configuration.receive(bindedPort, request);
+			Request forComponent = new Request(request.getService(), request.getParameters(), true);
+			response = configuration.receive(bindedPort, forComponent);
 		} else {
 			response = internalConfiguration.receive(port, request);
 		}

@@ -19,11 +19,11 @@ import fr.univnantes.alma.hadl.m2.service.Service;
 
 public abstract class Configuration extends ArchitecturalElement {
     
-	protected final Set<AtomicComponent> components =
-            new HashSet<AtomicComponent>();
+	protected final Set<Component> components =
+            new HashSet<Component>();
     
-    protected final Set<AtomicConnector> connectors =
-            new HashSet<AtomicConnector>();
+    protected final Set<Connector> connectors =
+            new HashSet<Connector>();
     
     protected final Map<Port, Port> bindings = new HashMap<Port, Port>();
     
@@ -46,8 +46,8 @@ public abstract class Configuration extends ArchitecturalElement {
      * 
      * @return A map with entries (label, component)
      */
-    public Set<AtomicComponent> getComponents() {
-        return new HashSet<AtomicComponent>(components);
+    public Set<Component> getComponents() {
+        return new HashSet<Component>(components);
     }
     
     /**
@@ -55,16 +55,16 @@ public abstract class Configuration extends ArchitecturalElement {
      * 
      * @return A map with entries (label, connectors)
      */
-    public Set<AtomicConnector> getConnectors() {
-        return new HashSet<AtomicConnector>(connectors);
+    public Set<Connector> getConnectors() {
+        return new HashSet<Connector>(connectors);
     }
     
-    public void addComponent(final AtomicComponent comp) {
+    public void addComponent(final Component comp) {
         components.add(comp);
         comp.setConfiguration(this);
     }
     
-    public void addConnector(final AtomicConnector con) {
+    public void addConnector(final Connector con) {
         connectors.add(con);
         con.setConfiguration(this);
     }
@@ -128,8 +128,6 @@ public abstract class Configuration extends ArchitecturalElement {
         Port port = rpAttachements.get(role);
         Response resp = port.receive(request);
         Port bindedPort = bindings.get(port);
-        
-        //System.out.println(request.getService());
         
         // La requête doit être traitée par le composite.
         if (!resp.getProcessed() && bindedPort != null) {  
