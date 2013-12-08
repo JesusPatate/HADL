@@ -63,6 +63,21 @@ public abstract class Service{
     			parameters.size() == service.parameters.size();
     }
     
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((label == null) ? 0 : label.hashCode());
+        result =
+                prime * result
+                        + ((parameters == null) ? 0 : parameters.hashCode());
+        result =
+                prime * result
+                        + ((returnType == null) ? 0 : returnType.hashCode());
+        return result;
+    }
+
+    @Override
     public boolean equals(final Object obj) {
         boolean result = true;
  
@@ -76,7 +91,7 @@ public abstract class Service{
  
         return result;
     }
-    
+
     public String toString() {
         StringBuffer buf = new StringBuffer("service ");
         buf.append(this.getLabel() + "(");

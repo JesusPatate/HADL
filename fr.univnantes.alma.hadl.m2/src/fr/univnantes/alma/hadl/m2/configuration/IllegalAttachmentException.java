@@ -16,10 +16,4 @@ public class IllegalAttachmentException extends Exception {
     public IllegalAttachmentException(String message, Throwable cause) {
         super(message, cause);
     }
-    
-    public IllegalAttachmentException(String message, Throwable cause,
-            boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
-    
 }
