@@ -7,6 +7,7 @@ import fr.univnantes.alma.hadl.m1.cs.CSServer;
 import fr.univnantes.alma.hadl.m1.serverDetails.ClearanceQuery;
 import fr.univnantes.alma.hadl.m1.serverDetails.ConnectionManager;
 import fr.univnantes.alma.hadl.m1.serverDetails.Database;
+import fr.univnantes.alma.hadl.m1.serverDetails.SQLQuery;
 import fr.univnantes.alma.hadl.m1.serverDetails.SecurityManager;
 import fr.univnantes.alma.hadl.m1.serverDetails.SecurityQuery;
 import fr.univnantes.alma.hadl.m1.serverDetails.ServerDetailsConfiguration;
@@ -16,19 +17,17 @@ import fr.univnantes.alma.hadl.m2.connector.Role;
 
 
 public class Main {
+    private final static CSClient client = new CSClient("client");
+    private final static CSServer server = new CSServer("server");
+    private final static CSRPC rpc = new CSRPC("RPC");
+    private final static CSConfiguration cs = new CSConfiguration("cs");
     
-    private static CSClient client;
-    
-    private static CSServer server;
-    
-    private static ConnectionManager connectionMgr;
-    
-    private static SecurityManager securityMgr;
-    
-    private static Database database;
-    
-    private static CSConfiguration cs = new CSConfiguration("cs");
-    
+    private final static ConnectionManager connectionManager = new ConnectionManager("connectionManager");
+    private final static ClearanceQuery clearanceQuery = new ClearanceQuery("clearanceQuery");
+    private final static SecurityManager securityManager = new SecurityManager("securityManager");
+    private final static SQLQuery sqlQuery = new SQLQuery("sqlQuery");
+    private final static Database database = new Database("database");
+    private final static SecurityQuery securityQuery = new SecurityQuery("securityQuery");
     private static ServerDetailsConfiguration serverDetails =
             new ServerDetailsConfiguration("serverDetails");
     
@@ -41,71 +40,63 @@ public class Main {
     }
     
     private static void buildServerDetails() throws IllegalAttachmentException {
-        
-        connectionMgr = new ConnectionManager("connectionManager");
-        serverDetails.addComponent(connectionMgr);
-        
-        database = new Database("database");
+        serverDetails.addComponent(connectionManager);
+        serverDetails.addConnector(clearanceQuery);
+        serverDetails.addComponent(securityManager);
+        serverDetails.addConnector(sqlQuery);
         serverDetails.addComponent(database);
-        
-        securityMgr = new SecurityManager("securityManager");
-        serverDetails.addComponent(securityMgr);
+        serverDetails.addConnector(securityQuery);
         
         // Clearance query
-        
-        ClearanceQuery clearanceQuery = new ClearanceQuery("clearanceQuery");
-        serverDetails.addConnector(clearanceQuery);
-        
-        Port senderPort = connectionMgr.getRequestingPort(
+        Port senderPort = connectionManager.getRequestingPort(
         		"securityAuthorization");
         Role senderRole = clearanceQuery.getRequestingRole(
         		"securityAuthorization");
-        serverDetails.addAttachment(senderPort, connectionMgr, senderRole,
+        serverDetails.addAttachment(senderPort, connectionManager, senderRole,
                 clearanceQuery);
         
-        Port receiverPort = securityMgr.getProvidingPort(
+        Port receiverPort = securityManager.getProvidingPort(
         		"securityAuthorization");
         Role receiverRole = clearanceQuery.getProvidingRole(
         		"securityAuthorization");
-        serverDetails.addAttachment(receiverPort, securityMgr, receiverRole,
+        serverDetails.addAttachment(receiverPort, securityManager, receiverRole,
                 clearanceQuery);
         
         // Security query
-        
-        SecurityQuery securityQuery = new SecurityQuery("securityQuery");
-        serverDetails.addConnector(securityQuery);
-        
         senderPort = database.getRequestingPort("securityManagement");
         senderRole = securityQuery.getRequestingRole("securityManagement");        		
         serverDetails.addAttachment(senderPort, database, senderRole,
                 securityQuery);
         
-        receiverPort = securityMgr.getProvidingPort("securityManagement");
+        receiverPort = securityManager.getProvidingPort("securityManagement");
         receiverRole = securityQuery.getProvidingRole("securityManagement");
-        serverDetails.addAttachment(receiverPort, securityMgr, receiverRole,
+        serverDetails.addAttachment(receiverPort, securityManager, receiverRole,
                 securityQuery);
         
-        // Binding
+        // SQL query
+        senderPort = connectionManager.getRequestingPort("handleQuery");
+        senderRole = sqlQuery.getRequestingRole("handleQuery");        		
+        serverDetails.addAttachment(senderPort, connectionManager, senderRole,
+                sqlQuery);
         
+        receiverPort = database.getProvidingPort("handleQuery");
+        receiverRole = sqlQuery.getProvidingRole("handleQuery");
+        serverDetails.addAttachment(receiverPort, database, receiverRole,
+        		sqlQuery);
+        
+        // Binding
         Port configPort = serverDetails.getProvidingPort("receiveRequest");
-        Port conMgrPort = connectionMgr.getProvidingPort("receiveRequest");
+        Port conMgrPort = connectionManager.getProvidingPort("receiveRequest");
         serverDetails.addBinding(configPort, conMgrPort);
     }
     
     private static void buildCS() throws IllegalAttachmentException {
-        
-        client = new CSClient("client");
         cs.addComponent(client);
-        
-        server = new CSServer("server");
+        cs.addConnector(rpc);
         cs.addComponent(server);
         //cs.addComponent(serverDetails);
         
-        CSRPC rpc = new CSRPC("RPC"); // Request
-        cs.addConnector(rpc);
-        
         // Request
-        
         Port reqPort = client.getRequestingPort("receiveRequest");
         Role caller = rpc.getRequestingRole("receiveRequest");
         cs.addAttachment(reqPort, client, caller, rpc);
@@ -115,7 +106,6 @@ public class Main {
         cs.addAttachment(proPort, server, callee, rpc);
         
         // Binding
-        
         Port compositePort = serverDetails.getProvidingPort("receiveRequest");
         Port componentPort = server.getProvidingPort("receiveRequest");
         cs.addBinding(compositePort, componentPort);

@@ -1,5 +1,10 @@
 package fr.univnantes.alma.hadl.m2.configuration;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 import fr.univnantes.alma.hadl.m2.ArchitecturalElement;
 import fr.univnantes.alma.hadl.m2.Request;
 import fr.univnantes.alma.hadl.m2.Response;
@@ -11,26 +16,20 @@ import fr.univnantes.alma.hadl.m2.connector.Connector;
 import fr.univnantes.alma.hadl.m2.connector.Role;
 import fr.univnantes.alma.hadl.m2.service.Service;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 
 public abstract class Configuration extends ArchitecturalElement {
     
-    private final Set<AtomicComponent> components =
+	protected final Set<AtomicComponent> components =
             new HashSet<AtomicComponent>();
     
-    private final Set<AtomicConnector> connectors =
+    protected final Set<AtomicConnector> connectors =
             new HashSet<AtomicConnector>();
     
-    private final Map<Port, Port> bindings = new HashMap<Port, Port>();
+    protected final Map<Port, Port> bindings = new HashMap<Port, Port>();
     
-    private final Map<Role, Port> rpAttachements = new HashMap<Role, Port>();
+    protected final Map<Role, Port> rpAttachements = new HashMap<Role, Port>();
     
-    private final Map<Port, Role> prAttachements = new HashMap<Port, Role>();
+    protected final Map<Port, Role> prAttachements = new HashMap<Port, Role>();
     
     /**
      * Creates a new empty configuration.
@@ -129,8 +128,8 @@ public abstract class Configuration extends ArchitecturalElement {
         Port port = rpAttachements.get(role);
         Response resp = port.receive(request);
         
-        if (!resp.getProcessed()) {  // La requête doit être traitée par le
-                                    // composite
+        // La requête doit être traitée par le composite.
+        if (!resp.getProcessed()) {  
             resp = bindings.get(port).receive(request);
         }
         

@@ -10,7 +10,6 @@ import fr.univnantes.alma.hadl.m2.component.Port;
 import fr.univnantes.alma.hadl.m2.connector.AtomicConnector;
 import fr.univnantes.alma.hadl.m2.connector.Connector;
 import fr.univnantes.alma.hadl.m2.connector.Role;
-import fr.univnantes.alma.hadl.m2.service.ProvidedService;
 
 
 // TODO: passage de la config haut niveau vers la config bas niveau
@@ -27,18 +26,18 @@ public abstract class ComponentConfiguration extends Component {
     /**
      * Internal configuration
      */
-    class Config extends Configuration {
+    class InternalConfiguration extends Configuration {
         
-        public Config(final String label) {
+        public InternalConfiguration(final String label) {
             super(label);
         }
     }
     
-    private final Config config;
+    private final InternalConfiguration internalConfiguration;
     
     public ComponentConfiguration(final String label) {
         super(label);
-        this.config = new Config(this.label);
+        internalConfiguration = new InternalConfiguration(this.label);
     }
     
     /**
@@ -47,7 +46,7 @@ public abstract class ComponentConfiguration extends Component {
      * @return A map with entries (label, component)
      */
     public Set<AtomicComponent> getComponents() {
-        return this.config.getComponents();
+        return internalConfiguration.getComponents();
     }
     
     /**
@@ -56,43 +55,46 @@ public abstract class ComponentConfiguration extends Component {
      * @return A map with entries (label, connectors)
      */
     public Set<AtomicConnector> getConnectors() {
-        return this.config.getConnectors();
+        return internalConfiguration.getConnectors();
     }
     
     public void addComponent(final AtomicComponent comp){
-        this.config.addComponent(comp);
+        internalConfiguration.addComponent(comp);
     }
     
     public void addConnector(final AtomicConnector con){
-        this.config.addConnector(con);
+        internalConfiguration.addConnector(con);
     }
     
-    // TODO vérifier que les services sont bien compatibles
     public void addAttachment(final Port port, final Component component,
             final Role role, final Connector connector)
                     throws IllegalAttachmentException{
-        
-        this.config.addAttachment(port, component, role, connector);
+        internalConfiguration.addAttachment(port, component, role, connector);
     }
     
-    // TODO vérifier que les services sont bien compatibles
     public void addBinding(final Port configPort, final Port compPort){
-        this.config.addBinding(configPort, compPort);
+        internalConfiguration.addBinding(configPort, compPort);
     }
     
     public Response receive(Port port, Request request){
-    	System.out.println("config interne");
-        return this.config.receive(port, request);
+    	Response response = null;
+    	Port bindedPort = internalConfiguration.bindings.get(port);
+    	
+		if (portToProvided.containsKey(bindedPort)) {
+			response = configuration.receive(bindedPort, request);
+		} else {
+			response = internalConfiguration.receive(port, request);
+		}
+    	
+        return response;
     }
     
     public Response receive(Role role, Request request){
-        return this.receive(role, request);
+    	return internalConfiguration.receive(role, request);
     }
     
     protected Response receive(Request request) {
-    	/*ProvidedService service = providedServices.get(request.getService());
-    	return service.excecute(request.getParameters());*/
     	Port port = getProvidingPort(request.getService());
-    	return config.receive(port, request);
+    	return internalConfiguration.receive(port, request);
     }
 }

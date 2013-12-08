@@ -16,9 +16,9 @@ public class SQLQuery extends AtomicConnector {
 	 private static final Map<String, Class<?>> PARAMETERS =
 	            new HashMap<String, Class<?>>();
 	    
-	    static {
-	    	PARAMETERS.put("request", DBRequest.class);
-	    }
+	 static {
+		 PARAMETERS.put("request", DBRequest.class);
+	 }
 	
 	private class SQLQueryService extends Service {
 		

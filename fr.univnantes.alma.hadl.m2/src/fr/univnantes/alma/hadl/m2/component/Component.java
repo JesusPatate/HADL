@@ -17,12 +17,12 @@ import fr.univnantes.alma.hadl.m2.service.Service;
  * A component of a software architecture.
  */
 public abstract class Component extends ArchitecturalElement{
-    private Map<String, ProvidedService> providedServices = new HashMap<String, ProvidedService>();
-    private Map<String, Service> requiredServices = new HashMap<String, Service>();
-    private Map<Port, Set<ProvidedService>> portToProvided = new HashMap<Port, Set<ProvidedService>>();
-    private Map<ProvidedService, Port> providedToPort = new HashMap<ProvidedService, Port>();
-    private Map<Port, Set<Service>> portToRequired = new HashMap<Port, Set<Service>>();
-    private Map<Service, Port> requiredToPort = new HashMap<Service, Port>();
+    protected Map<String, ProvidedService> providedServices = new HashMap<String, ProvidedService>();
+    protected Map<String, Service> requiredServices = new HashMap<String, Service>();
+    protected Map<Port, Set<ProvidedService>> portToProvided = new HashMap<Port, Set<ProvidedService>>();
+    protected Map<ProvidedService, Port> providedToPort = new HashMap<ProvidedService, Port>();
+    protected Map<Port, Set<Service>> portToRequired = new HashMap<Port, Set<Service>>();
+    protected Map<Service, Port> requiredToPort = new HashMap<Service, Port>();
     protected Configuration configuration = null;
 	
     public Component(final String label){
