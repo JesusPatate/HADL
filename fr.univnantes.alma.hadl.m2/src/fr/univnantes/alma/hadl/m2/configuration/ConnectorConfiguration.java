@@ -1,12 +1,10 @@
 package fr.univnantes.alma.hadl.m2.configuration;
 
-import fr.univnantes.alma.hadl.m2.component.AtomicComponent;
-import fr.univnantes.alma.hadl.m2.connector.AtomicConnector;
-import fr.univnantes.alma.hadl.m2.connector.Connector;
-
 import java.util.Set;
 
-// TODO Rajouter les methodes de la config 
+import fr.univnantes.alma.hadl.m2.component.Component;
+import fr.univnantes.alma.hadl.m2.connector.Connector;
+
 public class ConnectorConfiguration extends Connector {
     
     /**
@@ -31,7 +29,7 @@ public class ConnectorConfiguration extends Connector {
      * 
      * @return A map with entries (label, component)
      */
-    public Set<AtomicComponent> getComponents() {
+    public Set<Component> getComponents() {
         return this.config.getComponents();
     }
     
@@ -40,7 +38,7 @@ public class ConnectorConfiguration extends Connector {
      * 
      * @return A map with entries (label, connectors)
      */
-    public Set<AtomicConnector> getConnectors() {
+    public Set<Connector> getConnectors() {
         return this.config.getConnectors();
     }
 }

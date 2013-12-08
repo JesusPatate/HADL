@@ -62,14 +62,13 @@ public abstract class ComponentConfiguration extends Component {
         internalConfiguration.addConnector(con);
     }
     
-    public void addAttachment(final Port port, final Component component,
-            final Role role, final Connector connector)
-                    throws IllegalAttachmentException{
-        internalConfiguration.addAttachment(port, component, role, connector);
+    public void addAttachment(final Port port, final Role role)
+                    throws IllegalLinkException{
+        internalConfiguration.addAttachment(port, role);
     }
     
-    public void addBinding(final Port configPort, final Port compPort){
-        internalConfiguration.addBinding(configPort, compPort);
+    public void addBinding(final Port port1, final Port port2) throws IllegalLinkException{
+        internalConfiguration.addBinding(port1, port2);
     }
     
     public Response receive(Port port, Request request){

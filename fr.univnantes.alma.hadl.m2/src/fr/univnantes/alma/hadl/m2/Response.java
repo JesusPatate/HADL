@@ -9,14 +9,16 @@ public class Response {
 	 * ou si elle doit être déléguée.
 	 */
 	private final boolean processed;
+	private final String message;
 	
-	public Response(Object value, boolean processed){
+	public Response(Object value, boolean processed, String message){
 		this.value = value;
 		this.processed = processed;
+		this.message = message;
 	}
 	
 	public Response(Object value){
-		this(value, true);
+		this(value, true, "");
 	}
 	
 	public Object getValue(){
@@ -24,6 +26,10 @@ public class Response {
 	}
 
 	public boolean getProcessed() {
-		return this.processed;
+		return processed;
+	}
+	
+	public String getMessage() {
+		return message;
 	}
 }

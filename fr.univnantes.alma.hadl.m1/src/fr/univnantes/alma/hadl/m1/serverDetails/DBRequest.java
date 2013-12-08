@@ -1,4 +1,4 @@
-package fr.univnantes.alma.hadl.m1;
+package fr.univnantes.alma.hadl.m1.serverDetails;
 
 
 public class DBRequest {

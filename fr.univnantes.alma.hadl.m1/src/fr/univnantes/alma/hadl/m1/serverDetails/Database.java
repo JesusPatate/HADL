@@ -5,8 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import fr.univnantes.alma.hadl.m1.DBRequest;
-import fr.univnantes.alma.hadl.m1.DBResponse;
 import fr.univnantes.alma.hadl.m2.Request;
 import fr.univnantes.alma.hadl.m2.Response;
 import fr.univnantes.alma.hadl.m2.component.AtomicComponent;
@@ -43,10 +41,11 @@ public class Database extends AtomicComponent {
 
 		@Override
 		public Response excecute(Map<String, Object> parameters) {
+			DBRequest dbRequest = (DBRequest) parameters.get("request");
 			Response resp = null;
 			Map<String, Object> authParameters = new HashMap<String, Object>();
-			authParameters.put("login", parameters.get("login"));
-			authParameters.put("password", parameters.get("password"));
+			authParameters.put("login", dbRequest.getLogin());
+			authParameters.put("password", dbRequest.getPassword());
 			Request authRequest = new Request("securityManagement", authParameters);
 			resp = send(authRequest);
 			boolean authorized = (Boolean) resp.getValue();
@@ -59,7 +58,7 @@ public class Database extends AtomicComponent {
 			}
 			else{
 				List<Object> values = new LinkedList<Object>();
-				values.add("Not authorized to access to databse");
+				values.add("Not authorized to access to database");
 				DBResponse dbResp = new DBResponse(values, true);
 				resp = new Response(dbResp);
 			}
@@ -67,6 +66,8 @@ public class Database extends AtomicComponent {
 			return resp;
 		}
     }
+    
+    private Map<String, Object> store = new HashMap<String, Object>();
     
     public Database(String label){
         super(label);

@@ -10,13 +10,15 @@ import fr.univnantes.alma.hadl.m2.service.ProvidedService;
 
 public class SecurityManager extends AtomicComponent {
 
-	private static final Map<String, Class<?>> SECURITY_AUTH_PARAMS = new HashMap<String, Class<?>>();
+	private static final Map<String, Class<?>> SECURITY_AUTHORIZATION_PARAMS = new HashMap<String, Class<?>>();
 
-	private static final Map<String, Class<?>> SECURITY_MGMT_PARAMS = new HashMap<String, Class<?>>();
+	private static final Map<String, Class<?>> SECURITY_MANAGEMENT_PARAMS = new HashMap<String, Class<?>>();
 
 	static {
-		SECURITY_AUTH_PARAMS.put("login", String.class);
-		SECURITY_AUTH_PARAMS.put("password", String.class);
+		SECURITY_AUTHORIZATION_PARAMS.put("login", String.class);
+		SECURITY_AUTHORIZATION_PARAMS.put("password", String.class);
+		SECURITY_MANAGEMENT_PARAMS.put("login", String.class);
+		SECURITY_MANAGEMENT_PARAMS.put("password", String.class);
 
 		// TODO Paramètres de security management
 	}
@@ -32,40 +34,47 @@ public class SecurityManager extends AtomicComponent {
 	 * </p>
 	 */
 	private class SecurityAuthorization extends ProvidedService {
-
-		public SecurityAuthorization() {
-			super("securityAuthorization", boolean.class, SECURITY_AUTH_PARAMS);
+		SecurityAuthorization() {
+			super("securityAuthorization", boolean.class, SECURITY_AUTHORIZATION_PARAMS);
 		}
 
 		@Override
 		public Response excecute(Map<String, Object> parameters) {
-			// TODO Vérifier que le couple (login, password) est dans la table
-			// des utilisateurs du serveur
-			return new Response(true);
+			String login = (String) parameters.get("login");
+			String password = (String) parameters.get("password");
+			boolean authorized = users.containsKey(login) && users.get(login).equals(password);
+			return new Response(authorized);
 		}
 	}
 
 	private class SecurityManagement extends ProvidedService {
-
-		public SecurityManagement() {
-			super("securityManagement", boolean.class, SECURITY_MGMT_PARAMS);
+		 SecurityManagement() {
+			super("securityManagement", boolean.class, SECURITY_MANAGEMENT_PARAMS);
 		}
 
 		@Override
 		public Response excecute(Map<String, Object> parameters) {
-			// TODO Vérifier que le couple (login, password) est dans la table
-			// des utilisateurs de la BD
-			return new Response(true);
+			String login = (String) parameters.get("login");
+			String password = (String) parameters.get("password");
+			boolean authorized = users.containsKey(login) && users.get(login).equals(password);
+			return new Response(authorized);
 		}
 	}
+	
+	private Map<String, String> users = new HashMap<String, String>();
 
 	public SecurityManager(String label) {
 		super(label);
 		Port securityAuthorization = new Port("securityAuthorization");
 		Port credentialQuery = new Port("credentialQuery");
-
 		addProvidedConnection(securityAuthorization,
 				new SecurityAuthorization());
 		addProvidedConnection(credentialQuery, new SecurityManagement());
+		
+		initializeUsers();
+	}
+	
+	private void initializeUsers(){
+		users.put("login", "pwd");
 	}
 }

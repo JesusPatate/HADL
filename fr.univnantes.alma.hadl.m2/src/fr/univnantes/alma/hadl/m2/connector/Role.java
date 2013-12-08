@@ -20,7 +20,7 @@ public class Role extends Interface{
     }
     
     public Connector getConnector() {
-    	return this.connector;
+    	return connector;
     }
     
     @Override

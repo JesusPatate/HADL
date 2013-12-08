@@ -1,4 +1,4 @@
-package fr.univnantes.alma.hadl.m1;
+package fr.univnantes.alma.hadl.m1.serverDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class DBResponse {
         return new ArrayList<Object>(values);
     }
     
-    public boolean getError() {
+    public boolean isError() {
         return error;
     }
 }

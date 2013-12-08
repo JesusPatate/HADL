@@ -18,7 +18,7 @@ public class Port extends Interface{
     }
     
     public Component getComponent() {
-    	return this.component;
+    	return component;
     }
     
     @Override
