@@ -94,7 +94,6 @@ public class Main {
         cs.addComponent(client);
         cs.addConnector(rpc);
         cs.addComponent(server);
-        //cs.addComponent(serverDetails);
         
         // Request
         Port reqPort = client.getRequestingPort("receiveRequest");

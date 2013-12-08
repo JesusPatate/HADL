@@ -127,9 +127,12 @@ public abstract class Configuration extends ArchitecturalElement {
     public Response receive(Role role, Request request) {
         Port port = rpAttachements.get(role);
         Response resp = port.receive(request);
+        Port bindedPort = bindings.get(port);
+        
+        //System.out.println(request.getService());
         
         // La requête doit être traitée par le composite.
-        if (!resp.getProcessed()) {  
+        if (!resp.getProcessed() && bindedPort != null) {  
             resp = bindings.get(port).receive(request);
         }
         

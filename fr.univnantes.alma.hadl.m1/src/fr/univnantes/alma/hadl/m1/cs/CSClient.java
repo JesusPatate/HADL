@@ -44,7 +44,12 @@ public class CSClient extends AtomicComponent {
         Request req = new Request("receiveRequest", params);
         
         Response resp = super.send(req);
-        DBResponse dbResp = (DBResponse) resp.getValue();
-        System.out.println("Réponse de la BD : " + dbResp.getValues());
+        
+        if (resp.getProcessed()) {
+        	DBResponse dbResp = (DBResponse) resp.getValue();
+        	System.out.println("Réponse de la BD : " + dbResp.getValues());
+		} else {
+			System.out.println("Demande non gérée par le serveur");
+		}
     }
 }
