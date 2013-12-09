@@ -51,8 +51,13 @@ public class Database extends AtomicComponent {
 			boolean authorized = (Boolean) resp.getValue();
 			
 			if(authorized){
+				String query = dbRequest.getQuery();
 				List<Object> values = new LinkedList<Object>();
-				values.add("Sucess !!!");
+				
+				if (store.containsKey(query)) {
+					values.add(store.get(query));
+				}
+
 				DBResponse dbResp = new DBResponse(values);
 				resp = new Response(dbResp);
 			}
@@ -76,5 +81,11 @@ public class Database extends AtomicComponent {
         
         addRequiredConnection(securityManagement, new SecurityManagement());
         addProvidedConnection(query, new HandleQuery());
+        
+        initializeStore();
+    }
+    
+    private void initializeStore() {
+    	store.put("key", "michel");
     }
 }

@@ -18,7 +18,9 @@ import fr.univnantes.alma.hadl.m2.connector.Role;
 
 public class Main {
 	private final static CSClient client = new CSClient("client");
-	private final static CSServer server = new CSServer("server");
+	private static ServerDetailsConfiguration serverDetails = new ServerDetailsConfiguration(
+			"serverDetails");
+	private final static CSServer server = new CSServer("server", serverDetails);
 	private final static CSRPC rpc = new CSRPC("RPC");
 	private final static CSConfiguration cs = new CSConfiguration("cs");
 
@@ -32,13 +34,12 @@ public class Main {
 	private final static Database database = new Database("database");
 	private final static SecurityQuery securityQuery = new SecurityQuery(
 			"securityQuery");
-	private static ServerDetailsConfiguration serverDetails = new ServerDetailsConfiguration(
-			"serverDetails");
+	
 
 	public static void main(String[] args) throws IllegalLinkException {
 		buildServerDetails();
 		buildCS();
-		DBRequest req = new DBRequest("meuh", "login", "pwd");
+		DBRequest req = new DBRequest("key", "login", "pwd");
 		client.send(req);
 	}
 
