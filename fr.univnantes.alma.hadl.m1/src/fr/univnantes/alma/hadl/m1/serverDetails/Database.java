@@ -86,6 +86,10 @@ public class Database extends AtomicComponent {
     }
     
     private void initializeStore() {
-    	store.put("key", "michel");
+    	store.put("Michel", "Sardou");
+    	store.put("José", "Bové");
+    	store.put("Pascal", "Molli");
+    	store.put("Mourad", "Oussalah");
+    	store.put("Stanislas", "Kobak");
     }
 }

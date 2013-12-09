@@ -19,11 +19,7 @@ public class SecurityManager extends AtomicComponent {
 		SECURITY_AUTHORIZATION_PARAMS.put("password", String.class);
 		SECURITY_MANAGEMENT_PARAMS.put("login", String.class);
 		SECURITY_MANAGEMENT_PARAMS.put("password", String.class);
-
-		// TODO Paramètres de security management
 	}
-
-	// TODO Tables utilisateurs du serveur et de la BD
 
 	/**
 	 * Teste si un utilisateur à le droit de se connecter au serveur.
@@ -75,6 +71,8 @@ public class SecurityManager extends AtomicComponent {
 	}
 	
 	private void initializeUsers(){
-		users.put("login", "pwd");
+		users.put("gaetan", "patate");
+		users.put("admin", "admin");
+		users.put("lover77", "azerty");
 	}
 }
