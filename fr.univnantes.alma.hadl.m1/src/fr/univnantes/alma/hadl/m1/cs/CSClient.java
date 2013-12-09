@@ -40,7 +40,7 @@ public class CSClient extends AtomicComponent {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("request", dbReq);
 		Request req = new Request("receiveRequest", params);
-
+		
 		Response resp = super.send(req);
 
 		if (resp.getProcessed()) {

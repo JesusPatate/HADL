@@ -26,4 +26,10 @@ public class DBRequest {
     public String getPassword() {
         return password;
     }
+    
+    @Override
+    public String toString() {
+    	return String.format("query=%s ; login=%s ; password=%s", this.query, this.login,
+    			this.password);
+    }
 }

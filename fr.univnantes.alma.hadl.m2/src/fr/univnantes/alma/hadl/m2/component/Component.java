@@ -113,6 +113,8 @@ public abstract class Component extends ArchitecturalElement {
 		Response resp = null;
 		String service = request.getService();
 
+		System.out.println(this.label + " envoie " + request);
+		
 		if (providedServices.containsKey(service)) {
 			resp = providedServices.get(service).excecute(
 					request.getParameters());
@@ -126,12 +128,16 @@ public abstract class Component extends ArchitecturalElement {
 			}
 		}
 
+		System.out.println(this.label + " renvoie " + resp);
+
 		return resp;
 	}
 
 	protected Response receive(Request request) {
 		Response resp = null;
 		ProvidedService service = providedServices.get(request.getService());
+
+		System.out.println(this.label + " reçoit " + request);
 
 		if (request.isFromComposite()) {
 			if (service != null) {
@@ -153,6 +159,8 @@ public abstract class Component extends ArchitecturalElement {
 
 			resp = service.excecute(request.getParameters());
 		}
+
+		System.out.println(this.label + " renvoie " + resp);
 
 		return resp;
 	}

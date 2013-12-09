@@ -32,4 +32,10 @@ public class Response {
 	public String getMessage() {
 		return message;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("[processed=%b ;  message=%s ; value=%s]", this.processed, this.message,
+				this.value);
+	}
 }
