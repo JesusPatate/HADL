@@ -91,7 +91,9 @@ public abstract class Connector extends ArchitecturalElement {
 
 	protected Response receive(Request request) {
 		Response resp = null;
-
+		
+		System.out.println(this.label + " reçoit " + request);
+		
 		if (configuration != null) {
 			Service service = requiredServices.get(request.getService());
 			Service equivalent = requiredToProvided.get(service);
@@ -103,6 +105,8 @@ public abstract class Connector extends ArchitecturalElement {
 			resp = new Response(null, false, String.format(
 					"%s not connected to configuration", this.getLabel()));
 		}
+		
+		System.out.println(this.label + " renvoie " + resp);
 
 		return resp;
 	}

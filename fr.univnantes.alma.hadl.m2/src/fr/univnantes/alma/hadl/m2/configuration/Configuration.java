@@ -119,6 +119,8 @@ public abstract class Configuration extends ArchitecturalElement {
 
 	public Response receive(Port port, Request request) {
 		Response resp = null;
+		
+		System.out.println(this.label + " reçoit " + request);
 
 		if (bindings.containsKey(port)) {
 			resp = bindings.get(port).receive(request);
@@ -128,12 +130,16 @@ public abstract class Configuration extends ArchitecturalElement {
 			resp = new Response(null, false, String.format(
 					"%s not linked to component", port.getLabel()));
 		}
+		
+		System.out.println(this.label + " renvoie " + resp);
 
 		return resp;
 	}
 
 	public Response receive(Role role, Request request) {
 		Response resp = null;
+		
+		System.out.println(this.label + " reçoit " + request);
 
 		if (rpAttachements.containsKey(role)) {
 			Port port = rpAttachements.get(role);
@@ -148,6 +154,8 @@ public abstract class Configuration extends ArchitecturalElement {
 			resp = new Response(null, false, String.format(
 					"%s not linked to component", role.getLabel()));
 		}
+		
+		System.out.println(this.label + " renvoie " + resp);
 
 		return resp;
 	}
